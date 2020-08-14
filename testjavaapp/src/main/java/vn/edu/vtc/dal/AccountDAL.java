@@ -17,7 +17,6 @@ public class AccountDAL {
             try (ResultSet resultSet=preparedStatement.executeQuery();){
                 if (resultSet.next()){
                     account = setInfo(resultSet);
-                    account.setPassword(password);
                     account.setUserName(userName);
                 }
             }
@@ -30,7 +29,7 @@ public class AccountDAL {
         Account account=new Account();
         account.setName(rs.getString("staff_name"));
         account.setStaff_id(rs.getInt("staff_id"));
-        account.setIsAmin(rs.getShort("isAdmin"));
+        account.setIsAmin(rs.getInt("isAdmin"));
         return account;
     }
 }

@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6dabf92f-703f-49fb-89fa-377beb0e013c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/service/StaticFuncitionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/service/tsahdbvhjasbdhasbh.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/dal/AccountDAL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/dal/AccountDAL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/persistance/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/persistance/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/vn/edu/vtc/dal/AccountDALTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/vn/edu/vtc/dal/AccountDALTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +26,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1ftb57cZuSrGDng15CjPJj6oplW" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -30,9 +37,10 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../app/testjavaapp" />
+    <property name="last.edited.regexp" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="vn.edu.vtc.App" />
       <module name="testjavaapp" />
@@ -46,9 +54,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AccountDALTest.getAccountTest1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="testjavaapp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="vn.edu.vtc.dal.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="vn.edu.vtc.dal" />
+      <option name="MAIN_CLASS_NAME" value="vn.edu.vtc.dal.AccountDALTest" />
+      <option name="METHOD_NAME" value="getAccountTest1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.App" />
+        <item itemvalue="JUnit.AccountDALTest.getAccountTest1" />
       </list>
     </recent_temporary>
   </component>
@@ -82,46 +107,50 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864@0.0.1536.864" timestamp="1597219198535" />
+    <state x="454" y="25" key="CommitChangelistDialog2" timestamp="1597395741929">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="454" y="25" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1597395741929" />
     <state x="549" y="189" key="FileChooserDialogImpl" timestamp="1597302738015">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="549" y="189" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1597302738015" />
-    <state width="1493" height="222" key="GridCell.Tab.0.bottom" timestamp="1597302739515">
+    <state width="1493" height="221" key="GridCell.Tab.0.bottom" timestamp="1597395675061">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="222" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1597302739515" />
-    <state width="1493" height="222" key="GridCell.Tab.0.center" timestamp="1597302739513">
+    <state width="1493" height="221" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1597395675061" />
+    <state width="1493" height="221" key="GridCell.Tab.0.center" timestamp="1597395675060">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="222" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1597302739513" />
-    <state width="1493" height="222" key="GridCell.Tab.0.left" timestamp="1597302739513">
+    <state width="1493" height="221" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1597395675060" />
+    <state width="1493" height="221" key="GridCell.Tab.0.left" timestamp="1597395675060">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="222" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1597302739513" />
-    <state width="1493" height="222" key="GridCell.Tab.0.right" timestamp="1597302739514">
+    <state width="1493" height="221" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1597395675060" />
+    <state width="1493" height="221" key="GridCell.Tab.0.right" timestamp="1597395675061">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="222" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1597302739514" />
-    <state width="1493" height="276" key="GridCell.Tab.1.bottom" timestamp="1597220837593">
+    <state width="1493" height="221" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1597395675061" />
+    <state width="1478" height="273" key="GridCell.Tab.1.bottom" timestamp="1597394768933">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="276" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1597220837593" />
-    <state width="1493" height="276" key="GridCell.Tab.1.center" timestamp="1597220837593">
+    <state width="1478" height="273" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1597394768933" />
+    <state width="1478" height="273" key="GridCell.Tab.1.center" timestamp="1597394768933">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="276" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1597220837593" />
-    <state width="1493" height="276" key="GridCell.Tab.1.left" timestamp="1597220837593">
+    <state width="1478" height="273" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1597394768933" />
+    <state width="1478" height="273" key="GridCell.Tab.1.left" timestamp="1597394768933">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="276" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1597220837593" />
-    <state width="1493" height="276" key="GridCell.Tab.1.right" timestamp="1597220837593">
+    <state width="1478" height="273" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1597394768933" />
+    <state width="1478" height="273" key="GridCell.Tab.1.right" timestamp="1597394768933">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="276" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1597220837593" />
-    <state x="489" y="259" key="com.intellij.ide.util.TipDialog" timestamp="1597215967359">
+    <state width="1478" height="273" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1597394768933" />
+    <state x="489" y="259" key="com.intellij.ide.util.TipDialog" timestamp="1597388244738">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="489" y="259" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1597215967359" />
+    <state x="489" y="259" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1597388244738" />
     <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1597127529579">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -149,6 +178,16 @@
           <url>file://$PROJECT_DIR$/src/main/java/vn/edu/vtc/dal/ProductDAL.java</url>
           <line>37</line>
           <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/vn/edu/vtc/App.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/vn/edu/vtc/dal/AccountDAL.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

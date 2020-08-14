@@ -17,8 +17,10 @@ public class AccountDALTest {
     @Test
     public void getAccountTest1(){
         AccountDAL accountDAL=new AccountDAL();
-        Account account=accountDAL.getAccount("staff1","123456");
-        Account expected=new Account("staff1",1,"thang",  1);
+        Account account=accountDAL.getAccount("Nguyenquyetthang","16c0ce36e334e22fda8caca1b10c2f9c");
+        System.out.println(account);
+        Account expected=new Account("Nguyenquyetthang",null,1,"thang",0);
+        System.out.println(expected);
         Assert.assertTrue(expected.equals(account));
     }
     @Test
