@@ -3,6 +3,7 @@ package vn.edu.vtc.dal;
 import org.junit.Assert;
 import org.junit.Test;
 import vn.edu.vtc.persistance.Account;
+import vn.edu.vtc.service.StaticFuncitionService;
 /*
 Account{userName='staff1', password='123456', staff_id=1, name='thang', isAmin=1}
 Product{product_id=1001, name='phobo', price=20000.0, discounted=null, amount=null, description='da update', leftQuantity=20, isSelling=1, supplier_id=1, category='null'}
@@ -14,6 +15,60 @@ Order{productList=[Product{product_id=1001, name='phobo', price=10000.0, discoun
 */
 public class AccountDALTest {
 
+    @Test
+    public void validateUsername(){
+        Account account=new Account();
+        //correct username form
+        Assert.assertTrue(account.validateUsername("Nguyenquyetthang"));
+    }
+    @Test
+    public void validateUsername2(){
+        Account account=new Account();
+        //have special character
+        Assert.assertFalse(account.validateUsername("Nguyenquyetthang123%"));
+    }
+    @Test
+    public void validateUsername3(){
+        Account account=new Account();
+        //less than 8 character
+        Assert.assertFalse(account.validateUsername("Nguy"));
+    }
+    @Test
+    public void validateUsername4(){
+        Account account=new Account();
+        //more than 20 character
+        Assert.assertFalse(account.validateUsername("Nguyenquyetthang123asdvghasdvghasvghasvdhvas"));
+    }
+    @Test
+    public void validatePassword(){
+        Account account=new Account();
+        //correct password
+        Assert.assertTrue(account.validatePassword("Thangnguyenquyet123"));
+    }
+    @Test
+    public void validatePassword2(){
+        Account account=new Account();
+        //It wasn't contains at least one digit.
+        Assert.assertFalse(account.validatePassword("Thangnguyenquyet"));
+    }
+    @Test
+    public void validatePassword3(){
+        Account account=new Account();
+        //It wasn't contains at least upper case alphabet.
+        Assert.assertFalse(account.validatePassword("thangnguyenquyet123"));
+    }
+    @Test
+    public void validatePassword4(){
+        Account account=new Account();
+        //It wasn't contains at least lower case alphabet.
+        Assert.assertFalse(account.validatePassword("THANGNGUYENQUYET"));
+    }
+    @Test
+    public void testMD5(){
+        String result=StaticFuncitionService.getMd5("Thangnguyenquyet123");
+        String expected="16c0ce36e334e22fda8caca1b10c2f9c";
+        Assert.assertTrue(result.equals(expected));
+    }
     @Test
     public void getAccountTest1(){
         AccountDAL accountDAL=new AccountDAL();
@@ -27,21 +82,19 @@ public class AccountDALTest {
     public void getAccountTest2(){
         AccountDAL accountDAL=new AccountDAL();
         Account account=accountDAL.getAccount("staff","123456");
-        Account expected=null;
+
         Assert.assertTrue(account==null);
     }
     @Test
     public void getAccountTest3(){
         AccountDAL accountDAL=new AccountDAL();
         Account account=accountDAL.getAccount("staff1","1234");
-        Account expected=null;
         Assert.assertTrue(account==null);
     }
     @Test
     public void getAccountTest4(){
         AccountDAL accountDAL=new AccountDAL();
         Account account=accountDAL.getAccount("staff","1234");
-        Account expected=null;
         Assert.assertTrue(account==null);
     }
 }
