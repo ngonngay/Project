@@ -2,8 +2,6 @@ package vn.edu.vtc.persistance;
 
 import vn.edu.vtc.service.StaticFuncitionService;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Account {
     private String userName;

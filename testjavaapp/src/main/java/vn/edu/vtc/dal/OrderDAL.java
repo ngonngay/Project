@@ -96,14 +96,14 @@ public class OrderDAL {
         return product;
     }
 
-    private Object rollbackTransaction(Connection con) throws SQLException {
-        // rollback transaction
-        con.rollback();
-        // unlock tables
-        Statement stm = con.createStatement();
-        stm.execute("unlock tables;");
-        // set auto commit is true
-        con.setAutoCommit(true);
-        return null;
-    }
+    // private Object rollbackTransaction(Connection con) throws SQLException {
+    //     // rollback transaction
+    //     con.rollback();
+    //     // unlock tables
+    //     Statement stm = con.createStatement();
+    //     stm.execute("unlock tables;");
+    //     // set auto commit is true
+    //     con.setAutoCommit(true);
+    //     return null;
+    // }
 }

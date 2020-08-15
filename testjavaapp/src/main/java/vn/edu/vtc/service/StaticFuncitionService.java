@@ -38,7 +38,7 @@ public class StaticFuncitionService {
                 account.setUserName(userName);
                 break;
             }else {
-                System.out.println("UserName mustn't have special charater !");
+                System.out.println("UserName mustn't have special charater and It contains at least 8 characters and at most 20 characters.!");
             }
         } catch (Exception e) {
             e.printStackTrace();
