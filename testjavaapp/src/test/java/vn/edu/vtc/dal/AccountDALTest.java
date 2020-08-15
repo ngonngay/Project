@@ -3,6 +3,7 @@ package vn.edu.vtc.dal;
 import org.junit.Assert;
 import org.junit.Test;
 import vn.edu.vtc.persistance.Account;
+import vn.edu.vtc.service.PasswordService;
 import vn.edu.vtc.service.StaticFuncitionService;
 /*
 Account{userName='staff1', password='123456', staff_id=1, name='thang', isAmin=1}
@@ -19,49 +20,49 @@ public class AccountDALTest {
     public void validateUsername(){
         Account account=new Account();
         //correct username form
-        Assert.assertTrue(account.validateUsername("Nguyenquyetthang"));
+        Assert.assertTrue(PasswordService.validateUsername("Nguyenquyetthang"));
     }
     @Test
     public void validateUsername2(){
         Account account=new Account();
         //have special character
-        Assert.assertFalse(account.validateUsername("Nguyenquyetthang123%"));
+        Assert.assertFalse(PasswordService.validateUsername("Nguyenquyetthang123%"));
     }
     @Test
     public void validateUsername3(){
         Account account=new Account();
         //less than 8 character
-        Assert.assertFalse(account.validateUsername("Nguy"));
+        Assert.assertFalse(PasswordService.validateUsername("Nguy"));
     }
     @Test
     public void validateUsername4(){
         Account account=new Account();
         //more than 20 character
-        Assert.assertFalse(account.validateUsername("Nguyenquyetthang123asdvghasdvghasvghasvdhvas"));
+        Assert.assertFalse(PasswordService.validateUsername("Nguyenquyetthang123asdvghasdvghasvghasvdhvas"));
     }
     @Test
     public void validatePassword(){
         Account account=new Account();
         //correct password
-        Assert.assertTrue(account.validatePassword("Thangnguyenquyet123"));
+        Assert.assertTrue(PasswordService.validatePassword("Thangnguyenquyet123"));
     }
     @Test
     public void validatePassword2(){
         Account account=new Account();
         //It wasn't contains at least one digit.
-        Assert.assertFalse(account.validatePassword("Thangnguyenquyet"));
+        Assert.assertFalse(PasswordService.validatePassword("Thangnguyenquyet"));
     }
     @Test
     public void validatePassword3(){
         Account account=new Account();
         //It wasn't contains at least upper case alphabet.
-        Assert.assertFalse(account.validatePassword("thangnguyenquyet123"));
+        Assert.assertFalse(PasswordService.validatePassword("thangnguyenquyet123"));
     }
     @Test
     public void validatePassword4(){
         Account account=new Account();
         //It wasn't contains at least lower case alphabet.
-        Assert.assertFalse(account.validatePassword("THANGNGUYENQUYET"));
+        Assert.assertFalse(PasswordService.validatePassword("THANGNGUYENQUYET"));
     }
     @Test
     public void testMD5(){

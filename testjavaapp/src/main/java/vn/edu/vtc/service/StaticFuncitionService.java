@@ -34,7 +34,7 @@ public class StaticFuncitionService {
             if (userName.equalsIgnoreCase("exit")){
                 System.exit(0);
             }
-            if(account.validateUsername(userName)){
+            if(PasswordService.validateUsername(userName)){
                 account.setUserName(userName);
                 break;
             }else {
@@ -50,7 +50,7 @@ public class StaticFuncitionService {
             if (password.equalsIgnoreCase("exit")){
                 System.exit(0);
             }
-            if(account.validatePassword(password)){
+            if(PasswordService.validatePassword(password)){
                 account.setPassword(password);
                 break;
             }else {
