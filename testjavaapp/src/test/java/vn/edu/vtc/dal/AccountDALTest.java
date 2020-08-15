@@ -3,8 +3,7 @@ package vn.edu.vtc.dal;
 import org.junit.Assert;
 import org.junit.Test;
 import vn.edu.vtc.persistance.Account;
-import vn.edu.vtc.service.PasswordService;
-import vn.edu.vtc.service.StaticFuncitionService;
+
 /*
 Account{userName='staff1', password='123456', staff_id=1, name='thang', isAmin=1}
 Product{product_id=1001, name='phobo', price=20000.0, discounted=null, amount=null, description='da update', leftQuantity=20, isSelling=1, supplier_id=1, category='null'}

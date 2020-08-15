@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: vn.edu.vtc.dal.AccountDALTest
+Test set: vn.edu.vtc.bl.ValidationTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.985 s - in vn.edu.vtc.dal.AccountDALTest
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.119 s - in vn.edu.vtc.bl.ValidationTest

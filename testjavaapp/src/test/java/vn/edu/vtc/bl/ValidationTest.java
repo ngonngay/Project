@@ -8,7 +8,7 @@ import vn.edu.vtc.service.StaticFuncitionService;
 
 
 
-public class Validate {
+public class ValidationTest {
     @Test
     public void validateUsername(){
         //correct username form
@@ -55,6 +55,14 @@ public class Validate {
          
         //It wasn't contains at least lower case alphabet.
         Assert.assertFalse(PasswordService.validatePassword("THANGNGUYENQUYET"));
+    }
+    public void validatePassword5(){
+        //It contains at least 8 characters
+        Assert.assertFalse(PasswordService.validatePassword("THA"));
+    }
+    public void validatePassword6(){
+        //It contains at more 20 characters
+        Assert.assertFalse(PasswordService.validatePassword("THAasdfasvgasbvghdvasghdasvasdvsavghasdgvdgasv"));
     }
     @Test
     public void testMD5(){
