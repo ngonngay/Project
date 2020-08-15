@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: vn.edu.vtc.bl.ValidationTest
 -------------------------------------------------------------------------------
-Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.119 s - in vn.edu.vtc.bl.ValidationTest
+Tests run: 12, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.127 s <<< FAILURE! - in vn.edu.vtc.bl.ValidationTest
+validateUsername(vn.edu.vtc.bl.ValidationTest)  Time elapsed: 0.036 s  <<< FAILURE!
+java.lang.AssertionError
+	at vn.edu.vtc.bl.ValidationTest.validateUsername(ValidationTest.java:15)
+

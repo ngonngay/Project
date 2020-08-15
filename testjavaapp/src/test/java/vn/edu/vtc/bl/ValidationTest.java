@@ -16,7 +16,6 @@ public class ValidationTest {
     }
     @Test
     public void validateUsername2(){
-         
         //have special character
         Assert.assertFalse(PasswordService.validateUsername("Nguyenquyetthang123%"));
     }
@@ -31,6 +30,12 @@ public class ValidationTest {
          
         //more than 20 character
         Assert.assertFalse(PasswordService.validateUsername("Nguyenquyetthang123asdvghasdvghasvghasvdhvas"));
+    }
+    @Test
+    public void validateUsername5(){
+         
+        //all about digits
+        Assert.assertFalse(PasswordService.validateUsername("217366136217867623"));
     }
     @Test
     public void validatePassword(){
@@ -56,10 +61,12 @@ public class ValidationTest {
         //It wasn't contains at least lower case alphabet.
         Assert.assertFalse(PasswordService.validatePassword("THANGNGUYENQUYET"));
     }
+    @Test
     public void validatePassword5(){
         //It contains at least 8 characters
         Assert.assertFalse(PasswordService.validatePassword("THA"));
     }
+    @Test
     public void validatePassword6(){
         //It contains at more 20 characters
         Assert.assertFalse(PasswordService.validatePassword("THAasdfasvgasbvghdvasghdasvasdvsavghasdgvdgasv"));
