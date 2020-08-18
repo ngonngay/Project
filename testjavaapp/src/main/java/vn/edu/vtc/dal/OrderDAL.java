@@ -51,7 +51,7 @@ public class OrderDAL {
                         * decrease amount of p.getLeftQuantity
                         * */
                         preparedStatement.setInt(1,newOrder.getId());
-                        preparedStatement.setInt(2,p.getProduct_id());
+                        preparedStatement.setInt(2,p.getProductId());
                         preparedStatement.setInt(3,p.getAmount());
                         preparedStatement.setDouble(4,p.getPrice());
                         preparedStatement.setDouble(5,p.getDiscounted());
@@ -88,7 +88,7 @@ public class OrderDAL {
 
     private Product getProduct(ResultSet resultSet) throws SQLException {
         Product product=new Product();
-        product.setProduct_id(resultSet.getInt("product_id"));
+        product.setProductId(resultSet.getInt("product_id"));
         product.setName(resultSet.getString("product_name"));
         product.setPrice(resultSet.getDouble("price"));
         product.setDiscounted(resultSet.getDouble("discounted"));

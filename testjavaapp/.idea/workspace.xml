@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6dabf92f-703f-49fb-89fa-377beb0e013c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/service/InsertProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/service/UpdateProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/vn/edu/vtc/dal/ProductDALTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/dal/OrderDAL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/dal/OrderDAL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/dal/ProductDAL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/dal/ProductDAL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/persistance/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/persistance/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/service/PasswordService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/service/PasswordService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/service/StaticFuncitionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/service/StaticFuncitionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/vn/edu/vtc/bl/ValidationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/vn/edu/vtc/bl/ValidationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,9 +42,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last.edited.regexp" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../app/testjavaapp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Application.App">
+  <component name="RunManager" selected="JUnit.ProductDALTest.updatePrice">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="vn.edu.vtc.App" />
       <module name="testjavaapp" />
@@ -49,7 +58,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AccountDALTest.getAccountTest1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProductDALTest.getProductById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="testjavaapp" />
       <extension name="coverage">
         <pattern>
@@ -58,8 +67,56 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="vn.edu.vtc.dal" />
-      <option name="MAIN_CLASS_NAME" value="vn.edu.vtc.dal.AccountDALTest" />
-      <option name="METHOD_NAME" value="getAccountTest1" />
+      <option name="MAIN_CLASS_NAME" value="vn.edu.vtc.dal.ProductDALTest" />
+      <option name="METHOD_NAME" value="getProductById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductDALTest.getProductById2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="testjavaapp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="vn.edu.vtc.dal.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="vn.edu.vtc.dal" />
+      <option name="MAIN_CLASS_NAME" value="vn.edu.vtc.dal.ProductDALTest" />
+      <option name="METHOD_NAME" value="getProductById2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductDALTest.insertProduct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="testjavaapp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="vn.edu.vtc.dal.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="vn.edu.vtc.dal" />
+      <option name="MAIN_CLASS_NAME" value="vn.edu.vtc.dal.ProductDALTest" />
+      <option name="METHOD_NAME" value="insertProduct" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductDALTest.updatePrice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="testjavaapp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="vn.edu.vtc.dal.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="vn.edu.vtc.dal" />
+      <option name="MAIN_CLASS_NAME" value="vn.edu.vtc.dal.ProductDALTest" />
+      <option name="METHOD_NAME" value="updatePrice" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -67,8 +124,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ProductDALTest.updatePrice" />
         <item itemvalue="Application.App" />
-        <item itemvalue="JUnit.AccountDALTest.getAccountTest1" />
+        <item itemvalue="JUnit.ProductDALTest.insertProduct" />
+        <item itemvalue="JUnit.ProductDALTest.getProductById2" />
+        <item itemvalue="JUnit.ProductDALTest.getProductById" />
       </list>
     </recent_temporary>
   </component>
@@ -110,10 +170,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="dasddasdasasd" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1597219198535">
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1597735049358">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864@0.0.1536.864" timestamp="1597219198535" />
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864@0.0.1536.864" timestamp="1597735049358" />
     <state x="454" y="25" key="CommitChangelistDialog2" timestamp="1597483363513">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -122,38 +182,38 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="549" y="189" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1597483718468" />
-    <state width="1493" height="221" key="GridCell.Tab.0.bottom" timestamp="1597396489508">
+    <state width="1493" height="275" key="GridCell.Tab.0.bottom" timestamp="1597743604792">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="221" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1597396489508" />
-    <state width="1493" height="221" key="GridCell.Tab.0.center" timestamp="1597396489507">
+    <state width="1493" height="275" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1597743604792" />
+    <state width="1493" height="275" key="GridCell.Tab.0.center" timestamp="1597743604792">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="221" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1597396489507" />
-    <state width="1493" height="221" key="GridCell.Tab.0.left" timestamp="1597396489507">
+    <state width="1493" height="275" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1597743604792" />
+    <state width="1493" height="275" key="GridCell.Tab.0.left" timestamp="1597743604792">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="221" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1597396489507" />
-    <state width="1493" height="221" key="GridCell.Tab.0.right" timestamp="1597396489507">
+    <state width="1493" height="275" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1597743604792" />
+    <state width="1493" height="275" key="GridCell.Tab.0.right" timestamp="1597743604792">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="221" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1597396489507" />
-    <state width="1478" height="273" key="GridCell.Tab.1.bottom" timestamp="1597396489501">
+    <state width="1493" height="275" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1597743604792" />
+    <state width="1493" height="275" key="GridCell.Tab.1.bottom" timestamp="1597743604792">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1478" height="273" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1597396489501" />
-    <state width="1478" height="273" key="GridCell.Tab.1.center" timestamp="1597396489500">
+    <state width="1493" height="275" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1597743604792" />
+    <state width="1493" height="275" key="GridCell.Tab.1.center" timestamp="1597743604792">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1478" height="273" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1597396489500" />
-    <state width="1478" height="273" key="GridCell.Tab.1.left" timestamp="1597396489500">
+    <state width="1493" height="275" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1597743604792" />
+    <state width="1493" height="275" key="GridCell.Tab.1.left" timestamp="1597743604792">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1478" height="273" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1597396489500" />
-    <state width="1478" height="273" key="GridCell.Tab.1.right" timestamp="1597396489501">
+    <state width="1493" height="275" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1597743604792" />
+    <state width="1493" height="275" key="GridCell.Tab.1.right" timestamp="1597743604792">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1478" height="273" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1597396489501" />
+    <state width="1493" height="275" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1597743604792" />
     <state x="489" y="259" key="com.intellij.ide.util.TipDialog" timestamp="1597483702271">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -167,16 +227,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/vn/edu/vtc/dal/OrderDAL.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/vn/edu/vtc/dal/OrderDAL.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/vn/edu/vtc/dal/ProductDAL.java</url>
           <line>25</line>
           <option name="timeStamp" value="13" />
@@ -188,13 +238,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/vn/edu/vtc/App.java</url>
-          <line>23</line>
+          <line>24</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/vn/edu/vtc/dal/AccountDAL.java</url>
           <line>11</line>
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/vn/edu/vtc/persistance/Product.java</url>
+          <line>140</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

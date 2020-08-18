@@ -6,6 +6,7 @@ import vn.edu.vtc.dal.ProductDAL;
 import vn.edu.vtc.persistance.Account;
 import vn.edu.vtc.persistance.Order;
 import vn.edu.vtc.persistance.Product;
+import vn.edu.vtc.service.InsertProduct;
 import vn.edu.vtc.service.StaticFuncitionService;
 
 import java.sql.SQLException;
@@ -27,14 +28,11 @@ public class App {
             account = accountDAL.getAccount(account.getUserName(), account.getPassword());
             if (account != null) {
                 if (account.getIsAmin() == 1) {
-
                     ArrayList<String> cashierMenu = new ArrayList<String>();
-
                     cashierMenu.add("Welcome to Cashier's Menu");
                     cashierMenu.add("1. Create Order");
                     cashierMenu.add("2. Update Order");
                     cashierMenu.add("0. Exit");
-
                     System.out.println("\n");
 
                     Integer choice1 = StaticFuncitionService.printMenu(cashierMenu, 2);
@@ -53,26 +51,40 @@ public class App {
                     }
 
                 } else if (account.getIsAmin() == 0) {
-                    ArrayList<String> managerMenu = new ArrayList<String>();
+                    Integer choice3=-1;
+                    do {
+                        ArrayList<String> managerMenu = new ArrayList<String>();
 
-                    System.out.println("Welcome to Manager's Menu");
-                    System.out.println("1. Insert product");
-                    System.out.println("2. Update product");
-                    System.out.println("0. Exit");
+                        System.out.println("Welcome to Manager's Menu");
+                        System.out.println("1. Insert product");
+                        System.out.println("2. Update product");
+                        System.out.println("0. Exit");
+                        ProductDAL productDAL=new ProductDAL();
+                        choice3= StaticFuncitionService.printMenu(managerMenu, 2);
+                        Product product= new Product();
+                        switch (choice3) {
+                            case 1:
+                                product.setProductId(StaticFuncitionService.inputId());
+                                product=InsertProduct.inputInformation();
+                                if (product==null){
+                                    break;
+                                }
+                                if (productDAL.insertProduct(product)>0){
+                                    System.out.println("Insert success!");
+                                }else {
+                                    System.out.println("Insert fails");
+                                }
+                                break;
+                            case 2:
+                                //update pice
+                                //update all information
+                            case 0:
+                                break;
+                            default:
+                                break;
+                        }
+                    }while (choice3!=0);
 
-                    Integer choice3 = StaticFuncitionService.printMenu(managerMenu, 2);
-
-                    switch (choice3) {
-                        case 1:
-                            insertProduct();
-                            break;
-                        case 2:
-                            updateProduct();
-                        case 0:
-                            break;
-                        default:
-                            break;
-                    }
                 }
             } else {
                 System.out.println("Wrong Username/password");
@@ -81,14 +93,7 @@ public class App {
 
     }
 
-    private static void insertProduct() {
-    }
-
     private static void updateProduct() {
-    }
-
-    public static void flush() {
-
     }
 
     public static void createOrder() {

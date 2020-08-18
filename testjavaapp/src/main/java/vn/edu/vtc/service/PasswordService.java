@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class PasswordService {
     public static boolean validateUsername(String userName){
-        Pattern pattern=Pattern.compile("[^!,#,$,%,^,&,*,(,),-,=,+,/,\\,]*[a-z]*[A-z]{1,}[0-9]*");
+        Pattern pattern=Pattern.compile("[^!,#,$,%,^,&,*,(,),-,=,+,/,\\,]*");
         Matcher matcher=pattern.matcher(userName);
         if (matcher.matches()&&userName.length()<20&&(userName.length()>8||userName.length()==8)){
             return true;

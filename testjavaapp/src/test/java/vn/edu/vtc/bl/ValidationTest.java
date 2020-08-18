@@ -31,12 +31,7 @@ public class ValidationTest {
         //more than 20 character
         Assert.assertFalse(PasswordService.validateUsername("Nguyenquyetthang123asdvghasdvghasvghasvdhvas"));
     }
-    @Test
-    public void validateUsername5(){
-         
-        //all about digits
-        Assert.assertFalse(PasswordService.validateUsername("217366136217867623"));
-    }
+
     @Test
     public void validatePassword(){
          

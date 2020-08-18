@@ -89,5 +89,17 @@ public class StaticFuncitionService {
         catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
+
+    }
+    public static int inputId(){
+        System.out.println("Product ID: ");
+        int productId=-1;
+        do try{
+            productId = new Scanner(System.in).nextInt();
+            break;
+        } catch (Exception e){
+            System.out.println("Wrong!");
+        }while (true);
+        return productId;
     }
 }
