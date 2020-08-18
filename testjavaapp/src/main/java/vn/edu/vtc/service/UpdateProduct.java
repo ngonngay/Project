@@ -7,23 +7,11 @@ import java.util.Scanner;
 
 public class UpdateProduct {
     public boolean updateProduct(){
-        System.out.println("Input productID:");
-        int product=-1;
-        do try{
-            Scanner scanner=new Scanner(System.in);
-            product=scanner.nextInt();
-            scanner.close();
-            break;
-        }catch (Exception e){
-            System.out.println("Wrong types!");
-        }while (true);
-
-
-
-
-
-
-        return true;
+        int id =StaticFuncitionService.inputId();
+        ProductDAL productDAL=new ProductDAL();
+        Product product= InsertProduct.inputInformation();
+        product.setProductId(id);
+        return (productDAL.updateProduct(product)>0);
     }
     public boolean updatePrice(){
         int id=StaticFuncitionService.inputId();

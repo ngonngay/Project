@@ -8,6 +8,7 @@ import vn.edu.vtc.persistance.Order;
 import vn.edu.vtc.persistance.Product;
 import vn.edu.vtc.service.InsertProduct;
 import vn.edu.vtc.service.StaticFuncitionService;
+import vn.edu.vtc.service.UpdateProduct;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -76,8 +77,34 @@ public class App {
                                 }
                                 break;
                             case 2:
-                                //update pice
-                                //update all information
+                                Integer choice4;
+                                    ArrayList<String> updateMenu = new ArrayList<String>();
+                                    updateMenu.add("Update Menu");
+                                    updateMenu.add("1. Update price");
+                                    updateMenu.add("2. Update all information");
+                                    updateMenu.add("0. Exit");
+                                    choice4= StaticFuncitionService.printMenu(updateMenu, 2);
+                                switch (choice4) {
+                                    case 1:
+                                        UpdateProduct updateProduct=new UpdateProduct();
+                                        if(updateProduct.updatePrice()){
+                                            System.out.println("Update success!");
+                                        }else {
+                                            System.out.println("Fails");
+                                        }
+                                        break;
+                                    case 2:
+                                        UpdateProduct updateProduct1=new UpdateProduct();
+                                        if(updateProduct1.updateProduct()){
+                                            System.out.println("Update success!");
+                                        }else {
+                                            System.out.println("Fails");
+                                        }
+
+                                        break;
+                                    case 0:
+                                        break;
+                                }
                             case 0:
                                 break;
                             default:

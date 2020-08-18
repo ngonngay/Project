@@ -32,4 +32,10 @@ public class ProductDALTest {
         ProductDAL productDAL=new ProductDAL();
         Assert.assertTrue(productDAL.updatePrice(50000.,1001)>0);
     }
+    @Test
+    public void updateProduct(){
+        ProductDAL productDAL=new ProductDAL();
+        Product product15 = new Product(1002,"banh my",15000.,"update from java app dbsjajdasjad",50,1,"my goi");
+        Assert.assertTrue(productDAL.updateProduct(product15)>0);
+    }
 }
