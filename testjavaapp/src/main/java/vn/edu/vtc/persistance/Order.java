@@ -36,7 +36,10 @@ public class Order {
     public void setProductList(List<Product> productList) {
         this.productList = productList;
     }
-
+    public boolean addProduct(Product product){
+        productList.add(product);
+        return true;
+    }
     public Integer getId() {
         return id;
     }

@@ -1,14 +1,14 @@
 package vn.edu.vtc;
 
+import vn.edu.vtc.bl.AccountBL;
+import vn.edu.vtc.bl.ProductBL;
 import vn.edu.vtc.dal.AccountDAL;
 import vn.edu.vtc.dal.OrderDAL;
 import vn.edu.vtc.dal.ProductDAL;
 import vn.edu.vtc.persistance.Account;
 import vn.edu.vtc.persistance.Order;
 import vn.edu.vtc.persistance.Product;
-import vn.edu.vtc.service.InsertProduct;
-import vn.edu.vtc.service.StaticFuncitionService;
-import vn.edu.vtc.service.UpdateProduct;
+import vn.edu.vtc.service.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,26 +21,25 @@ import java.util.Scanner;
  */
 public class App {
     public static void main(String[] args) throws SQLException {
+        MenuService menuService=new MenuService();
+        ProductBL productBL=new ProductBL();
+        AccountBL accountBL=new AccountBL();
         Account account = new Account();
         do {
             System.out.println("Login");
             account = StaticFuncitionService.loginToSystem();
-            AccountDAL accountDAL = new AccountDAL();
-            account = accountDAL.getAccount(account.getUserName(), account.getPassword());
+            account = accountBL.login(account.getUserName(), account.getPassword());
             if (account != null) {
                 if (account.getIsAmin() == 1) {
-                    ArrayList<String> cashierMenu = new ArrayList<String>();
-                    cashierMenu.add("Welcome to Cashier's Menu");
-                    cashierMenu.add("1. Create Order");
-                    cashierMenu.add("2. Update Order");
-                    cashierMenu.add("0. Exit");
-                    System.out.println("\n");
 
-                    Integer choice1 = StaticFuncitionService.printMenu(cashierMenu, 2);
+                    Integer choice1 = StaticFuncitionService.printMenu(menuService.cashierMenu, 2);
 
                     switch (choice1) {
-                        case 1:
-                            createOrder();
+                        case 1://create Order
+                            Order order=OrderService.createOrder(account);
+                            if(order!=null){
+                                System.out.println(order);
+                            }
                             break;
                         case 2:
                             updateOrder();
@@ -54,36 +53,24 @@ public class App {
                 } else if (account.getIsAmin() == 0) {
                     Integer choice3=-1;
                     do {
-                        ArrayList<String> managerMenu = new ArrayList<String>();
-
-                        System.out.println("Welcome to Manager's Menu");
-                        System.out.println("1. Insert product");
-                        System.out.println("2. Update product");
-                        System.out.println("0. Exit");
-                        ProductDAL productDAL=new ProductDAL();
-                        choice3= StaticFuncitionService.printMenu(managerMenu, 2);
+                        choice3= StaticFuncitionService.printMenu(menuService.managerMenu, 2);
                         Product product= new Product();
                         switch (choice3) {
-                            case 1:
+                            case 1://insert Product
                                 product.setProductId(StaticFuncitionService.inputId());
                                 product=InsertProduct.inputInformation();
                                 if (product==null){
                                     break;
                                 }
-                                if (productDAL.insertProduct(product)>0){
+                                if (productBL.insertProduct(product)){
                                     System.out.println("Insert success!");
                                 }else {
                                     System.out.println("Insert fails");
                                 }
                                 break;
-                            case 2:
+                            case 2://update Product
                                 Integer choice4;
-                                    ArrayList<String> updateMenu = new ArrayList<String>();
-                                    updateMenu.add("Update Menu");
-                                    updateMenu.add("1. Update price");
-                                    updateMenu.add("2. Update all information");
-                                    updateMenu.add("0. Exit");
-                                    choice4= StaticFuncitionService.printMenu(updateMenu, 2);
+                                    choice4= StaticFuncitionService.printMenu(menuService.updateMenu, 2);
                                 switch (choice4) {
                                     case 1:
                                         UpdateProduct updateProduct=new UpdateProduct();
@@ -100,7 +87,6 @@ public class App {
                                         }else {
                                             System.out.println("Fails");
                                         }
-
                                         break;
                                     case 0:
                                         break;
@@ -120,62 +106,6 @@ public class App {
 
     }
 
-    private static void updateProduct() {
-    }
-
-    public static void createOrder() {
-
-        System.out.println("|          Create Order          |");
-        System.out.println("|    ------ Add product ------   |");
-        System.out.println("|                                |");
-        System.out.print("|       1. Input product ID: ");
-        Integer idProduct;
-        try {
-            idProduct = new Scanner(System.in).nextInt();
-        } catch (Exception e) {
-            System.out.println("Wrong!");
-            e.printStackTrace();
-        }
-        System.out.print("|       2. Input quantity:  ");
-        Integer numQuantity;
-        try {
-            numQuantity = new Scanner(System.in).nextInt();
-        } catch (Exception e) {
-            System.out.println("Wrong!");
-            e.printStackTrace();
-        }
-        System.out.println("Continue?(Yes or No: ");
-        String continued = " ";
-        try {
-            continued = new Scanner(System.in).nextLine();
-        } catch (Exception e) {
-            System.out.println("Wrong!");
-            e.printStackTrace();
-        }
-        if (continued.equalsIgnoreCase("Yes")) {
-            createOrder();
-        } else if (continued.equalsIgnoreCase("No")) {
-            System.out.println("Checkout(Yes/No): ");
-            String checkout = " ";
-            try {
-                checkout = new Scanner(System.in).nextLine();
-            } catch (Exception e) {
-                System.out.println("Wrong!");
-                e.printStackTrace();
-            }
-
-            if (checkout.equalsIgnoreCase("Yes")) {
-                System.out.println("Your detail");
-            } else if (checkout.equalsIgnoreCase("No")) {
-                createOrder();
-            } else {
-                System.out.println("Failed! Try again");
-            }
-        } else {
-            System.out.println("Failed! Try again");
-        }
-    }
-
     public static void updateOrder() {
 
         System.out.println("|--------------------------------|");
@@ -188,9 +118,7 @@ public class App {
             System.out.println("Wrong!");
             e.printStackTrace();
         }
-
         ArrayList<String> updateOrder = new ArrayList<String>();
-
         updateOrder.add("Update order menu");
         updateOrder.add("1. Refunded order");
         updateOrder.add("2. Update quantity");

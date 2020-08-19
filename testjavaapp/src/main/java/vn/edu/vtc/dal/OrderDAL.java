@@ -4,9 +4,10 @@ import vn.edu.vtc.persistance.Order;
 import vn.edu.vtc.persistance.Product;
 
 import java.sql.*;
+import java.util.List;
 
 
-public class OrderDAL {
+public class OrderDAL implements DAL<Order>{
     public Order createOrder(Order newOrder){
         Order order=new Order();
         //if there no item, do not add order
@@ -90,11 +91,28 @@ public class OrderDAL {
         Product product=new Product();
         product.setProductId(resultSet.getInt("product_id"));
         product.setName(resultSet.getString("product_name"));
+        product.setAmount(resultSet.getInt("quantity"));
         product.setPrice(resultSet.getDouble("price"));
         product.setDiscounted(resultSet.getDouble("discounted"));
         product.setRefundedInOrder(resultSet.getInt("refunded"));
         return product;
     }
+
+    @Override
+    public int insert(Order newOrder) {
+        return 0;
+    }
+
+    @Override
+    public Order getById(int idE) {
+        return null;
+    }
+
+    @Override
+    public int update(Order order) {
+        return 0;
+    }
+
 
     // private Object rollbackTransaction(Connection con) throws SQLException {
     //     // rollback transaction

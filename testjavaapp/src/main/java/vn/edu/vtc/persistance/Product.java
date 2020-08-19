@@ -4,12 +4,12 @@ public class Product {
     private int productId;
     private String name;
     private Double price;
-    private Double discounted;
+    private Double discounted=0.;
     private Integer amount;
     private String description;
-    private Integer leftQuantity;
-    private Integer isSelling;
-    private Integer supplier_id;
+    private Integer leftQuantity=0;
+    private Integer isSelling=0;
+    private Integer supplier_id=1;
     private String category;
     private Integer refundedInOrder=1;
     public Product() {
@@ -147,17 +147,16 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "product_id=" + productId +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", discounted=" + discounted +
-                ", amount=" + amount +
-                ", description='" + description + '\'' +
-                ", leftQuantity=" + leftQuantity +
-                ", isSelling=" + isSelling +
-                ", supplier_id=" + supplier_id +
-                ", category='" + category + '\'' +
-                '}';
+        return "-----PRODUCT-----" +
+                "\nProduct_id  : " + productId +
+                "\nName        : '" + name +
+                "\nPrice       : " + price +
+                "\nDiscounted  : " + discounted +
+                "\nAmount      : " + amount +
+                "\nDescription : '" + description +
+                "\nLeftQuantity: " + leftQuantity +
+                "\nIsSelling   : " + isSelling +
+                "\nSupplier_id : " + supplier_id +
+                "\nCategory    : '" + category ;
     }
 }

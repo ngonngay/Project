@@ -4,10 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import vn.edu.vtc.persistance.Account;
 
-public class AccountDAL {
+public class AccountDAL implements DAL<Account>{
     public Account getAccount(String userName,String password){
         Account account=null;
         try (Connection connection=DbUtil.getConnection();
@@ -20,8 +21,8 @@ public class AccountDAL {
                     account.setUserName(userName);
                 }
             }
-    } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            return null;
         }
         return account;
     }
@@ -31,5 +32,21 @@ public class AccountDAL {
         account.setStaff_id(rs.getInt("staff_id"));
         account.setIsAmin(rs.getInt("isAdmin"));
         return account;
+    }
+
+
+    @Override
+    public int insert(Account account) {
+        return 0;
+    }
+
+    @Override
+    public Account getById(int idE) {
+        return null;
+    }
+
+    @Override
+    public int update(Account account) {
+        return 0;
     }
 }

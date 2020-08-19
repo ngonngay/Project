@@ -14,31 +14,25 @@ Order{productList=[Product{product_id=1001, name='phobo', price=10000.0, discoun
 
 */
 public class AccountDALTest {
-
-    
+    AccountDAL accountDAL=new AccountDAL();
     @Test
     public void getAccountTest1(){
-        AccountDAL accountDAL=new AccountDAL();
         Account account=accountDAL.getAccount("Nguyenquyetthang","16c0ce36e334e22fda8caca1b10c2f9c");
         Account expected=new Account("Nguyenquyetthang",null,1,"thang",0);
         Assert.assertTrue(expected.equals(account));
     }
     @Test
     public void getAccountTest2(){
-        AccountDAL accountDAL=new AccountDAL();
         Account account=accountDAL.getAccount("staff","123456");
-
         Assert.assertTrue(account==null);
     }
     @Test
     public void getAccountTest3(){
-        AccountDAL accountDAL=new AccountDAL();
         Account account=accountDAL.getAccount("staff1","1234");
         Assert.assertTrue(account==null);
     }
     @Test
     public void getAccountTest4(){
-        AccountDAL accountDAL=new AccountDAL();
         Account account=accountDAL.getAccount("staff","1234");
         Assert.assertTrue(account==null);
     }
