@@ -48,9 +48,6 @@ public class OrderDAL implements DAL<Order>{
                 //insert list product to orderDetail
                 try (PreparedStatement preparedStatement=connection.prepareStatement("insert into OrderDetail(invoice_id,product_id,quantity,price,discounted)values(?,?,?,?,?);")){
                     for (Product p: newOrder.getProductList()) {
-                        /*
-                        * decrease amount of p.getLeftQuantity
-                        * */
                         preparedStatement.setInt(1,newOrder.getId());
                         preparedStatement.setInt(2,p.getProductId());
                         preparedStatement.setInt(3,p.getAmount());
@@ -63,21 +60,22 @@ public class OrderDAL implements DAL<Order>{
 
                     }
                 }
-                //get new info
-                try(PreparedStatement preparedStatement =connection.prepareStatement("select Invoices.invoice_id,invoice_date,store_name,address,OrderDetail.product_id,product_name,OrderDetail.price,OrderDetail.quantity,OrderDetail.discounted,OrderDetail.refunded  from (Stores inner join Invoices on Invoices.store_id=Stores.store_id inner join OrderDetail on Invoices.invoice_id=OrderDetail.invoice_id inner join Products on OrderDetail.product_id=Products.product_id)   where Invoices.invoice_id=?;")){
-                    preparedStatement.setInt(1,newOrder.getId());
-                    ResultSet resultSet =preparedStatement.executeQuery();
-                    while (resultSet.next()){
-                        order.setId(resultSet.getInt("invoice_id"));
-                        order.setDate(resultSet.getTimestamp("invoice_date"));
-                        order.setStore_name(resultSet.getString("store_name"));
-                        order.setAddress(resultSet.getString("address"));
-                        Product product=getProduct(resultSet);
-                        order.getProductList().add(product);
+                /*
+                 * decrease amount of p.getLeftQuantity
+                 * */
+                //update amount of product
+                try(PreparedStatement preparedStatement=connection.prepareStatement("update Products set left_quantity=left_quantity-? where product_id=?;")){
+                    for (Product p :newOrder.getProductList()) {
+                        preparedStatement.setInt(1,p.getAmount());
+                        preparedStatement.setInt(2,p.getProductId());
+                        if (preparedStatement.executeUpdate()!=1){
+                            connection.rollback();
+                            return order;
+                        }
                     }
-                }catch (Exception e){
-                    e.printStackTrace();
                 }
+                //get new info
+                order=getById(newOrder.getId());
                 statement.execute("unlock tables");
                 connection.setAutoCommit(true);
         } catch (SQLException e) {
@@ -104,13 +102,68 @@ public class OrderDAL implements DAL<Order>{
     }
 
     @Override
-    public Order getById(int idE) {
-        return null;
+    public Order getById(int orderId) {
+        Order order=new Order();
+        try(Connection connection=DbUtil.getConnection();
+            PreparedStatement preparedStatement =connection.prepareStatement("select Invoices.invoice_id,invoice_date,store_name,address,OrderDetail.product_id,product_name,OrderDetail.price,OrderDetail.quantity,OrderDetail.discounted,OrderDetail.refunded  from (Stores inner join Invoices on Invoices.store_id=Stores.store_id inner join OrderDetail on Invoices.invoice_id=OrderDetail.invoice_id inner join Products on OrderDetail.product_id=Products.product_id)   where Invoices.invoice_id=?;")){
+            preparedStatement.setInt(1,orderId);
+            ResultSet resultSet =preparedStatement.executeQuery();
+            while (resultSet.next()){
+                order.setId(resultSet.getInt("invoice_id"));
+                order.setDate(resultSet.getTimestamp("invoice_date"));
+                order.setStore_name(resultSet.getString("store_name"));
+                order.setAddress(resultSet.getString("address"));
+                Product product=getProduct(resultSet);
+                order.getProductList().add(product);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return order;
     }
 
     @Override
     public int update(Order order) {
         return 0;
+    }
+
+    public int refundOrder(int orderId) throws SQLException{
+        //if orderId doesn't exist, do not update
+        if (orderId==-1){
+            return 0;
+        }
+        Order order=null;
+        try{
+            order=getById(orderId);
+        }catch (Exception e){
+            return 0;
+        }
+        //update amount of product
+        try(Connection connection=DbUtil.getConnection();
+            Statement statement=connection.createStatement();
+            PreparedStatement preparedStatement=connection.prepareStatement("update Products set left_quantity=left_quantity+? where product_id=?;")){
+            statement.execute("lock tables Products write,Invoices write,OrderDetail write,Stores write;");
+            for (Product p :
+                    order.getProductList()) {
+                preparedStatement.setInt(1,p.getAmount());
+                preparedStatement.setInt(2,p.getProductId());
+                if (preparedStatement.executeUpdate()!=1){
+                    return 0;
+                }
+            }
+            //set value on refund_order at 0
+            PreparedStatement preparedStatement1=connection.prepareStatement("update  Invoices set refund_order=0 where invoice_id=?;");
+            preparedStatement1.setInt(1,orderId);
+            if (preparedStatement1.executeUpdate()!=1){
+                return 0;
+            }
+        }catch (Exception e){
+            return 0;
+        }
+
+
+        return 1;
     }
 
 

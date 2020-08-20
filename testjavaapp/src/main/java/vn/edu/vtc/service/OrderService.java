@@ -7,6 +7,8 @@ import vn.edu.vtc.persistance.Account;
 import vn.edu.vtc.persistance.Order;
 import vn.edu.vtc.persistance.Product;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class OrderService {
@@ -21,21 +23,30 @@ public class OrderService {
         do {
             System.out.print("|       1. Input product ID: ");
             int productId=-1;
-            try {
+            do try {
                 productId = new Scanner(System.in).nextInt();
+                break;
             } catch (Exception e) {
                 System.out.println("Wrong!");
-            }
+            }while (true);
             Product product=productBL.getById(productId);
             System.out.println(product);
-            System.out.print("|       2. Input quantity:  ");
+
             int quantity=0;
             do try {
+                System.out.print("       2. Input quantity:  ");
                 quantity = new Scanner(System.in).nextInt();
-                if (quantity>0){
+
+                if (quantity<0){
+                    System.out.println("New quantity must greater than 0");
+                }
+                if (quantity>product.getLeftQuantity()){
+                    System.out.println("Wrong!");
+
+                }
+                if (quantity>0&&quantity<product.getLeftQuantity()){
                     break;
                 }
-                System.out.println("New quantity must greater than 0");
             } catch (Exception e) {
                 System.err.println("Wrong!");
             }while (true);
@@ -58,4 +69,25 @@ public class OrderService {
             }
         }while (true);
     }
+
+    public static boolean refund() throws SQLException {
+        //input order-id
+        //set value at refund_order column at 0 (0:true ; 1: false)
+        System.out.println("|--------------------------------|");
+        System.out.println("|          Update order          |");
+        System.out.println("|         Input order ID         |");
+        int orderId=-1;
+        try {
+             orderId= new Scanner(System.in).nextInt();
+        } catch (Exception e) {
+            System.out.println("Wrong!");
+            e.printStackTrace();
+        }
+        OrderBL orderBL=new OrderBL();
+        if (orderId!=-1){
+            return orderBL.refundOrder(orderId);
+        }
+        return false;
+    }
+
 }

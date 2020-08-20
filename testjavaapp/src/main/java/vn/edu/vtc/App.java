@@ -31,6 +31,8 @@ public class App {
             account = accountBL.login(account.getUserName(), account.getPassword());
             if (account != null) {
                 if (account.getIsAmin() == 1) {
+                    do {
+
 
                     Integer choice1 = StaticFuncitionService.printMenu(menuService.cashierMenu, 2);
 
@@ -42,14 +44,25 @@ public class App {
                             }
                             break;
                         case 2:
-                            updateOrder();
+                            Integer choice2=StaticFuncitionService.printMenu(menuService.updateOrder,2);
+                            switch (choice2){
+                                case 1://refund order
+                                    if (OrderService.refund()){
+                                        System.out.println("Refund success!");
+                                    }else {
+                                         System.out.println("Fails! Try again!");
+                                    }
+                                    break;
+                                case 2://update quantity
+                                    break;
+                            }
                             break;
                         case 0:
                             break;
                         default:
                             break;
                     }
-
+                    }while (true);
                 } else if (account.getIsAmin() == 0) {
                     Integer choice3=-1;
                     do {
@@ -106,42 +119,6 @@ public class App {
 
     }
 
-    public static void updateOrder() {
 
-        System.out.println("|--------------------------------|");
-        System.out.println("|          Update order          |");
-        System.out.println("|         Input order ID         |");
-        Integer idProduct1;
-        try {
-            idProduct1 = new Scanner(System.in).nextInt();
-        } catch (Exception e) {
-            System.out.println("Wrong!");
-            e.printStackTrace();
-        }
-        ArrayList<String> updateOrder = new ArrayList<String>();
-        updateOrder.add("Update order menu");
-        updateOrder.add("1. Refunded order");
-        updateOrder.add("2. Update quantity");
-        updateOrder.add("0. Exit");
-
-        Integer choice2 = StaticFuncitionService.printMenu(updateOrder, 2);
-
-        switch (choice2) {
-            case 1:
-                System.out.println("Refunded order");
-                break;
-            case 2:
-                System.out.print("Update quantity: ");
-                Integer quantity1;
-                try {
-                    quantity1 = new Scanner(System.in).nextInt();
-                } catch (Exception e) {
-                    System.out.println("Wrong!");
-                    e.printStackTrace();
-                }
-            default:
-        }
-
-    }
 
 }
