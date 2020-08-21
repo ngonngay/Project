@@ -22,12 +22,16 @@ public class OrderService {
         System.out.println("|                                |");
         do {
             //input productID
-
             int productId=-1;
             do try {
-                System.out.print("|       1. Input product ID: ");
+                System.out.print("      1. Input product ID: ");
                 productId = new Scanner(System.in).nextInt();
-                break;
+                if (productBL.getById(productId)!=null){
+                    break;
+                }else {
+                    System.out.println("This product id doesn't exist!");
+                }
+
             } catch (Exception e) {
                 System.out.println("Wrong!");
             }while (true);
@@ -59,7 +63,6 @@ public class OrderService {
             }
             if (!check){
                 Product product=productBL.getById(productId);
-                System.out.println(product);
                 do try {
                     System.out.print("   2. Input quantity:  ");
                     quantity = new Scanner(System.in).nextInt();
@@ -241,7 +244,7 @@ public class OrderService {
             for (Product product : order.getProductList()) {
 
                 System.out.format(
-                        "|%5d   |%11s        |%12.2s       |%11.2f   |%7d  |%13.2f        |\n",product.getProductId(), product.getName(), product.getPrice(), product.getDiscounted(), product.getAmount(), product.Total());
+                        "|%5d   |%11s        |%12.2f       |%11.2f   |%7d  |%13.2f        |\n",product.getProductId(), product.getName(), product.getPrice(), product.getDiscounted(), product.getAmount(), product.Total());
                 // System.out.println("\n");
             }
             System.out.println("|-----------------------------------------------------------------------------------------------|");

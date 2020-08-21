@@ -209,6 +209,7 @@ public class OrderDAL implements DAL<Order>{
                 connection.setAutoCommit(true);
                 statement.execute("unlock tables;");
             }catch (Exception e){
+                e.printStackTrace();
                 System.out.println("Test 4 ");
                 return (Order) rollbackTransaction(connection);
             }

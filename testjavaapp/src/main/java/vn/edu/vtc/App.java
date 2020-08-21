@@ -66,8 +66,9 @@ public class App {
                         Product product= new Product();
                         switch (choice3) {
                             case 1://insert Product
-                                product.setProductId(StaticFuncitionService.inputId());
-                                product=InsertProduct.inputInformation();
+                                int productid= StaticFuncitionService.inputId();
+                                product=InsertProduct.inputInformation(productid);
+                                product.setProductId(productid);
                                 if (product==null){
                                     break;
                                 }

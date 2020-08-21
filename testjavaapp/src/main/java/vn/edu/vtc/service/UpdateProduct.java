@@ -10,7 +10,7 @@ public class UpdateProduct {
     ProductBL productBL=new ProductBL();
     public boolean updateProduct(){
         int id =StaticFuncitionService.inputId();
-        Product product= InsertProduct.inputInformation();
+        Product product= InsertProduct.inputInformation(id);
         product.setProductId(id);
         return (productBL.updateProduct(product));
     }

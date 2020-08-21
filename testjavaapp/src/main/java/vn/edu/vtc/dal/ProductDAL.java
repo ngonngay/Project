@@ -130,4 +130,18 @@ public  class ProductDAL implements DAL<Product> {
         }
         return 1;
     }
+
+    public boolean getByName(String name) {
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from Products where product_name=?;")) {
+            preparedStatement.setString(1, name);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

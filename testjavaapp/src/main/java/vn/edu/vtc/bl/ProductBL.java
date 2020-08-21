@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ProductBL {
     private DAL<Product> dal = DalFactory.getDAL(Product.class);
-
+    ProductDAL productDAL=(ProductDAL)dal;
 
     public boolean insertProduct(Product newProduct) {
         return dal.insert(newProduct) > 0;
@@ -23,7 +23,10 @@ public class ProductBL {
         return dal.update(updatingProduct)>0;
     }
     public boolean updateProduct(Double newPrice,int productId){
-        ProductDAL productDAL=(ProductDAL)dal;
+
         return productDAL.update(newPrice, productId)>0;
+    }
+    public boolean getByName(String name){
+        return productDAL.getByName(name);
     }
 }

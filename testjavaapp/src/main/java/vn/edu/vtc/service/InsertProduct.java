@@ -1,21 +1,28 @@
 package vn.edu.vtc.service;
 
+import vn.edu.vtc.bl.ProductBL;
 import vn.edu.vtc.persistance.Product;
 
 import java.util.Scanner;
 
 public class InsertProduct {
-    public static Product inputInformation(){
+    public static Product inputInformation(int productId){
     Product product = new Product();
+        ProductBL productBL=new ProductBL();
     System.out.println("Input product information:\n");
-            System.out.println("Product name : ");
-            String name="";
-            do try{
 
+            String name=" ";
+            do try{
+                System.out.println("Product name : ");
                 name=new Scanner(System.in).nextLine();
                 if (name.equalsIgnoreCase("exist")){return null;}
-                break;
+                   if (productBL.getByName(name)){
+                       System.out.println("This name has existed!");
+                   }else {
+                        break;
+                  }
             } catch (Exception e){
+                e.printStackTrace();
                 System.out.println("Wrong!");
             }while (true);
             System.out.println("Product description:");
@@ -111,7 +118,6 @@ public class InsertProduct {
                 System.out.println("Wrong!");
             }while (true);
             Integer amount=0;
-            System.out.println("Supplier:");
             Integer supplier_id=1;
             String description = opinion + ";" + size + ";" + shape + ";" + color + ";" + origin + ";" + material + ";" + purpose;
 
