@@ -144,19 +144,16 @@ public class Product {
         }
         return false;
     }
-
     @Override
     public String toString() {
-        return "-----PRODUCT-----" +
-                "\nProduct_id  : " + productId +
-                "\nName        : '" + name +
-                "\nPrice       : " + price +
-                "\nDiscounted  : " + discounted +
-                "\nAmount      : " + amount +
-                "\nDescription : '" + description +
-                "\nLeftQuantity: " + leftQuantity +
-                "\nIsSelling   : " + isSelling +
-                "\nSupplier_id : " + supplier_id +
-                "\nCategory    : '" + category ;
+        return
+                "\nName        : '" + name + "  " +
+                        "Price       : " + price + "  " +
+                        "Discounted  : " + discounted + "  " +
+                        "Amount      : " + amount;
+    }
+    public Double Total(){
+        Double total = (price - discounted) * amount;
+        return total;
     }
 }

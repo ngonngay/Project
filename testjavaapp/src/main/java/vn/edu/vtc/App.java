@@ -2,18 +2,12 @@ package vn.edu.vtc;
 
 import vn.edu.vtc.bl.AccountBL;
 import vn.edu.vtc.bl.ProductBL;
-import vn.edu.vtc.dal.AccountDAL;
-import vn.edu.vtc.dal.OrderDAL;
-import vn.edu.vtc.dal.ProductDAL;
 import vn.edu.vtc.persistance.Account;
 import vn.edu.vtc.persistance.Order;
 import vn.edu.vtc.persistance.Product;
 import vn.edu.vtc.service.*;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 /**
  * Hello world!
@@ -31,17 +25,14 @@ public class App {
             account = accountBL.login(account.getUserName(), account.getPassword());
             if (account != null) {
                 if (account.getIsAmin() == 1) {
+                    Integer choice1=-1;
                     do {
 
-
-                    Integer choice1 = StaticFuncitionService.printMenu(menuService.cashierMenu, 2);
+                     choice1= StaticFuncitionService.printMenu(menuService.cashierMenu, 2);
 
                     switch (choice1) {
                         case 1://create Order
-                            Order order=OrderService.createOrder(account);
-                            if(order!=null){
-                                System.out.println(order);
-                            }
+                            OrderService.createOrder(account);
                             break;
                         case 2:
                             Integer choice2=StaticFuncitionService.printMenu(menuService.updateOrder,2);
@@ -54,6 +45,11 @@ public class App {
                                     }
                                     break;
                                 case 2://update quantity
+                                    Order newOrder=OrderService.refundProduct();
+                                    if (newOrder!=null){
+                                        System.out.println("Your Order:\n");
+                                        OrderService.printOrder(newOrder);
+                                    }
                                     break;
                             }
                             break;
@@ -62,7 +58,7 @@ public class App {
                         default:
                             break;
                     }
-                    }while (true);
+                    }while (choice1!=0);
                 } else if (account.getIsAmin() == 0) {
                     Integer choice3=-1;
                     do {

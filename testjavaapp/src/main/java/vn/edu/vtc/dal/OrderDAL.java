@@ -75,9 +75,9 @@ public class OrderDAL implements DAL<Order>{
                     }
                 }
                 //get new info
-                order=getById(newOrder.getId());
                 statement.execute("unlock tables");
                 connection.setAutoCommit(true);
+                order=getById(newOrder.getId());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -87,13 +87,16 @@ public class OrderDAL implements DAL<Order>{
 
     private Product getProduct(ResultSet resultSet) throws SQLException {
         Product product=new Product();
-        product.setProductId(resultSet.getInt("product_id"));
-        product.setName(resultSet.getString("product_name"));
-        product.setAmount(resultSet.getInt("quantity"));
-        product.setPrice(resultSet.getDouble("price"));
-        product.setDiscounted(resultSet.getDouble("discounted"));
         product.setRefundedInOrder(resultSet.getInt("refunded"));
-        return product;
+        if (product.getRefundedInOrder()==1){
+            product.setProductId(resultSet.getInt("product_id"));
+            product.setName(resultSet.getString("product_name"));
+            product.setAmount(resultSet.getInt("quantity"));
+            product.setPrice(resultSet.getDouble("price"));
+            product.setDiscounted(resultSet.getDouble("discounted"));
+            return product;
+        }
+        return null;
     }
 
     @Override
@@ -114,10 +117,15 @@ public class OrderDAL implements DAL<Order>{
                 order.setStore_name(resultSet.getString("store_name"));
                 order.setAddress(resultSet.getString("address"));
                 Product product=getProduct(resultSet);
-                order.getProductList().add(product);
+                if (product!=null){
+                    order.getProductList().add(product);
+                }
             }
         }catch (Exception e){
             e.printStackTrace();
+            return null;
+        }
+        if (order.getProductList().isEmpty()){
             return null;
         }
         return order;
@@ -125,7 +133,7 @@ public class OrderDAL implements DAL<Order>{
 
     @Override
     public int update(Order order) {
-        return 0;
+        return 1;
     }
 
     public int refundOrder(int orderId) throws SQLException{
@@ -144,8 +152,7 @@ public class OrderDAL implements DAL<Order>{
             Statement statement=connection.createStatement();
             PreparedStatement preparedStatement=connection.prepareStatement("update Products set left_quantity=left_quantity+? where product_id=?;")){
             statement.execute("lock tables Products write,Invoices write,OrderDetail write,Stores write;");
-            for (Product p :
-                    order.getProductList()) {
+            for (Product p : order.getProductList()) {
                 preparedStatement.setInt(1,p.getAmount());
                 preparedStatement.setInt(2,p.getProductId());
                 if (preparedStatement.executeUpdate()!=1){
@@ -165,16 +172,63 @@ public class OrderDAL implements DAL<Order>{
 
         return 1;
     }
+    public Order refundProduct(List<Product> productList,int orderId){
+        Order newOrder=null;
+        try (Connection connection =DbUtil.getConnection();
+             Statement statement=connection.createStatement()){
+            try{
+                connection.setAutoCommit(false);
+                //lock tables to insert data
+                statement.execute("lock tables Products write,Invoices write,OrderDetail write,Stores write;");
+                try (PreparedStatement preparedStatement=connection.prepareStatement("update OrderDetail set quantity=?,refunded=? where invoice_id=? and product_id=?;")){
+                    System.out.println("Test 7");
+                    for (Product p:productList) {
+                        preparedStatement.setInt(1,p.getAmount());
+                        preparedStatement.setInt(2,p.getRefundedInOrder());
+                        preparedStatement.setInt(3,orderId);
+                        preparedStatement.setInt(4,p.getProductId());
+                        if (preparedStatement.executeUpdate()!=1){
+                            System.out.println("test1");
+                            return (Order) rollbackTransaction(connection);
+                        }
+                        //increase left-quantity
+                        System.out.println("Test6");
+                        try(PreparedStatement preparedStatement1=connection.prepareStatement("update Products set left_quantity=left_quantity+? where product_id=?;")){
+                            preparedStatement1.setInt(1,p.getAmount());
+                            preparedStatement1.setInt(2,p.getProductId());
+                            if (preparedStatement1.executeUpdate()!=1){
+                                System.out.println("Test 2");
+                                return (Order) rollbackTransaction(connection);
+                            }
+                        }catch (Exception e){
+                            System.out.println("Test 3");
+                            return (Order) rollbackTransaction(connection);
+                        }
+                    }
+                }
+                connection.setAutoCommit(true);
+                statement.execute("unlock tables;");
+            }catch (Exception e){
+                System.out.println("Test 4 ");
+                return (Order) rollbackTransaction(connection);
+            }
+            //get new order
+            newOrder=getById(orderId);
+        }catch (Exception e){
+            System.out.println("Test 5");
+            return null;
+        }
+        return newOrder;
+    }
 
-
-    // private Object rollbackTransaction(Connection con) throws SQLException {
-    //     // rollback transaction
-    //     con.rollback();
-    //     // unlock tables
-    //     Statement stm = con.createStatement();
-    //     stm.execute("unlock tables;");
-    //     // set auto commit is true
-    //     con.setAutoCommit(true);
-    //     return null;
-    // }
+     private Object rollbackTransaction(Connection con) throws SQLException {
+         // rollback transaction
+         con.rollback();
+         // unlock tables
+         Statement stm = con.createStatement();
+         stm.execute("unlock tables;");
+         // set auto commit is true
+         con.setAutoCommit(true);
+         return null;
+     }
 }
