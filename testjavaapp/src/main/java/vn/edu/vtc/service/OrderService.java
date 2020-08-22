@@ -7,8 +7,10 @@ import vn.edu.vtc.persistance.Order;
 import vn.edu.vtc.persistance.Product;
 
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class OrderService {
@@ -93,6 +95,8 @@ public class OrderService {
                     order.setStore_id(1);
                     order=orderBL.createOrder(order);
                     printOrder(order);
+                    return;
+                }else {
                     return;
                 }
             }
@@ -227,6 +231,7 @@ public class OrderService {
         return order;
     }
     public static void printOrder(Order order){
+        NumberFormat nf = NumberFormat.getInstance(new Locale("vi", "VN"));
             System.out.println("\n");
             System.out.println("|-----------------------------------------------------------------------------------------------|");
             System.out.print("|                 "+order.getStore_name());
@@ -244,7 +249,7 @@ public class OrderService {
             for (Product product : order.getProductList()) {
 
                 System.out.format(
-                        "|%5d   |%11s        |%12.2f       |%11.2f   |%7d  |%13.2f        |\n",product.getProductId(), product.getName(), product.getPrice(), product.getDiscounted(), product.getAmount(), product.Total());
+                        "|%5d   |%11s        |%12.2f       |%11.2f   |%7d  |%13.2f        |\n",product.getProductId(), product.getName(),nf.format(product.getPrice()), product.getDiscounted(), product.getAmount(), product.Total());
                 // System.out.println("\n");
             }
             System.out.println("|-----------------------------------------------------------------------------------------------|");
