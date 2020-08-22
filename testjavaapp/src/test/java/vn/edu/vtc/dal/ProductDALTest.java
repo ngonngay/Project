@@ -28,12 +28,7 @@ public class ProductDALTest {
         Product p=new Product(1001,"my goi 5",10000.,"update from java app",10,1,"my goi");
         Assert.assertFalse(productBL.insertProduct(p));
     }
-    @Test
-    public  void insertProduct1(){
-        //insert new
-        Product p=new Product(1101,"my goi 5",10000.,"update from java app",10,1,"my goi");
-        Assert.assertTrue(productBL.insertProduct(p));
-    }
+
     @Test
     public void updatePrice(){
         //valid price

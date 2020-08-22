@@ -231,7 +231,7 @@ public class OrderService {
         return order;
     }
     public static void printOrder(Order order){
-        NumberFormat nf = NumberFormat.getInstance(new Locale("vi", "VN"));
+//        NumberFormat nf = NumberFormat.getInstance(new Locale("vi", "VN"));
             System.out.println("\n");
             System.out.println("|-----------------------------------------------------------------------------------------------|");
             System.out.print("|                 "+order.getStore_name());
@@ -249,12 +249,12 @@ public class OrderService {
             for (Product product : order.getProductList()) {
 
                 System.out.format(
-                        "|%5d   |%11s        |%12.2f       |%11.2f   |%7d  |%13.2f        |\n",product.getProductId(), product.getName(),nf.format(product.getPrice()), product.getDiscounted(), product.getAmount(), product.Total());
+                        "|%5d   |%11s        |%12.2f       |%11.2f   |%7d  |%13.2f        |\n",product.getProductId(), product.getName(),product.getPrice(), product.getDiscounted(), product.getAmount(), product.Total());
                 // System.out.println("\n");
             }
             System.out.println("|-----------------------------------------------------------------------------------------------|");
             System.out.print("| TỔNG TIỀN PHẢI THANH TOÁN:                                                    "+totalOrder(order));
-            System.out.println("         |");
+            System.out.print("         |");
             System.out.println("|-----------------------------------------------------------------------------------------------|");
             System.out.println("|                               Cảm ơn quý khách và hẹn gặp lại!                                |");
             System.out.println("|                            Hotline:1800 1000  Website: vtc.edu.vn                             |");

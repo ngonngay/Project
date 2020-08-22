@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="vn.edu.vtc.dal.ProductDALTest" time="0.126" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="vn.edu.vtc.dal.ProductDALTest" time="0.194" tests="12" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="13"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-13.0.1\bin"/>
-    <property name="sun.java.command" value="C:\Users\asus\AppData\Local\Temp\surefire9385320723312876463\surefirebooter11395677997357271679.jar C:\Users\asus\AppData\Local\Temp\surefire9385320723312876463 2020-08-22T14-37-57_853-jvmRun1 surefire4419485910809565301tmp surefire_04298582822111769899tmp"/>
+    <property name="sun.java.command" value="C:\Users\asus\AppData\Local\Temp\surefire6703824248902546640\surefirebooter10825819836343890151.jar C:\Users\asus\AppData\Local\Temp\surefire6703824248902546640 2020-08-22T16-41-17_026-jvmRun1 surefire15247677207417915826tmp surefire_016070451991929894066tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="E:\Learning\Semeter1\ProjectSemeter1\Project\testjavaapp\target\test-classes;E:\Learning\Semeter1\ProjectSemeter1\Project\testjavaapp\target\classes;E:\apache-maven-3.6.3\repository\junit\junit\4.11\junit-4.11.jar;E:\apache-maven-3.6.3\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;E:\apache-maven-3.6.3\repository\mysql\mysql-connector-java\8.0.20\mysql-connector-java-8.0.20.jar;E:\apache-maven-3.6.3\repository\com\google\protobuf\protobuf-java\3.6.1\protobuf-java-3.6.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\asus\AppData\Local\Temp\surefire9385320723312876463\surefirebooter11395677997357271679.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\asus\AppData\Local\Temp\surefire6703824248902546640\surefirebooter10825819836343890151.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="13.0.1+9"/>
@@ -56,8 +56,15 @@
     <property name="java.class.version" value="57.0"/>
   </properties>
   <testcase name="getProductById" classname="vn.edu.vtc.dal.ProductDALTest" time="0"/>
-  <testcase name="updateProduct" classname="vn.edu.vtc.dal.ProductDALTest" time="0.004"/>
-  <testcase name="getProductById2" classname="vn.edu.vtc.dal.ProductDALTest" time="0.026"/>
-  <testcase name="insertProduct" classname="vn.edu.vtc.dal.ProductDALTest" time="0.046"/>
-  <testcase name="updatePrice" classname="vn.edu.vtc.dal.ProductDALTest" time="0.025"/>
+  <testcase name="updateProduct" classname="vn.edu.vtc.dal.ProductDALTest" time="0"/>
+  <testcase name="getProductById2" classname="vn.edu.vtc.dal.ProductDALTest" time="0"/>
+  <testcase name="updatePrice2" classname="vn.edu.vtc.dal.ProductDALTest" time="0"/>
+  <testcase name="insertProduct" classname="vn.edu.vtc.dal.ProductDALTest" time="0"/>
+  <testcase name="updatePrice" classname="vn.edu.vtc.dal.ProductDALTest" time="0.002"/>
+  <testcase name="updateProduct1" classname="vn.edu.vtc.dal.ProductDALTest" time="0.043"/>
+  <testcase name="updateProduct2" classname="vn.edu.vtc.dal.ProductDALTest" time="0.041"/>
+  <testcase name="updateProduct3" classname="vn.edu.vtc.dal.ProductDALTest" time="0.055"/>
+  <testcase name="updateProduct4" classname="vn.edu.vtc.dal.ProductDALTest" time="0.017"/>
+  <testcase name="getByName" classname="vn.edu.vtc.dal.ProductDALTest" time="0.016"/>
+  <testcase name="getByName1" classname="vn.edu.vtc.dal.ProductDALTest" time="0.015"/>
 </testsuite>
