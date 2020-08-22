@@ -164,7 +164,7 @@ public class OrderService {
             System.out.println("Input product id to refund : ");
             int productId;
             do try {
-                productId=scanner.nextInt();
+                productId=new Scanner(System.in).nextInt();
                 if (productId >0){
                     break;
                 }

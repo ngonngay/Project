@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6dabf92f-703f-49fb-89fa-377beb0e013c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/dal/OrderDAL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/dal/OrderDAL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/dal/ProductDAL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/dal/ProductDAL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/service/tsahdbvhjasbdhasbh.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/vn/edu/vtc/bl/ValidationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/vn/edu/vtc/pl/ValidationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/vn/edu/vtc/dal/DALFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/vn/edu/vtc/dal/DALFactoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/vn/edu/vtc/dal/OrderDALTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/vn/edu/vtc/dal/OrderDALTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/vn/edu/vtc/dal/ProductDALTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/vn/edu/vtc/dal/ProductDALTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
