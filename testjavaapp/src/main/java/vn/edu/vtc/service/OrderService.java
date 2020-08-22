@@ -43,13 +43,14 @@ public class OrderService {
                     do try {
                         System.out.print("   2. Input quantity:  ");
                         quantity = new Scanner(System.in).nextInt();
-
+                        if (p.getLeftQuantity()==0){
+                            System.out.println("No product to select!");
+                        }
                         if (quantity<0){
                             System.out.println("New quantity must greater than 0");
                         }
                         if (quantity>p.getLeftQuantity()){
                             System.out.println("Wrong!");
-
                         }
                         if (quantity>0&&quantity<p.getLeftQuantity()){
                             p.setAmount(p.getAmount()+quantity);
@@ -66,14 +67,13 @@ public class OrderService {
                 do try {
                     System.out.print("   2. Input quantity:  ");
                     quantity = new Scanner(System.in).nextInt();
-
                     if (quantity<0){
                         System.out.println("New quantity must greater than 0");
                     }
                     if (quantity>product.getLeftQuantity()){
                         System.out.println("Wrong!");
-
                     }
+
                     if (quantity!=0&&(product.getLeftQuantity()>quantity)) {
                         product.setAmount(quantity);
                         break;
@@ -106,12 +106,12 @@ public class OrderService {
         System.out.println("|          Update order          |");
         System.out.println("|         Input order ID         |");
         int orderId=-1;
-        try {
+        do try {
              orderId= new Scanner(System.in).nextInt();
+             break;
         } catch (Exception e) {
             System.out.println("Wrong!");
-            e.printStackTrace();
-        }
+        }while (true);
         OrderBL orderBL=new OrderBL();
         if (orderId!=-1){
             return orderBL.refundOrder(orderId);
@@ -136,10 +136,10 @@ public class OrderService {
         Order newOrder = new Order();
         boolean check=false;
         System.out.println("Input order Id: ");
-        Scanner scanner=new Scanner(System.in);
+
         int orderId;
         do try {
-            orderId=scanner.nextInt();
+            orderId=new Scanner(System.in).nextInt();
             if (orderId >0){
                 break;
             }

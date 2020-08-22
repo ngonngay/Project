@@ -11,9 +11,14 @@ public class OrderDAL implements DAL<Order>{
     public Order createOrder(Order newOrder){
         Order order=new Order();
         //if there no item, do not add order
-        if (newOrder.getProductList()==null||newOrder.getProductList().isEmpty()){
-            return order;
+        try {
+            if (newOrder.getProductList()==null||newOrder.getProductList().isEmpty()){
+                return null;
+            }
+        }catch (Exception e){
+                return null;
         }
+
         //create new order:
         /* step 1: insert newOrder to Invoices table(store_id,staff_id)
          *  step 2: get newOrder id from Invoices (max_id)
@@ -40,7 +45,7 @@ public class OrderDAL implements DAL<Order>{
                     }else {
                         //has fails
                         connection.rollback();
-                        return order;
+                        return null;
                     }
                 }catch (Exception e){
                     e.printStackTrace();
@@ -55,10 +60,12 @@ public class OrderDAL implements DAL<Order>{
                         preparedStatement.setDouble(5,p.getDiscounted());
                         if (preparedStatement.executeUpdate()!=1){
                             connection.rollback();
-                            return order;
+                            return null;
                         }
 
                     }
+                }catch (Exception e){
+                    return (Order) rollbackTransaction(connection);
                 }
                 /*
                  * decrease amount of p.getLeftQuantity
@@ -70,7 +77,7 @@ public class OrderDAL implements DAL<Order>{
                         preparedStatement.setInt(2,p.getProductId());
                         if (preparedStatement.executeUpdate()!=1){
                             connection.rollback();
-                            return order;
+                            return null;
                         }
                     }
                 }

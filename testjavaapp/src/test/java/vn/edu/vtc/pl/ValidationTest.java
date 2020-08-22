@@ -1,4 +1,4 @@
-package vn.edu.vtc.bl;
+package vn.edu.vtc.pl;
 
 import org.junit.Assert;
 import org.junit.Test;

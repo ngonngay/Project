@@ -121,7 +121,7 @@ public  class ProductDAL implements DAL<Product> {
                     return 0;
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                return 0;
             }
             connection.setAutoCommit(true);
             statement.execute("unlock tables");

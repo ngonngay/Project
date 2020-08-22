@@ -25,4 +25,5 @@ public class DALFactoryTest {
         DAL<Order> dal=DalFactory.getDAL(Order.class);
         Assert.assertTrue(dal instanceof OrderDAL);
     }
+
 }
