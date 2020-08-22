@@ -181,27 +181,22 @@ public class OrderDAL implements DAL<Order>{
                 //lock tables to insert data
                 statement.execute("lock tables Products write,Invoices write,OrderDetail write,Stores write;");
                 try (PreparedStatement preparedStatement=connection.prepareStatement("update OrderDetail set quantity=?,refunded=? where invoice_id=? and product_id=?;")){
-                    System.out.println("Test 7");
                     for (Product p:productList) {
                         preparedStatement.setInt(1,p.getAmount());
                         preparedStatement.setInt(2,p.getRefundedInOrder());
                         preparedStatement.setInt(3,orderId);
                         preparedStatement.setInt(4,p.getProductId());
                         if (preparedStatement.executeUpdate()!=1){
-                            System.out.println("test1");
                             return (Order) rollbackTransaction(connection);
                         }
                         //increase left-quantity
-                        System.out.println("Test6");
                         try(PreparedStatement preparedStatement1=connection.prepareStatement("update Products set left_quantity=left_quantity+? where product_id=?;")){
                             preparedStatement1.setInt(1,p.getAmount());
                             preparedStatement1.setInt(2,p.getProductId());
                             if (preparedStatement1.executeUpdate()!=1){
-                                System.out.println("Test 2");
                                 return (Order) rollbackTransaction(connection);
                             }
                         }catch (Exception e){
-                            System.out.println("Test 3");
                             return (Order) rollbackTransaction(connection);
                         }
                     }
@@ -209,14 +204,11 @@ public class OrderDAL implements DAL<Order>{
                 connection.setAutoCommit(true);
                 statement.execute("unlock tables;");
             }catch (Exception e){
-                e.printStackTrace();
-                System.out.println("Test 4 ");
                 return (Order) rollbackTransaction(connection);
             }
             //get new order
             newOrder=getById(orderId);
         }catch (Exception e){
-            System.out.println("Test 5");
             return null;
         }
         return newOrder;

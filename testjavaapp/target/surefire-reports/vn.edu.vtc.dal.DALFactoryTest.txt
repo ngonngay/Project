@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: vn.edu.vtc.bl.ValidationTest
+Test set: vn.edu.vtc.dal.DALFactoryTest
 -------------------------------------------------------------------------------
-Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.076 s - in vn.edu.vtc.bl.ValidationTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s - in vn.edu.vtc.dal.DALFactoryTest

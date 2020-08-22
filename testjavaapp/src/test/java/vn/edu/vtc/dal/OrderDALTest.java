@@ -13,13 +13,12 @@ public class OrderDALTest {
     @Test
     public void getByIdTest(){
         //wrong orderId
-
         Assert.assertNull(orderDAL.getById(1001));
     }
     @Test
     public void  getByIdTest2(){
         //correct id
-       Assert.assertNotNull(orderDAL.getById(13));
+       Assert.assertNotNull(orderDAL.getById(1));
     }
     @Test
     public void refundProductTest(){
@@ -28,6 +27,6 @@ public class OrderDALTest {
         product.setAmount(0);
         List<Product> list=new ArrayList<>();
         list.add(product);
-        Assert.assertNull(orderDAL.refundProduct(list,13));
+        Assert.assertNull(orderDAL.refundProduct(list,2));
     }
 }

@@ -24,7 +24,7 @@ public class ProductDALTest {
     @Test
     public  void insertProduct(){
         //Already existed
-        Product p=new Product(1010,"my goi 5",10000.,"update from java app",10,1,"my goi");
+        Product p=new Product(1001,"my goi 5",10000.,"update from java app",10,1,"my goi");
         Assert.assertFalse(productBL.insertProduct(p));
     }
     @Test

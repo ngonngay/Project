@@ -1,1 +1,6 @@
+vn\edu\vtc\dal\ProductDALTest.class
+vn\edu\vtc\dal\DALFactoryTest.class
+vn\edu\vtc\dal\OrderDALTest.class
 vn\edu\vtc\dal\AccountDALTest.class
+vn\edu\vtc\pl\OrderServiceTest.class
+vn\edu\vtc\bl\ValidationTest.class
