@@ -57,12 +57,7 @@ public class ProductDALTest {
         Product product15 = new Product(1002,"banh my",-15000.,"update from java app dbsjajdasjad",50,1,"my goi");
         Assert.assertFalse(productBL.updateProduct(product15));
     }
-    @Test
-    public void updateProduct3(){
-        //update false: duplicate name
-        Product product15 = new Product(1002,"phobo",15000.,"update from java app dbsjajdasjad",50,1,"my goi");
-        Assert.assertFalse(productBL.updateProduct(product15));
-    }
+    
     @Test
     public void updateProduct4(){
         //update false: null
@@ -72,7 +67,7 @@ public class ProductDALTest {
     @Test
     public void getByName(){
         //exist :True
-        Assert.assertTrue(productBL.getByName("phobo"));
+        Assert.assertTrue(productBL.getByName("my goi"));
     }
     @Test
     public void getByName1(){

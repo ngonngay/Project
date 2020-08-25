@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-13.0.1\bin"/>
-    <property name="sun.java.command" value="C:\Users\asus\AppData\Local\Temp\surefire16365847471729743821\surefirebooter17021795112055847102.jar C:\Users\asus\AppData\Local\Temp\surefire16365847471729743821 2020-08-25T14-01-27_213-jvmRun1 surefire3330799243388128549tmp surefire_018068739654144777906tmp"/>
+    <property name="sun.java.command" value="C:\Users\asus\AppData\Local\Temp\surefire18387171272706389992\surefirebooter12870776679416381533.jar C:\Users\asus\AppData\Local\Temp\surefire18387171272706389992 2020-08-25T17-11-20_442-jvmRun1 surefire1610334057748870975tmp surefire_05944572150323616388tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="E:\Learning\Semeter1\ProjectSemeter1\Project\minisupermarketMS\target\test-classes;E:\Learning\Semeter1\ProjectSemeter1\Project\minisupermarketMS\target\classes;E:\apache-maven-3.6.3\repository\junit\junit\4.11\junit-4.11.jar;E:\apache-maven-3.6.3\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;E:\apache-maven-3.6.3\repository\mysql\mysql-connector-java\8.0.20\mysql-connector-java-8.0.20.jar;E:\apache-maven-3.6.3\repository\com\google\protobuf\protobuf-java\3.6.1\protobuf-java-3.6.1.jar;E:\apache-maven-3.6.3\repository\org\scala-lang\scala-library\2.13.0\scala-library-2.13.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\asus\AppData\Local\Temp\surefire16365847471729743821\surefirebooter17021795112055847102.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\asus\AppData\Local\Temp\surefire18387171272706389992\surefirebooter12870776679416381533.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="13.0.1+9"/>
