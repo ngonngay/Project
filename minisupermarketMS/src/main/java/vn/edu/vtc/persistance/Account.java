@@ -1,7 +1,6 @@
 package vn.edu.vtc.persistance;
 
-import vn.edu.vtc.pl.StaticFuncitionService;
-
+import vn.edu.vtc.pl.StaticFunctionService;
 
 public class Account {
     private String userName;
@@ -34,7 +33,7 @@ public class Account {
     }
 
     public void setPassword(String password) {
-        this.password= StaticFuncitionService.getMd5(password);
+        this.password= StaticFunctionService.getMd5(password);
     }
 
     public Integer getStaff_id() {

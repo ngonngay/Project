@@ -1,4 +1,4 @@
-package vn.edu.vtc.service;
+package vn.edu.vtc.pl;
 
 import vn.edu.vtc.bl.OrderBL;
 import vn.edu.vtc.bl.ProductBL;

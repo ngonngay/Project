@@ -1,14 +1,15 @@
-package vn.edu.vtc.service;
+package vn.edu.vtc.pl;
 
-import vn.edu.vtc.persistance.Account;
-
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
-public class StaticFuncitionService {
+import vn.edu.vtc.bl.PasswordService;
+import vn.edu.vtc.persistance.Account;
+
+public class StaticFunctionService {
     public static int printMenu(ArrayList<String> nameList, Integer limitChoice) {
 
         for (String string : nameList) {

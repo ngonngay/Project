@@ -1,7 +1,6 @@
-package vn.edu.vtc.service;
+package vn.edu.vtc.pl;
 
 import vn.edu.vtc.bl.ProductBL;
-import vn.edu.vtc.dal.ProductDAL;
 import vn.edu.vtc.persistance.Product;
 
 import java.util.Scanner;

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import vn.edu.vtc.persistance.Account;
 
-public class AccountDAL implements DAL<Account>{
+public class AccountDAL implements DAL<Account> {
     public Account getAccount(String userName,String password){
         Account account=null;
         try (Connection connection=DbUtil.getConnection();

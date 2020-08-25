@@ -3,8 +3,7 @@ package vn.edu.vtc.pl;
 import org.junit.Assert;
 import org.junit.Test;
 
-import vn.edu.vtc.pl.PasswordService;
-import vn.edu.vtc.pl.StaticFuncitionService;
+import vn.edu.vtc.bl.PasswordService;
 
 
 
@@ -68,7 +67,7 @@ public class ValidationTest {
     }
     @Test
     public void testMD5(){
-        String result=StaticFuncitionService.getMd5("Thangnguyenquyet123");
+        String result=StaticFunctionService.getMd5("Thangnguyenquyet123");
         String expected="16c0ce36e334e22fda8caca1b10c2f9c";
         Assert.assertTrue(result.equals(expected));
     }

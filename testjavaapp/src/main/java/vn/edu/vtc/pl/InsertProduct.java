@@ -1,4 +1,4 @@
-package vn.edu.vtc.service;
+package vn.edu.vtc.pl;
 
 import vn.edu.vtc.bl.ProductBL;
 import vn.edu.vtc.persistance.Product;
@@ -117,7 +117,6 @@ public class InsertProduct {
             } catch (Exception e){
                 System.out.println("Wrong!");
             }while (true);
-            Integer amount=0;
             Integer supplier_id=1;
             String description = opinion + ";" + size + ";" + shape + ";" + color + ";" + origin + ";" + material + ";" + purpose;
 
