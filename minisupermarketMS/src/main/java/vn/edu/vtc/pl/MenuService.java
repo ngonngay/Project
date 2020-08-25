@@ -17,7 +17,7 @@ public class MenuService {
         cashierMenu.add("|--------------------------------|");
         cashierMenu.add("|   2. Update order              |");
         cashierMenu.add("|--------------------------------|");
-        cashierMenu.add("|   3. Exit                      |");
+        cashierMenu.add("|   0. Exit                      |");
         cashierMenu.add("\\--------------------------------/");
         cashierMenu.add("\n \n \n");
 
@@ -30,7 +30,7 @@ public class MenuService {
         managerMenu.add("|--------------------------------|");
         managerMenu.add("|   2. Update product            |");
         managerMenu.add("|--------------------------------|");
-        managerMenu.add("|   3. Exit                      |");
+        managerMenu.add("|   0. Exit                      |");
         managerMenu.add("\\--------------------------------/");
         managerMenu.add("\n \n \n");
         updateOrder.add("+--------------------------------+");
@@ -42,7 +42,7 @@ public class MenuService {
         updateOrder.add("|                                |");
         updateOrder.add("|   1. Refunded order            |");
         updateOrder.add("|   2. Update quantity           |");
-        updateOrder.add("|   3. Back                      |");
+        updateOrder.add("|   0. Back                      |");
         updateOrder.add("\\--------------------------------/");
         updateOrder.add("\n\n\n");
 

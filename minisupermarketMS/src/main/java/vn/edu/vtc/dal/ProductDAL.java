@@ -37,11 +37,29 @@ public class ProductDAL implements DAL<Product> {
         product.setProductId(resultSet.getInt("product_id"));
         product.setName(resultSet.getString("product_name"));
         product.setDescription(resultSet.getString("product_Description"));
+        try {
+            product.setDiscounted(resultSet.getDouble("discount_value"));
+        } catch (Exception e) {
+            product.setDiscounted(0.);
+        }
 //        product.setCategory();
         product.setPrice(resultSet.getDouble("price"));
-        product.setIsSelling(resultSet.getInt("stopSelling"));
-        product.setLeftQuantity(resultSet.getInt("left_quantity"));
-        product.setSupplier_id(resultSet.getInt("supplier_id"));
+        try {
+            product.setIsSelling(resultSet.getInt("stopSelling"));
+        } catch (Exception e) {
+            product.setIsSelling(0);
+        }
+        try {
+            product.setLeftQuantity(resultSet.getInt("left_quantity"));
+        } catch (Exception e) {
+            product.setLeftQuantity(0);
+        }
+        try {
+            product.setSupplier_id(resultSet.getInt("supplier_id"));
+        } catch (Exception e) {
+            product.setSupplier_id(1);
+        }
+        
         return product;
     }
 
@@ -85,7 +103,7 @@ public class ProductDAL implements DAL<Product> {
             return null;
         }
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select *from Products where product_id=?;")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from Products where product_id=?")) {
             preparedStatement.setInt(1, productId);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {

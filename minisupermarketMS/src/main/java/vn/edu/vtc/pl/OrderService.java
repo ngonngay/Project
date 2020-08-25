@@ -1,8 +1,10 @@
 package vn.edu.vtc.pl;
 
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 import vn.edu.vtc.bl.OrderBL;
@@ -228,40 +230,46 @@ public class OrderService {
         return order;
     }
     public static void printOrder(Order order){
-//        NumberFormat nf = NumberFormat.getInstance(new Locale("vi", "VN"));
             System.out.println("\n");
-            System.out.println("|-----------------------------------------------------------------------------------------------|");
-            System.out.print("|                 "+order.getStore_name());
-            System.out.print("                                      Address: " +order.getAddress());
-            System.out.println("               |");
-            System.out.println("|-----------------------------------------------------------------------------------------------|");
-            System.out.println("|                                     -------ORDER-------                                       |");
-            System.out.print("|     Date:        " +order.getDate());
-            System.out.print("                                         ID: " +order.getId());
-            System.out.println("                          |");
-            System.out.println("|-----------------------------------------------------------------------------------------------|");
-            System.out.println(
-                    "|   ID   |       Name        |       Price       |   Discount   |  Amount  |       Total         | ");
-            System.out.println("|-----------------------------------------------------------------------------------------------|");
+            System.out.println("-----------------------------------------------------------------------------------------------");
+            System.out.print("                 "+order.getStore_name());
+            System.out.print("                                      Address: " +order.getAddress()+"\n");
+            System.out.println("-----------------------------------------------------------------------------------------------");
+            System.out.println("                                     -------ORDER-------                                       ");
+            System.out.print("     Date:        " +order.getDate());
+            System.out.print("                                         ID: " +order.getId()+"\n");
+            System.out.println("-----------------------------------------------------------------------------------------------");
+            System.out.println("   ID   |       Name        |       Price       |   Discount   |  Amount  |       Total          ");
+            System.out.println("-----------------------------------------------------------------------------------------------");
             for (Product product : order.getProductList()) {
-
                 System.out.format(
-                        "|%5d   |%11s        |%12.2f       |%11.2f   |%7d  |%13.2f        |\n",product.getProductId(), product.getName(),product.getPrice(), product.getDiscounted(), product.getAmount(), product.Total());
-                // System.out.println("\n");
+                        "%5d   |%11s        |%12s       |%11s   |%7d  |%13s        \n",product.getProductId(), product.getName(),printPrice(product.getPrice()),printPrice(product.getDiscounted()) , product.getAmount(),printPrice(Total(product)));
+                System.out.println("\n");
+                //System.out.println(product.getProductId()+ product.getName()+printPrice(product.getPrice())+printPrice(product.getDiscounted()) + product.getAmount()+printPrice(Total(product)));
             }
-            System.out.println("|-----------------------------------------------------------------------------------------------|");
-            System.out.print("| TỔNG TIỀN PHẢI THANH TOÁN:                                                    "+totalOrder(order));
-            System.out.print("         |");
-            System.out.println("|-----------------------------------------------------------------------------------------------|");
-            System.out.println("|                               Cảm ơn quý khách và hẹn gặp lại!                                |");
-            System.out.println("|                            Hotline:1800 1000  Website: vtc.edu.vn                             |");
-            System.out.println("|-----------------------------------------------------------------------------------------------|");
+            System.out.println("-----------------------------------------------------------------------------------------------");
+            System.out.print(" TỔNG TIỀN PHẢI THANH TOÁN:                                                    "+printPrice(totalOrder(order)) +"\n");
+            System.out.println("-----------------------------------------------------------------------------------------------");
+            System.out.println("                               Cảm ơn quý khách và hẹn gặp lại!                                ");
+            System.out.println("                            Hotline:1800 1000  Website: vtc.edu.vn                             ");
+            System.out.println("-----------------------------------------------------------------------------------------------");
     }
     public static Double totalOrder(Order order) {
         Double totalOrder = 0.;
         for (Product product : order.getProductList()) {
-            totalOrder += product.Total();
+            totalOrder += Total(product);
         }
         return totalOrder;
+    }
+    public static String printPrice(Double price){
+        Locale localeVN = new Locale("vi", "VN");
+        NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
+        String str1 = currencyVN.format(price);
+        String str2 =str1.replace(".", ",");
+        return str2;
+    }
+    public static Double Total(Product p){
+        Double total = (p.getPrice()-p.getDiscounted())*p.getAmount();
+        return total;
     }
 }

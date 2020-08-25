@@ -152,8 +152,5 @@ public class Product {
                         "Discounted  : " + discounted + "  " +
                         "Amount      : " + amount;
     }
-    public Double Total(){
-        Double total = (price - discounted) * amount;
-        return total;
-    }
+    
 }

@@ -127,6 +127,16 @@ public class OrderDAL implements DAL<Order> {
                 order.setStore_name(resultSet.getString("store_name"));
                 order.setAddress(resultSet.getString("address"));
                 Product product=getProduct(resultSet);
+                //get discount if exist
+                try (PreparedStatement preparedStatement2=connection.prepareStatement("select * from (select X.product_id,product_name,product_Description,price,left_quantity,discount_Value from (select Products.product_id,product_name,product_Description,price,left_quantity,discount_id,stopSelling,supplier_id from Products inner join Product_Discount on Products.product_id=Product_Discount.product_id) X inner join Discounts on X.discount_id=Discounts.discount_id)P where p.product_id=?;")) {
+                    preparedStatement2.setInt(1,product.getProductId());
+                    ResultSet resultSet2=preparedStatement2.executeQuery();
+                    while (resultSet2.next()) {
+                        product.setDiscounted(resultSet2.getDouble("discount_value"));
+                    }
+                } catch (Exception e) {
+                    
+                }
                 if (product!=null){
                     order.getProductList().add(product);
                 }
