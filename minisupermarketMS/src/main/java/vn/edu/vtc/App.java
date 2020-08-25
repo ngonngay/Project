@@ -22,7 +22,9 @@ public class App {
         AccountBL accountBL = new AccountBL();
         Account account = new Account();
         do {
-            System.out.println("Login");
+            System.out.println("------------------------------------------------------------");
+            System.out.println("---------Login to Mini Supermaket Management System---------");
+            System.out.println("------------------------------------------------------------\n");
             account = StaticFunctionService.loginToSystem();
             account = accountBL.login(account.getUserName(), account.getPassword());
             if (account != null) {
@@ -73,7 +75,12 @@ public class App {
                         Product product = new Product();
                         switch (choice3) {
                             case 1://insert Product
+                           
                                 int productid= StaticFunctionService.inputId();
+                                if (productBL.getById(productid)!=null) {
+                                    System.out.println("Product has existed!");
+                                    break;
+                                }
                                 product=InsertProduct.inputInformation(productid);
                                 product.setProductId(productid);
                                 if (product==null){

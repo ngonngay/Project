@@ -81,6 +81,7 @@ public class ProductDAL implements DAL<Product> {
                 preparedStatement.setInt(5, newProduct.getLeftQuantity());
                 preparedStatement.setInt(6, newProduct.getSupplier_id());
                 if (preparedStatement.executeUpdate() != 1) {
+                    System.out.println("1");
                     connection.rollback();
                     return 0;
                 }

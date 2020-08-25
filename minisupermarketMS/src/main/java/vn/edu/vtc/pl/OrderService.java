@@ -18,14 +18,16 @@ public class OrderService {
         ProductBL productBL=new ProductBL();
         OrderBL orderBL=new OrderBL();
         Order order=new Order();
+        System.out.println("----------------------------------");
         System.out.println("|          Create Order          |");
         System.out.println("|    ------ Add product ------   |");
         System.out.println("|                                |");
+        System.out.println("----------------------------------");
         do {
             //input productID
             int productId=-1;
             do try {
-                System.out.print("      1. Input product ID: ");
+                System.out.print("   1. Input product ID: ");
                 productId = new Scanner(System.in).nextInt();
                 if (productBL.getById(productId)!=null){
                     break;
@@ -107,7 +109,8 @@ public class OrderService {
         //set value at refund_order column at 0 (0:true ; 1: false)
         System.out.println("|--------------------------------|");
         System.out.println("|          Update order          |");
-        System.out.println("|         Input order ID         |");
+        System.out.println("|--------------------------------|");
+        System.out.println("Input order ID : ");
         int orderId=-1;
         do try {
              orderId= new Scanner(System.in).nextInt();
