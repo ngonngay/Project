@@ -37,11 +37,11 @@ public class MenuService {
         updateOrder.add("|---Welcome to Cashier's Menu!---|");
         updateOrder.add("|--------------------------------|");
         updateOrder.add("|          Update order          |");
-        updateOrder.add("|         Input order ID         |");
+        updateOrder.add("|                                |");
         updateOrder.add("|     ----- Update Menu -----    |");
         updateOrder.add("|                                |");
         updateOrder.add("|   1. Refund order              |");
-        updateOrder.add("|   2. Refund quantity           |");
+        updateOrder.add("|   2. Refund product            |");
         updateOrder.add("|   0. Back                      |");
         updateOrder.add("\\--------------------------------/");
         updateOrder.add("\n\n\n");
@@ -51,12 +51,10 @@ public class MenuService {
         updateMenu.add("|--------------------------------|");
         updateMenu.add("|   ----- Update product -----   |");
         updateMenu.add("|                                |");
-        updateMenu.add("|    - Input product ID:         |");
-        updateMenu.add("|                                |");
         updateMenu.add("|     ----- Update Menu -----    |");
         updateMenu.add("|                                |");
-        updateMenu.add("|  1. Update information         |");
-        updateMenu.add("|  2. Update price               |");
+        updateMenu.add("|  1. Update price               |");
+        updateMenu.add("|  2. Update information         |");
         updateMenu.add("|  0. Back                       |");
         updateMenu.add("\\--------------------------------/");
         updateMenu.add("\n\n\n");

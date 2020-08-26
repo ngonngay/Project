@@ -251,9 +251,9 @@ public class OrderService {
                 //System.out.println(product.getProductId()+ product.getName()+printPrice(product.getPrice())+printPrice(product.getDiscounted()) + product.getAmount()+printPrice(Total(product)));
             }
             System.out.println("-----------------------------------------------------------------------------------------------");
-            System.out.print(" TỔNG TIỀN PHẢI THANH TOÁN:                                                    "+printPrice(totalOrder(order)) +"\n");
+            System.out.print(" Total:                                                    "+printPrice(totalOrder(order)) +"\n");
             System.out.println("-----------------------------------------------------------------------------------------------");
-            System.out.println("                               Cảm ơn quý khách và hẹn gặp lại!                                ");
+            System.out.println("                               Thank you and see you again!                                ");
             System.out.println("                            Hotline:1800 1000  Website: vtc.edu.vn                             ");
             System.out.println("-----------------------------------------------------------------------------------------------");
     }
@@ -269,7 +269,8 @@ public class OrderService {
         NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
         String str1 = currencyVN.format(price);
         String str2 =str1.replace(".", ",");
-        return str2;
+        String str3=str2.replace("₫", "");
+        return str3;
     }
     public static Double Total(Product p){
         Double total = (p.getPrice()-p.getDiscounted())*p.getAmount();

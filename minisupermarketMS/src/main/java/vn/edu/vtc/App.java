@@ -58,6 +58,8 @@ public class App {
                                     if (newOrder!=null){
                                         System.out.println("Your Order:\n");
                                         OrderService.printOrder(newOrder);
+                                    }else{
+                                        System.out.println("Refund product success!");
                                     }
                                     break;
                             }
