@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6dabf92f-703f-49fb-89fa-377beb0e013c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/bl/ProductBL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/bl/ProductBL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/dal/AccountDAL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/dal/AccountDAL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/dal/DAL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/dal/DAL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/persistance/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/persistance/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/persistance/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/persistance/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/service/InsertProduct.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/service/MenuService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/service/OrderService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/service/PasswordService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/service/StaticFuncitionService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/vtc/service/UpdateProduct.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/vn/edu/vtc/dal/ProductDALTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/vn/edu/vtc/dal/ProductDALTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/vn/edu/vtc/pl/OrderServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/vn/edu/vtc/pl/OrderServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/vn/edu/vtc/pl/ValidationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/vn/edu/vtc/pl/ValidationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-    </list>
+    <list default="true" id="6dabf92f-703f-49fb-89fa-377beb0e013c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,7 +31,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last.edited.regexp" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../minisupermarketMS" />
   </component>
   <component name="RunManager" selected="Application.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -185,10 +166,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="454" y="25" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1597483363513" />
-    <state x="549" y="189" key="FileChooserDialogImpl" timestamp="1597483718468">
+    <state x="549" y="189" key="FileChooserDialogImpl" timestamp="1598409536097">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="549" y="189" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1597483718468" />
+    <state x="549" y="189" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1598409536097" />
     <state width="1493" height="523" key="GridCell.Tab.0.bottom" timestamp="1598089391007">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -221,10 +202,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="1493" height="275" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1597997804730" />
-    <state x="489" y="259" key="com.intellij.ide.util.TipDialog" timestamp="1598257119124">
+    <state x="489" y="259" key="com.intellij.ide.util.TipDialog" timestamp="1598409226848">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="489" y="259" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1598257119124" />
+    <state x="489" y="259" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1598409226848" />
     <state x="93" y="93" width="1350" height="678" key="dock-window-1" timestamp="1597808857181">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
