@@ -40,7 +40,7 @@ public class MenuService {
         updateOrder.add("|         Input order ID         |");
         updateOrder.add("|     ----- Update Menu -----    |");
         updateOrder.add("|                                |");
-        updateOrder.add("|   1. Refund order            |");
+        updateOrder.add("|   1. Refund order              |");
         updateOrder.add("|   2. Refund quantity           |");
         updateOrder.add("|   0. Back                      |");
         updateOrder.add("\\--------------------------------/");
