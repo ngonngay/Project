@@ -81,10 +81,10 @@ public class App {
                                     break;
                                 }
                                 product=InsertProduct.inputInformation(productid);
-                                product.setProductId(productid);
                                 if (product==null){
                                     break;
                                 }
+                                product.setProductId(productid);
                                 if (productBL.insertProduct(product)){
                                     System.out.println("Insert success!");
                                 }else {

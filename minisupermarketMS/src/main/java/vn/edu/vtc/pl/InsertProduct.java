@@ -13,9 +13,9 @@ public class InsertProduct {
         String name = " ";
         do
             try {
-                System.out.println("Product name : ");
+                System.out.print("\nProduct name : ");
                 name = new Scanner(System.in).nextLine();
-                if (name.equalsIgnoreCase("exist")) {
+                if (name.equalsIgnoreCase("exit")) {
                     return null;
                 }
                 if (productBL.getByName(name)) {
@@ -35,7 +35,7 @@ public class InsertProduct {
         do
             try {
                 opinion = new Scanner(System.in).nextLine();
-                if (opinion.equalsIgnoreCase("exist")) {
+                if (opinion.equalsIgnoreCase("exit")) {
                     return null;
                 }
                 break;
@@ -43,7 +43,7 @@ public class InsertProduct {
                 System.out.println("Wrong!");
             }
         while (true);
-        System.out.println("Size: ");
+        System.out.print("\nSize: ");
         String size = "";
         do
             try {
@@ -56,7 +56,7 @@ public class InsertProduct {
                 System.out.println("Wrong!");
             }
         while (true);
-        System.out.println("Shape:");
+        System.out.print("\nShape:");
         String shape = "";
         do
             try {
@@ -69,7 +69,7 @@ public class InsertProduct {
                 System.out.println("Wrong!");
             }
         while (true);
-        System.out.println("Color:");
+        System.out.print("\nColor:");
         String color = "";
         do
             try {
@@ -82,7 +82,7 @@ public class InsertProduct {
                 System.out.println("Wrong!");
             }
         while (true);
-        System.out.println("Origin: ");
+        System.out.print("\nOrigin: ");
         String origin = "";
         do
             try {
@@ -95,12 +95,12 @@ public class InsertProduct {
                 System.out.println("Wrong!");
             }
         while (true);
-        System.out.println("Material :");
+        System.out.print("\nMaterial :");
         String material = "";
         do
             try {
                 material = new Scanner(System.in).nextLine();
-                if (material.equalsIgnoreCase("exist")) {
+                if (material.equalsIgnoreCase("exit")) {
                     return null;
                 }
                 break;
@@ -108,7 +108,7 @@ public class InsertProduct {
                 System.out.println("Wrong!");
             }
         while (true);
-        System.out.println("Purpose:");
+        System.out.print("\nPurpose:");
         String purpose = "";
         do
             try {
@@ -127,31 +127,39 @@ public class InsertProduct {
 
         Double price = 0.;
             do try {
-                System.out.println("Price:");
+                System.out.println("\nPrice:");
                 price = new Scanner(System.in).nextDouble();
-                break;
+                if (price>0) {
+                    break;
+                }else {
+                    System.out.print("Price must be greater than 0!");
+                }
             } catch (Exception e) {
                 System.out.println("Wrong!");
             }while (true);
-        String calculationUnit = "";
-        do
-            try {
-                System.out.println("Calculation Unit");
-                calculationUnit = new Scanner(System.in).nextLine();
-                if (calculationUnit.equalsIgnoreCase("exit")) {
-                    return null;
-                }
-                break;
-            } catch (Exception e) {
-                System.out.println("Wrong!");
-            }
-        while (true);
-        System.out.println("Unit quantity: ");
+//        String calculationUnit = "";
+//        do
+//            try {
+//                System.out.println("Calculation Unit");
+//                calculationUnit = new Scanner(System.in).nextLine();
+//                if (calculationUnit.equalsIgnoreCase("exit")) {
+//                    return null;
+//                }
+//                break;
+//            } catch (Exception e) {
+//                System.out.println("Wrong!");
+//            }
+//        while (true);
         int quantity = 0;
         do
             try {
+                System.out.print("\nUnit quantity: ");
                 quantity = new Scanner(System.in).nextInt();
-                break;
+                if (quantity>0) {
+                    break;
+                }else {
+                    System.out.println("Quantity must be greater than 0!");
+                }
             } catch (Exception e) {
                 System.out.println("Wrong!");
             }
@@ -166,7 +174,7 @@ public class InsertProduct {
             product.setName(name);
             product.setLeftQuantity(quantity);
             product.setDescription(description);
-            product.setCalculationUnit(calculationUnit);
+            //product.setCalculationUnit(calculationUnit);
             product.setSupplier_id(supplier_id);
             product.setPrice(price);
             return product;
