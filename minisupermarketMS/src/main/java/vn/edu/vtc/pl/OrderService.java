@@ -264,7 +264,7 @@ public class OrderService {
             System.out.print(" Total:                                                    "+printPrice(totalOrder(order)) +"VND\n");
             System.out.println("-----------------------------------------------------------------------------------------------");
             System.out.println("                               Thank you and see you again!                                ");
-            System.out.println("                            Hotline:1800 1000  Website: vtc.edu.vn                             ");
+            System.out.println("                            Hotline:1800 1000  Website:https://tuyensinh2020.vtc.edu.vn/                             ");
             System.out.println("-----------------------------------------------------------------------------------------------\n\n");
     }
     public static Double totalOrder(Order order) {

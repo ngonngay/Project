@@ -136,8 +136,9 @@ public class InsertProduct {
         String calculationUnit = "";
         do
             try {
+                System.out.println("Calculation Unit");
                 calculationUnit = new Scanner(System.in).nextLine();
-                if (calculationUnit.equalsIgnoreCase("exist")) {
+                if (calculationUnit.equalsIgnoreCase("exit")) {
                     return null;
                 }
                 break;
@@ -159,7 +160,7 @@ public class InsertProduct {
         String description = opinion + ";" + size + ";" + shape + ";" + color + ";" + origin + ";" + material + ";"
                 + purpose;
 
-        System.out.println("Insert: Y/N");
+        System.out.println("Insert Product: Y/N");
         String check = new Scanner(System.in).nextLine();
         if (check.equalsIgnoreCase("Y")) {
             product.setName(name);
@@ -168,7 +169,6 @@ public class InsertProduct {
             product.setCalculationUnit(calculationUnit);
             product.setSupplier_id(supplier_id);
             product.setPrice(price);
-            System.out.println(product.getPrice());
             return product;
         }
         return null;
