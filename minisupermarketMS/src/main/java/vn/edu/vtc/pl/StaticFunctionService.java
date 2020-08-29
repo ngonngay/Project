@@ -35,7 +35,7 @@ public class StaticFunctionService {
         // username
         do
             try {
-                System.out.println("User name: ");
+                System.out.print("User name: ");
                 String userName = new Scanner(System.in).nextLine();
                 if (userName.equalsIgnoreCase("exit")) {
                     System.exit(0);
@@ -61,11 +61,11 @@ public class StaticFunctionService {
                 // System.out.println("Password: ");
                 // String password = new Scanner(System.in).nextLine();
                 if (console != null) {
-                    char[] passwordArray = console.readPassword("Enter your secret password: ");
+                    char[] passwordArray = console.readPassword("Password: ");
                     password= new String(passwordArray);
                     
                 }else{
-                    System.out.println("Password: ");
+                    System.out.print("Password: ");
                     password = new Scanner(System.in).nextLine();
                 }
                 
@@ -114,12 +114,12 @@ public class StaticFunctionService {
 
     }
 
-    public static int inputId() {
-        System.out.println("Product ID: ");
-        int productId = -1;
+    public static String inputId() {
+        String productId = null;
         do
             try {
-                productId = new Scanner(System.in).nextInt();
+                System.out.print("Product ID: ");
+                productId = new Scanner(System.in).nextLine();
                 break;
             } catch (Exception e) {
                 System.out.println("Wrong!");

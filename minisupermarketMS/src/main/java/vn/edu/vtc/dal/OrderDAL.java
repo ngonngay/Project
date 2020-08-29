@@ -57,7 +57,7 @@ public class OrderDAL implements DAL<Order> {
                 try (PreparedStatement preparedStatement=connection.prepareStatement("insert into OrderDetail(invoice_id,product_id,quantity,price,discounted)values(?,?,?,?,?);")){
                     for (Product p: newOrder.getProductList()) {
                         preparedStatement.setInt(1,newOrder.getId());
-                        preparedStatement.setInt(2,p.getProductId());
+                        preparedStatement.setString(2,p.getProductId());
                         preparedStatement.setInt(3,p.getAmount());
                         preparedStatement.setDouble(4,p.getPrice());
                         preparedStatement.setDouble(5,p.getDiscounted());
@@ -77,7 +77,7 @@ public class OrderDAL implements DAL<Order> {
                 try(PreparedStatement preparedStatement=connection.prepareStatement("update Products set left_quantity=left_quantity-? where product_id=?;")){
                     for (Product p :newOrder.getProductList()) {
                         preparedStatement.setInt(1,p.getAmount());
-                        preparedStatement.setInt(2,p.getProductId());
+                        preparedStatement.setString(2,p.getProductId());
                         if (preparedStatement.executeUpdate()!=1){
                             connection.rollback();
                             return null;
@@ -99,7 +99,7 @@ public class OrderDAL implements DAL<Order> {
         Product product=new Product();
         product.setRefundedInOrder(resultSet.getInt("refunded"));
         if (product.getRefundedInOrder()==1){
-            product.setProductId(resultSet.getInt("product_id"));
+            product.setProductId(resultSet.getString("product_id"));
             product.setName(resultSet.getString("product_name"));
             product.setAmount(resultSet.getInt("quantity"));
             product.setPrice(resultSet.getDouble("price"));
@@ -129,7 +129,7 @@ public class OrderDAL implements DAL<Order> {
                 Product product=getProduct(resultSet);
                 //get discount if exist
                 try (PreparedStatement preparedStatement2=connection.prepareStatement("select * from (select X.product_id,product_name,product_Description,price,left_quantity,discount_Value from (select Products.product_id,product_name,product_Description,price,left_quantity,discount_id,stopSelling,supplier_id from Products inner join Product_Discount on Products.product_id=Product_Discount.product_id) X inner join Discounts on X.discount_id=Discounts.discount_id)P where p.product_id=?;")) {
-                    preparedStatement2.setInt(1,product.getProductId());
+                    preparedStatement2.setString(1,product.getProductId());
                     ResultSet resultSet2=preparedStatement2.executeQuery();
                     while (resultSet2.next()) {
                         product.setDiscounted(resultSet2.getDouble("discount_value"));
@@ -174,7 +174,7 @@ public class OrderDAL implements DAL<Order> {
             statement.execute("lock tables Products write,Invoices write,OrderDetail write,Stores write;");
             for (Product p : order.getProductList()) {
                 preparedStatement.setInt(1,p.getAmount());
-                preparedStatement.setInt(2,p.getProductId());
+                preparedStatement.setString(2,p.getProductId());
                 if (preparedStatement.executeUpdate()!=1){
                     return 0;
                 }
@@ -205,14 +205,14 @@ public class OrderDAL implements DAL<Order> {
                         preparedStatement.setInt(1,p.getAmount());
                         preparedStatement.setInt(2,p.getRefundedInOrder());
                         preparedStatement.setInt(3,orderId);
-                        preparedStatement.setInt(4,p.getProductId());
+                        preparedStatement.setString(4,p.getProductId());
                         if (preparedStatement.executeUpdate()!=1){
                             return (Order) rollbackTransaction(connection);
                         }
                         //increase left-quantity
                         try(PreparedStatement preparedStatement1=connection.prepareStatement("update Products set left_quantity=left_quantity+? where product_id=?;")){
                             preparedStatement1.setInt(1,p.getAmount());
-                            preparedStatement1.setInt(2,p.getProductId());
+                            preparedStatement1.setString(2,p.getProductId());
                             if (preparedStatement1.executeUpdate()!=1){
                                 return (Order) rollbackTransaction(connection);
                             }

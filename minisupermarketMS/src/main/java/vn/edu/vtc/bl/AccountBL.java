@@ -11,4 +11,7 @@ public class AccountBL {
         AccountDAL accountDAL=(AccountDAL) dal;
         return accountDAL.getAccount(userName, password);
     }
+    public boolean createNewAccount(Account account){
+        return dal.insert(account)>0;
+    }
 }

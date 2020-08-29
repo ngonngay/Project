@@ -9,15 +9,15 @@ import java.sql.Statement;
 import vn.edu.vtc.persistance.Product;
 
 public class ProductDAL implements DAL<Product> {
-    public int update(Double newPrice, int productId) {
-        if (newPrice == 0. || productId < 0) {
+    public int update(Double newPrice, String productId) {
+        if (newPrice == 0. || productId==null) {
             return 0;
         }
         try (Connection connection = DbUtil.getConnection()) {
             try (
                     PreparedStatement preparedStatement = connection.prepareStatement("update Products set price=? where product_id=?;")) {
                 preparedStatement.setDouble(1, newPrice);
-                preparedStatement.setInt(2, productId);
+                preparedStatement.setString(2, productId);
                 Statement statement = connection.createStatement();
                 statement.execute("lock tables Products write,Invoices write,OrderDetail write,Stores write;");
                 if (preparedStatement.executeUpdate() != 1) {
@@ -34,7 +34,7 @@ public class ProductDAL implements DAL<Product> {
 
     private Product getProduct(ResultSet resultSet) throws SQLException {
         Product product = new Product();
-        product.setProductId(resultSet.getInt("product_id"));
+        product.setProductId(resultSet.getString("product_id"));
         product.setName(resultSet.getString("product_name"));
         product.setDescription(resultSet.getString("product_Description"));
         try {
@@ -74,7 +74,7 @@ public class ProductDAL implements DAL<Product> {
             connection.setAutoCommit(false);
             statement.execute("lock tables Products write,Invoices write,OrderDetail write,Stores write;");
             try (PreparedStatement preparedStatement = connection.prepareStatement("insert into Products(product_id,product_name,product_Description,price,left_quantity,supplier_id)values(?,?,?,?,?,?);")) {
-                preparedStatement.setInt(1, newProduct.getProductId());
+                preparedStatement.setString(1, newProduct.getProductId());
                 preparedStatement.setString(2, newProduct.getName());
                 preparedStatement.setString(3, newProduct.getDescription());
                 preparedStatement.setDouble(4, newProduct.getPrice());
@@ -136,7 +136,7 @@ public class ProductDAL implements DAL<Product> {
                 preparedStatement.setString(2, updatingProduct.getDescription());
                 preparedStatement.setDouble(3, updatingProduct.getPrice());
                 preparedStatement.setInt(4, updatingProduct.getLeftQuantity());
-                preparedStatement.setInt(5, updatingProduct.getProductId());
+                preparedStatement.setString(5, updatingProduct.getProductId());
                 if (preparedStatement.executeUpdate() != 1) {
                     return 0;
                 }
@@ -163,5 +163,22 @@ public class ProductDAL implements DAL<Product> {
             e.printStackTrace();
         }
         return false;
+    }
+    public Product getById(String productId) {
+        Product product = null;
+        if (productId==null) {
+            return null;
+        }
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from Products where product_id=?")) {
+            preparedStatement.setString(1, productId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                product = getProduct(resultSet);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return product;
     }
 }

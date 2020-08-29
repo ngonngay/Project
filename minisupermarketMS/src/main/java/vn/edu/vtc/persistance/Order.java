@@ -9,7 +9,6 @@ public class Order {
     private Integer id;
     private Timestamp date;
     private Integer staff_id;
-
     private Integer store_id=1;
     private String store_name;
     private String address;

@@ -24,7 +24,7 @@ public class OrderDALTest {
     @Test
     public void createOrder(){
         //correct
-        Product product=new Product(1001,"phobo",50000.,10000.,1);
+        Product product=new Product("1001","phobo",50000.,10000.,1);
         List<Product> list=new ArrayList<>();
         list.add(product);
         Order order=new Order();
@@ -42,7 +42,7 @@ public class OrderDALTest {
     @Test
     public void createOrder2(){
         //wrong product id
-        Product product=new Product(10010,"phobo",50000.,10000.,1);
+        Product product=new Product("10010","phobo",50000.,10000.,1);
         List<Product> list=new ArrayList<>();
         list.add(product);
         Order order=new Order();

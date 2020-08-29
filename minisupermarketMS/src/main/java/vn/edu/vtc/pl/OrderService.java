@@ -25,10 +25,10 @@ public class OrderService {
         System.out.println("----------------------------------");
         do {
             //input productID
-            int productId=-1;
+            String productId=null;
             do try {
                 System.out.print("   1. Input product ID: ");
-                productId = new Scanner(System.in).nextInt();
+                productId = new Scanner(System.in).nextLine();
                 if (productBL.getById(productId)!=null){
                     break;
                 }else {
@@ -41,9 +41,14 @@ public class OrderService {
             int quantity=0;
             boolean check=false;
             for (Product p:order.getProductList()) {
-                if (p.getProductId()==productId){
+                if (p.getProductId().equalsIgnoreCase(productId)){
                     //input product quantity
                     do try {
+                        if (p.getLeftQuantity()==0){
+                            System.out.println("Sold out!");
+                            System.out.println("Try with other product");
+                            break;
+                        }
                         System.out.print("   2. Input quantity:  ");
                         quantity = new Scanner(System.in).nextInt();
                         if (p.getLeftQuantity()==0){
@@ -68,6 +73,11 @@ public class OrderService {
             if (!check){
                 Product product=productBL.getById(productId);
                 do try {
+                    if (product.getLeftQuantity()==0){
+                        System.out.println("Sold out!");
+                        System.out.println("Try with other product");
+                        break;
+                    }
                     System.out.print("   2. Input quantity:  ");
                     quantity = new Scanner(System.in).nextInt();
                     if (quantity<0){
@@ -92,9 +102,15 @@ public class OrderService {
                 System.out.println("Checkout(Y/N): ");
                 String checkout = new Scanner(System.in).nextLine();
                 if (checkout.equalsIgnoreCase("Y")) {
+                    for (Product p:order.getProductList()) {
+                        if (p.getAmount()==0){
+                            order.getProductList().remove(p);
+                        }
+                    }
                     order.setStaff_id(account.getStaff_id());
                     order.setStore_id(1);
                     order=orderBL.createOrder(order);
+
                     printOrder(order);
                     return;
                 }else {
@@ -168,21 +184,15 @@ public class OrderService {
         List<Product> refundProducts=new ArrayList<>();
         do {
             System.out.println("Input product id to refund : ");
-            int productId;
+            String productId;
             do try {
-                productId=new Scanner(System.in).nextInt();
-                if (productId >0){
-                    break;
-                }
-                if (productId!=0){
-                    System.out.println("Something wrong, try again!");
-                }
+                productId=new Scanner(System.in).nextLine();
+                break;
             }catch (Exception e){
                 System.out.println("Something wrong, try again!");
             }while (true);
-
             for (Product product:order.getProductList()) {
-                if (product.getProductId()==productId){
+                if (product.getProductId().equalsIgnoreCase(productId)){
                     check=true;
                     do try {
                         System.out.println("Input new quantity : ");
@@ -246,16 +256,16 @@ public class OrderService {
             System.out.println("-----------------------------------------------------------------------------------------------");
             for (Product product : order.getProductList()) {
                 System.out.format(
-                        "%5d   |%11s        |%12s       |%11s   |%7d  |%13s        \n",product.getProductId(), product.getName(),printPrice(product.getPrice()),printPrice(product.getDiscounted()) , product.getAmount(),printPrice(Total(product)));
+                        "%5s   |%11s        |%12s       |%11s   |%7d  |%13s        \n",product.getProductId(), product.getName(),printPrice(product.getPrice()),printPrice(product.getDiscounted()) , product.getAmount(),printPrice(Total(product)));
                 System.out.println("\n");
                 //System.out.println(product.getProductId()+ product.getName()+printPrice(product.getPrice())+printPrice(product.getDiscounted()) + product.getAmount()+printPrice(Total(product)));
             }
             System.out.println("-----------------------------------------------------------------------------------------------");
-            System.out.print(" Total:                                                    "+printPrice(totalOrder(order)) +"\n");
+            System.out.print(" Total:                                                    "+printPrice(totalOrder(order)) +"VND\n");
             System.out.println("-----------------------------------------------------------------------------------------------");
             System.out.println("                               Thank you and see you again!                                ");
             System.out.println("                            Hotline:1800 1000  Website: vtc.edu.vn                             ");
-            System.out.println("-----------------------------------------------------------------------------------------------");
+            System.out.println("-----------------------------------------------------------------------------------------------\n\n");
     }
     public static Double totalOrder(Order order) {
         Double totalOrder = 0.;

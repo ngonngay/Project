@@ -6,7 +6,7 @@ import vn.edu.vtc.bl.ProductBL;
 import vn.edu.vtc.persistance.Product;
 
 public class InsertProduct {
-    public static Product inputInformation(int productId) {
+    public static Product inputInformation(String productId) {
         Product product = new Product();
         ProductBL productBL = new ProductBL();
         System.out.println("Input product information:\n");
@@ -123,23 +123,9 @@ public class InsertProduct {
         while (true);
         System.out.println("-------------------------\n");
 
-        System.out.println("Category: ");
-        String category = "";
-        do
-            try {
-                category = new Scanner(System.in).nextLine();
-                if (category.equalsIgnoreCase("exist")) {
-                    return null;
-                }
-                break;
-            } catch (Exception e) {
-                System.out.println("Wrong!");
-            }
-        while (true);
-        
+
+
         Double price = 0.;
-        
-           
             do try {
                 System.out.println("Price:");
                 price = new Scanner(System.in).nextDouble();
@@ -147,7 +133,19 @@ public class InsertProduct {
             } catch (Exception e) {
                 System.out.println("Wrong!");
             }while (true);
-        System.out.println("Left quantity: ");
+        String calculationUnit = "";
+        do
+            try {
+                calculationUnit = new Scanner(System.in).nextLine();
+                if (calculationUnit.equalsIgnoreCase("exist")) {
+                    return null;
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("Wrong!");
+            }
+        while (true);
+        System.out.println("Unit quantity: ");
         int quantity = 0;
         do
             try {
@@ -167,7 +165,7 @@ public class InsertProduct {
             product.setName(name);
             product.setLeftQuantity(quantity);
             product.setDescription(description);
-            product.setCategory(category);
+            product.setCalculationUnit(calculationUnit);
             product.setSupplier_id(supplier_id);
             product.setPrice(price);
             System.out.println(product.getPrice());

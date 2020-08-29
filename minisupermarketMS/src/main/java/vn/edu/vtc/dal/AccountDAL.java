@@ -36,7 +36,19 @@ public class AccountDAL implements DAL<Account> {
 
     @Override
     public int insert(Account account) {
-        return 0;
+        try(Connection connection=DbUtil.getConnection();
+            PreparedStatement preparedStatement=connection.prepareStatement("insert into Accounts(username,pass,staff_name,isAdmin)values(?,?,?,?);")){
+            preparedStatement.setString(1,account.getUserName());
+            preparedStatement.setString(2,account.getPassword());
+            preparedStatement.setString(3,account.getName());
+            preparedStatement.setInt(4,account.getIsAmin());
+            if (preparedStatement.executeUpdate()!=1){
+                return 0;
+            }
+        }catch (Exception e){
+            return 0;
+        }
+        return 1;
     }
 
     @Override

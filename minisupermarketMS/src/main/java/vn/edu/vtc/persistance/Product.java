@@ -1,7 +1,9 @@
 package vn.edu.vtc.persistance;
 
+import java.util.Scanner;
+
 public class Product {
-    private int productId;
+    private String productId;
     private String name;
     private Double price;
     private Double discounted=0.;
@@ -10,12 +12,12 @@ public class Product {
     private Integer leftQuantity=0;
     private Integer isSelling=0;
     private Integer supplier_id=1;
-    private String category;
+    private String calculationUnit;
     private Integer refundedInOrder=1;
     public Product() {
     }
 
-    public Product(int productId, String name, Double price, Double discounted, Integer amount, String description, Integer leftQuantity, Integer isSelling, Integer supplier_id, String category) {
+    public Product(String productId, String name, Double price, Double discounted, Integer amount, String description, Integer leftQuantity, Integer isSelling, Integer supplier_id, String calculationUnit) {
         this.productId = productId;
         this.name = name;
         this.price = price;
@@ -25,20 +27,20 @@ public class Product {
         this.leftQuantity = leftQuantity;
         this.isSelling = isSelling;
         this.supplier_id = supplier_id;
-        this.category = category;
+        this.calculationUnit = calculationUnit;
     }
 
-    public Product(int product_id, String name, Double price, String description, Integer leftQuantity, Integer supplier_id, String category) {
+    public Product(String product_id, String name, Double price, String description, Integer leftQuantity, Integer supplier_id, String calculationUnit) {
         this.productId = product_id;
         this.name = name;
         this.price = price;
         this.description = description;
         this.leftQuantity = leftQuantity;
         this.supplier_id = supplier_id;
-        this.category = category;
+        this.calculationUnit = calculationUnit;
     }
 
-    public Product(int product_id, String name, Double price, Double discounted, Integer amount) {
+    public Product(String product_id, String name, Double price, Double discounted, Integer amount) {
         this.name = name;
         this.price = price;
         this.discounted = discounted;
@@ -46,11 +48,11 @@ public class Product {
         this.productId = product_id;
     }
 
-    public int getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(int product_id) {
+    public void setProductId(String product_id) {
         this.productId = product_id;
     }
 
@@ -118,12 +120,12 @@ public class Product {
         this.supplier_id = supplier_id;
     }
 
-    public String getCategory() {
-        return category;
+    public String getCalculationUnit() {
+        return calculationUnit;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCalculationUnit(String category) {
+        this.calculationUnit = category;
     }
 
     public Integer getRefundedInOrder() {

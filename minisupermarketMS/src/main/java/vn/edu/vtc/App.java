@@ -56,10 +56,8 @@ public class App {
                                 case 2://update quantity
                                     Order newOrder=OrderService.refundProduct();
                                     if (newOrder!=null){
-                                        System.out.println("Your Order:\n");
+                                        System.out.println("\nYour Order:");
                                         OrderService.printOrder(newOrder);
-                                    }else{
-                                        System.out.println("Refund product success!");
                                     }
                                     break;
                             }
@@ -73,12 +71,11 @@ public class App {
                 } else if (account.getIsAmin() == 0) {
                     Integer choice3=-1;
                     do {
-                        choice3= StaticFunctionService.printMenu(menuService.managerMenu, 2);
+                        choice3= StaticFunctionService.printMenu(menuService.managerMenu, 3);
                         Product product = new Product();
                         switch (choice3) {
                             case 1://insert Product
-                           
-                                int productid= StaticFunctionService.inputId();
+                                String productid= StaticFunctionService.inputId();
                                 if (productBL.getById(productid)!=null) {
                                     System.out.println("Product has existed!");
                                     break;

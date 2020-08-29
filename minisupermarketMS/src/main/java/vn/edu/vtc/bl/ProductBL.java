@@ -13,15 +13,14 @@ public class ProductBL {
         return dal.insert(newProduct) > 0;
     }
 
-    public Product getById(int productId) {
+    public Product getById(String productId) {
         Product item = new Product();
-        return dal.getById(productId);
+        return productDAL.getById(productId);
     }
     public boolean updateProduct(Product updatingProduct){
         return dal.update(updatingProduct)>0;
     }
-    public boolean updateProduct(Double newPrice,int productId){
-
+    public boolean updateProduct(Double newPrice,String productId){
         return productDAL.update(newPrice, productId)>0;
     }
     public boolean getByName(String name){
