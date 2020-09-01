@@ -111,17 +111,4 @@ public class StaticFunctionService {
 
     }
 
-    public static String inputId() {
-        String productId = null;
-        do
-            try {
-                System.out.print("Product ID: ");
-                productId = new Scanner(System.in).nextLine();
-                break;
-            } catch (Exception e) {
-                System.out.println("Wrong!");
-            }
-        while (true);
-        return productId;
-    }
 }

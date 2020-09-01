@@ -2,6 +2,8 @@ package vn.edu.vtc.persistance;
 
 import java.util.Scanner;
 
+import vn.edu.vtc.pl.OrderService;
+
 public class Product {
     private String productId;
     private String name;
@@ -148,11 +150,15 @@ public class Product {
     }
     @Override
     public String toString() {
-        return
-                "\nName        : '" + name + "  " +
-                        "Price       : " + price + "  " +
-                        "Discounted  : " + discounted + "  " +
-                        "Amount      : " + amount;
+        return"\n| --------------------------------------- |" +
+        "\n| Name        : " + name +
+        "\n| --------------------------------------- |" +
+        "\n| Price       : " + price +
+        "\n| --------------------------------------- |" +
+        "\n| Discounted  : " + discounted +
+        "\n| --------------------------------------- |" +
+        "\n| Amount      : " + amount +
+        "\n| --------------------------------------- |";
     }
     
 }

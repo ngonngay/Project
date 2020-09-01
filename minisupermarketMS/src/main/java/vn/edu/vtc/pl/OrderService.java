@@ -27,7 +27,7 @@ public class OrderService {
             //input productID
             String productId=null;
             do try {
-                System.out.print("   1. Input product ID: ");
+                System.out.print("> Input product ID: ");
                 productId = new Scanner(System.in).nextLine();
                 if (productBL.getById(productId)!=null){
                     break;
@@ -49,16 +49,16 @@ public class OrderService {
                             System.out.println("Try with other product");
                             break;
                         }
-                        System.out.print("   2. Input quantity:  ");
+                        System.out.print("> Input quantity:  ");
                         quantity = new Scanner(System.in).nextInt();
                         if (p.getLeftQuantity()==0){
                             System.out.println("No product to select!");
                         }
                         if (quantity<0){
-                            System.out.println("New quantity must greater than 0");
+                            System.out.println("New quantity must greater than 0 !");
                         }
                         if (quantity>p.getLeftQuantity()){
-                            System.out.println("Wrong!");
+                            System.out.println("Product quantity doesn't enough !");
                         }
                         if (quantity>0&&quantity<p.getLeftQuantity()){
                             p.setAmount(p.getAmount()+quantity);
@@ -78,13 +78,13 @@ public class OrderService {
                         System.out.println("Try with other product");
                         break;
                     }
-                    System.out.print("   2. Input quantity:  ");
+                    System.out.print("> Input quantity:  ");
                     quantity = new Scanner(System.in).nextInt();
                     if (quantity<0){
                         System.out.println("New quantity must greater than 0");
                     }
                     if (quantity>product.getLeftQuantity()){
-                        System.out.println("Wrong!");
+                        System.out.println("Product quantity doesn't enough !");
                     }
 
                     if (quantity!=0&&(product.getLeftQuantity()>quantity)) {
@@ -126,9 +126,9 @@ public class OrderService {
         System.out.println("|--------------------------------|");
         System.out.println("|          Update order          |");
         System.out.println("|--------------------------------|");
-        System.out.println("Input order ID : ");
         int orderId=-1;
         do try {
+            System.out.println(">Input order ID : ");
              orderId= new Scanner(System.in).nextInt();
              break;
         } catch (Exception e) {
@@ -157,15 +157,14 @@ public class OrderService {
         OrderBL orderBL=new OrderBL();
         Order newOrder = new Order();
         boolean check=false;
-        System.out.println("Input order Id: ");
-
-        int orderId;
+        int orderId=-1;
         do try {
+            System.out.println(">Input order Id: ");
             orderId=new Scanner(System.in).nextInt();
             if (orderId >0){
                 break;
             }
-            if (orderId!=0){
+            if (orderId==-1){
                 System.out.println("Something wrong, try again!");
             }
         }catch (Exception e){
@@ -242,6 +241,60 @@ public class OrderService {
         }
         return order;
     }
+    public static void printOrder(Order order) {
+        System.out.println("\n");
+        System.out.println("------------------------------------------");
+        System.out.print(order.getStore_name());
+        System.out.print("             Address: " + order.getAddress() + "\n");
+        System.out.println("------------------------------------------");
+        System.out.println("           -------ORDER-------            ");
+        System.out.print("Date: " + order.getDate());
+        System.out.print("         ID: " + order.getId() + "\n");
+        System.out.println("------------------------------------------");
+        System.out.println("Name               Price    Amount  Total");
+        System.out.println("------------------------------------------");
+                for (Product product : order.getProductList()) {
+            System.out.println(product.getName());
+            System.out.print(product.getProductId());
+            System.out.format("               %8s %4d   %4s\n", printPrice(product.getPrice()), product.getAmount(), printPrice(Total(product)));
+            if (product.getDiscounted() >= 1) {
+                    System.out.format("Discount  %32s",printPrice(product.getDiscounted()));
+                    System.out.println("\n");
+            }
+            else{
+                    System.out.println("\n");
+            }
+        }
+        System.out.println("------------------------------------------");
+        System.out.print("Total:                       " + printPrice(totalOrder(order))
+                + "VND\n");
+        System.out.println("------------------------------------------");
+        System.out.println("      Thank you and see you again!");
+        System.out.println("          Hotline:18001000");
+        System.out.println("      Website:https://vinmart.vn");
+        System.out.println("------------------------------------------\n\n");
+    }
+    public static Double totalOrder(Order order) {
+        Double totalOrder = 0.;
+        for (Product product : order.getProductList()) {
+            totalOrder += Total(product)-product.getDiscounted();
+        }
+        return totalOrder;
+    }
+    public static String printPrice(Double price){
+        Locale localeVN = new Locale("vi", "VN");
+        NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
+        String str1 = currencyVN.format(price);
+        String str2 =str1.replace(".", ",");
+        String str3=str2.replace("₫", "");
+        return str3;
+    }
+    public static Double Total(Product p){
+        Double total = p.getPrice()*p.getAmount();
+        return total;
+    }
+}
+    /*
     public static void printOrder(Order order){
             System.out.println("\n");
             System.out.println("-----------------------------------------------------------------------------------------------");
@@ -286,4 +339,4 @@ public class OrderService {
         Double total = (p.getPrice()-p.getDiscounted())*p.getAmount();
         return total;
     }
-}
+*/

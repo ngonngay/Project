@@ -9,7 +9,6 @@ import vn.edu.vtc.persistance.Product;
 import vn.edu.vtc.pl.*;
 import vn.edu.vtc.pl.OrderService;
 import vn.edu.vtc.pl.StaticFunctionService;
-import vn.edu.vtc.pl.UpdateProduct;
 
 /**
  * Hello world!
@@ -49,77 +48,81 @@ public class App {
                                                 System.out.println("Fails! Try again!");
                                             }
                                         } catch (SQLException e) {
-                                            
+
                                             System.out.println("Fails! Try again!");
                                         }
-                                    break;
-                                case 2://update quantity
-                                    Order newOrder=OrderService.refundProduct();
-                                    if (newOrder!=null){
-                                        System.out.println("\nYour Order:");
-                                        OrderService.printOrder(newOrder);
-                                    }
-                                    break;
-                            }
-                            break;
-                        case 0:
-                            break;
-                        default:
-                            break;
-                    }
-                    }while (choice1!=0);
+                                        break;
+                                    case 2:// update quantity
+                                        Order newOrder = OrderService.refundProduct();
+                                        if (newOrder != null) {
+                                            System.out.println("\nYour Order:");
+                                            OrderService.printOrder(newOrder);
+                                        }
+                                        break;
+                                }
+                                break;
+                            case 0:
+                                break;
+                            default:
+                                break;
+                        }
+                    } while (choice1 != 0);
                 } else if (account.getIsAmin() == 0) {
-                    Integer choice3=-1;
+                    Integer choice3 = -1;
                     do {
-                        choice3= StaticFunctionService.printMenu(menuService.managerMenu, 3);
+                        choice3 = StaticFunctionService.printMenu(menuService.managerMenu, 3);
                         Product product = new Product();
                         switch (choice3) {
-                            case 1://insert Product
-                                String productid= StaticFunctionService.inputId();
-                                if (productBL.getById(productid)!=null) {
+                            case 1:// insert Product
+                                String productid = ProductSevice.inputId();
+                                if (productBL.getById(productid) != null) {
                                     System.out.println("Product has existed!");
                                     break;
                                 }
-                                product=InsertProduct.inputInformation(productid);
-                                if (product==null){
+                                product = ProductSevice.inputInformation(productid);
+                                if (product == null) {
                                     break;
                                 }
                                 product.setProductId(productid);
-                                if (productBL.insertProduct(product)){
+                                if (productBL.insertProduct(product)) {
                                     System.out.println("Insert success!");
-                                }else {
+                                } else {
                                     System.out.println("Insert fails");
                                 }
                                 break;
-                            case 2://update Product
+                            case 2:// update Product
                                 Integer choice4;
-                                    choice4= StaticFunctionService.printMenu(menuService.updateMenu, 2);
+                                choice4 = StaticFunctionService.printMenu(menuService.updateMenu, 2);
                                 switch (choice4) {
                                     case 1:
-                                        UpdateProduct updateProduct=new UpdateProduct();
-                                        if(updateProduct.updatePrice()){
-                                            System.out.println("Update success!");
-                                        }else {
-                                            System.out.println("Fails");
-                                        }
+                                        ProductSevice.updatePrice();
                                         break;
                                     case 2:
-                                        UpdateProduct updateProduct1=new UpdateProduct();
-                                        if(updateProduct1.updateProduct()){
+                                        if (ProductSevice.updateProduct()) {
                                             System.out.println("Update success!");
-                                        }else {
+                                        } else {
                                             System.out.println("Fails");
                                         }
                                         break;
                                     case 0:
                                         break;
                                 }
+                                break;
+                            case 3:// search product
+                                Product product2=ProductSevice.searchProduct();
+                                if (product2!=null){
+                                    System.out.println("Your result : ");
+                                    System.out.println(product2);
+                                }else{
+                                    System.out.println("No result");
+                                }
+                                break;
                             case 0:
                                 break;
                             default:
                                 break;
                         }
-                    }while (choice3!=0);
+                    } while (choice3 != 0);
 
                 }
             } else {

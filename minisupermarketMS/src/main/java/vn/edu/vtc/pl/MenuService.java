@@ -8,7 +8,7 @@ public class MenuService {
     public ArrayList<String> updateMenu = new ArrayList<String>();
     public ArrayList<String> updateOrder = new ArrayList<String>();
     public MenuService(){
-        cashierMenu.add("+--------------------------------+");
+        cashierMenu.add("\n+--------------------------------+");
         cashierMenu.add("|                                |");
         cashierMenu.add("|---Welcome to Cashier's Menu!---|");
         cashierMenu.add("|                                |");
@@ -21,7 +21,7 @@ public class MenuService {
         cashierMenu.add("\\--------------------------------/");
         cashierMenu.add("\n");
 
-        managerMenu.add("+--------------------------------+");
+        managerMenu.add("\n+--------------------------------+");
         managerMenu.add("|                                |");
         managerMenu.add("|---Welcome to Manager's Menu!---|");
         managerMenu.add("|                                |");
@@ -30,10 +30,12 @@ public class MenuService {
         managerMenu.add("|--------------------------------|");
         managerMenu.add("|   2. Update product            |");
         managerMenu.add("|--------------------------------|");
+        managerMenu.add("|   3. Search product            |");
+        managerMenu.add("|--------------------------------|");
         managerMenu.add("|   0. Log out                   |");
         managerMenu.add("\\--------------------------------/");
-        managerMenu.add("\n \n \n");
-        updateOrder.add("+--------------------------------+");
+        managerMenu.add("\n");
+        updateOrder.add("\n+--------------------------------+");
         updateOrder.add("|---Welcome to Cashier's Menu!---|");
         updateOrder.add("|--------------------------------|");
         updateOrder.add("|          Update order          |");

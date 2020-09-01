@@ -5,7 +5,69 @@ import java.util.Scanner;
 import vn.edu.vtc.bl.ProductBL;
 import vn.edu.vtc.persistance.Product;
 
-public class InsertProduct {
+public class ProductSevice {
+    static ProductBL productBL=new ProductBL();
+    public static Product searchProduct(){
+        System.out.println("|--------------------------------|");
+        System.out.println("|          Search Product        |");
+        System.out.println("|--------------------------------|\n");
+        String id=ProductSevice.inputId();
+        return new ProductBL().getById(id);
+    }
+    public static boolean updateProduct(){
+        String id =ProductSevice.inputId();
+        Product product= inputInformation(id);
+        product.setProductId(id);
+        return (productBL.updateProduct(product));
+    }
+    public static void updatePrice(){
+        String id="";
+        Product product=null;
+        do {
+            id=inputId();
+            product=productBL.getById(id);
+            if (product!=null) {
+                System.out.println(product);
+                break;
+            }
+            System.out.println("Product doesn't exist");
+        } while (true);
+        
+        Double newPrice=0.;
+        do try{
+            System.out.print("input new price:");
+            newPrice=new Scanner(System.in).nextDouble();
+            break;
+        }catch (Exception e){
+            System.out.println("Wrong types!");
+        }while (true);
+        System.out.print("Update price ?(Y/N) ");
+        String check1=new Scanner(System.in).nextLine();
+        if (check1.equalsIgnoreCase("Y")) {
+            if(productBL.updateProduct(newPrice,id)){
+                System.out.println("Update Success!");
+                System.out.println("Product with item number "+ id + " has been updated for the price of "+product.getPrice()+" to "+newPrice);
+            }else{
+                System.out.println("Update failed,please try again!");
+            }
+        } else {
+            return;
+        }
+       
+    }
+    public static String inputId() {
+        String productId = null;
+        do
+            try {
+                System.out.print("Product ID: ");
+                productId = new Scanner(System.in).nextLine();
+                break;
+            } catch (Exception e) {
+                System.out.println("Wrong!");
+            }
+        while (true);
+        return productId;
+    }
     public static Product inputInformation(String productId) {
         Product product = new Product();
         ProductBL productBL = new ProductBL();
@@ -137,19 +199,6 @@ public class InsertProduct {
             } catch (Exception e) {
                 System.out.println("Wrong!");
             }while (true);
-//        String calculationUnit = "";
-//        do
-//            try {
-//                System.out.println("Calculation Unit");
-//                calculationUnit = new Scanner(System.in).nextLine();
-//                if (calculationUnit.equalsIgnoreCase("exit")) {
-//                    return null;
-//                }
-//                break;
-//            } catch (Exception e) {
-//                System.out.println("Wrong!");
-//            }
-//        while (true);
         int quantity = 0;
         do
             try {
@@ -174,7 +223,6 @@ public class InsertProduct {
             product.setName(name);
             product.setLeftQuantity(quantity);
             product.setDescription(description);
-            //product.setCalculationUnit(calculationUnit);
             product.setSupplier_id(supplier_id);
             product.setPrice(price);
             return product;
