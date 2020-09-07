@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: vn.edu.vtc.dal.ProductDALTest
 -------------------------------------------------------------------------------
-Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.194 s - in vn.edu.vtc.dal.ProductDALTest
+Tests run: 12, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.018 s <<< FAILURE! - in vn.edu.vtc.dal.ProductDALTest
+updateProduct3(vn.edu.vtc.dal.ProductDALTest)  Time elapsed: 0.001 s  <<< FAILURE!
+java.lang.AssertionError
+	at vn.edu.vtc.dal.ProductDALTest.updateProduct3(ProductDALTest.java:64)
+

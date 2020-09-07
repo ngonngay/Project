@@ -203,7 +203,7 @@ public class OrderService {
                             break;
                         }
                         if (newQuantity<product.getAmount()&&newQuantity!=0){
-                            product.setAmount(product.getAmount()-newQuantity);
+                            product.setAmount(newQuantity);
                             refundProducts.add(product);
                             break;
                         }

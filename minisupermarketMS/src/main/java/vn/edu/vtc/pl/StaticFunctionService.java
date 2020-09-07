@@ -17,10 +17,14 @@ public class StaticFunctionService {
         }
         Integer choice = -1;
         do {
+
             System.out.print("Choice: ");
             try {
                 choice = new Scanner(System.in).nextInt();
             } catch (Exception e) {
+                System.out.println("Wrong choice!");
+            }
+            if (choice < 0 || choice > limitChoice){
                 System.out.println("Wrong choice!");
             }
         } while (choice < 0 || choice > limitChoice);
