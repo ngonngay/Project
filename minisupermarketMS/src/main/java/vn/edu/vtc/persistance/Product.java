@@ -153,11 +153,11 @@ public class Product {
         return"\n| --------------------------------------- |" +
         "\n| Name        : " + name +
         "\n| --------------------------------------- |" +
-        "\n| Price       : " + price +
+        "\n| Price       : " + OrderService.printPrice(price) +
         "\n| --------------------------------------- |" +
-        "\n| Discounted  : " + discounted +
+        "\n| Discounted  : " +OrderService.printPrice(discounted) +
         "\n| --------------------------------------- |" +
-        "\n| Amount      : " + amount +
+        "\n| Quantity      : " + leftQuantity +
         "\n| --------------------------------------- |";
     }
     
