@@ -150,15 +150,29 @@ public class Product {
     }
     @Override
     public String toString() {
-        return"\n| --------------------------------------- |" +
+        if(description==null){
+            return"\n| --------------------------------------- |" +
         "\n| Name        : " + name +
         "\n| --------------------------------------- |" +
         "\n| Price       : " + OrderService.printPrice(price) +
         "\n| --------------------------------------- |" +
         "\n| Discounted  : " +OrderService.printPrice(discounted) +
         "\n| --------------------------------------- |" +
-        "\n| Quantity      : " + leftQuantity +
+        "\n| Quantity    : " + leftQuantity +
         "\n| --------------------------------------- |";
+        }else {
+            return"\n| --------------------------------------- |" +
+            "\n| Name        : " + name +
+            "\n| --------------------------------------- |" +
+            "\n| Description : " + description +
+            "\n| --------------------------------------- |" +
+            "\n| Price       : " + OrderService.printPrice(price) +
+            "\n| --------------------------------------- |" +
+            "\n| Discounted  : " +OrderService.printPrice(discounted) +
+            "\n| --------------------------------------- |" +
+            "\n| Quantity    : " + leftQuantity +
+            "\n| --------------------------------------- |";
+        }
     }
     
 }
