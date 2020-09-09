@@ -7,14 +7,14 @@ public class Account {
     private String password;
     private Integer staff_id;
     private String name;
-    private Integer isAmin=1;
+    private Integer isAdmin=1;
 
-    public Account(String userName, String password, Integer staff_id, String name, Integer isAmin) {
+    public Account(String userName, String password, Integer staff_id, String name, Integer isAdmin) {
         this.userName = userName;
         this.password = password;
         this.staff_id = staff_id;
         this.name = name;
-        this.isAmin = isAmin;
+        this.isAdmin = isAdmin;
     }
 
     public Account() {
@@ -52,12 +52,12 @@ public class Account {
         this.name = name;
     }
 
-    public Integer getIsAmin() {
-        return isAmin;
+    public Integer getIsAdmin() {
+        return isAdmin;
     }
 
-    public void setIsAmin(Integer isAmin) {
-        this.isAmin = isAmin;
+    public void setIsAdmin(Integer isAdmin) {
+        this.isAdmin = isAdmin;
     }
     
     public boolean equals(Object object){
@@ -77,7 +77,7 @@ public class Account {
                 ", password='" + password + '\'' +
                 ", staff_id=" + staff_id +
                 ", name='" + name + '\'' +
-                ", isAmin=" + isAmin +
+                ", isAmin=" + isAdmin +
                 '}';
     }
 }

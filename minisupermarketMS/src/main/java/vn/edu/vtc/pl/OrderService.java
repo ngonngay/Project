@@ -277,7 +277,7 @@ public class OrderService {
     public static Double totalOrder(Order order) {
         Double totalOrder = 0.;
         for (Product product : order.getProductList()) {
-            totalOrder += Total(product)-product.getDiscounted();
+            totalOrder += (product.getPrice()-product.getDiscounted())*product.getAmount();
         }
         return totalOrder;
     }

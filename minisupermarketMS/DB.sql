@@ -43,9 +43,9 @@ supplier_id int ,
 constraint fk_Products_Stores foreign key(supplier_id) references Stores(store_id)
 );
 insert into Products(product_id,product_name,price,left_quantity,supplier_id)values
-('1001','my goi',100000,200,1),('10001','water',20000,200,1),('10002','Snack Oshi',10000,200,1),('10003','Snack Oishi 150g ',10500,200,1),('10004','Aquafina',10000,200,1);
+('1001','my goi',3000,200,1),('10001','water can',5000,200,1),('10002','Snack Oshi',5000,200,1),('10003','Snack Oishi 150g ',10500,200,1),('10004','Aquafina',4000,200,1);
 insert into Products(product_id,product_name,price,left_quantity,supplier_id)values
-('1002','my goi 2',15000,200,1);
+('1002','my goi 2',3000,200,1);
 select *from Products;
 
 create table if not exists Product_Discount(

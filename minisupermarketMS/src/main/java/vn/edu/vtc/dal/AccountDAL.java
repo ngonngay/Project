@@ -29,7 +29,7 @@ public class AccountDAL implements DAL<Account> {
         Account account=new Account();
         account.setName(rs.getString("staff_name"));
         account.setStaff_id(rs.getInt("staff_id"));
-        account.setIsAmin(rs.getInt("isAdmin"));
+        account.setIsAdmin(rs.getInt("isAdmin"));
         return account;
     }
 
@@ -41,7 +41,7 @@ public class AccountDAL implements DAL<Account> {
             preparedStatement.setString(1,account.getUserName());
             preparedStatement.setString(2,account.getPassword());
             preparedStatement.setString(3,account.getName());
-            preparedStatement.setInt(4,account.getIsAmin());
+            preparedStatement.setInt(4,account.getIsAdmin());
             if (preparedStatement.executeUpdate()!=1){
                 return 0;
             }

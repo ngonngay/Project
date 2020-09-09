@@ -26,4 +26,7 @@ public class ProductBL {
     public boolean getByName(String name){
         return productDAL.getByName(name);
     }
+    public Product getByName2(String name){
+        return productDAL.getByName2(name);
+    }
 }

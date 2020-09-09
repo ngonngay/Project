@@ -27,7 +27,7 @@ public class App {
             account = StaticFunctionService.loginToSystem();
             account = accountBL.login(account.getUserName(), account.getPassword());
             if (account != null) {
-                if (account.getIsAmin() == 1) {
+                if (account.getIsAdmin() == 1) {
                     Integer choice1 = -1;
                     do {
 
@@ -67,7 +67,7 @@ public class App {
                                 break;
                         }
                     } while (choice1 != 0);
-                } else if (account.getIsAmin() == 0) {
+                } else if (account.getIsAdmin() == 0) {
                     Integer choice3 = -1;
                     do {
                         choice3 = StaticFunctionService.printMenu(menuService.managerMenu, 3);
