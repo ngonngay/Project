@@ -109,7 +109,7 @@ public class ProductManagementForm extends javax.swing.JFrame {
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(labelForKeywordSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboboxTypeSearch, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(257, Short.MAX_VALUE))
         );
         tabProductInformationPanelLayout.setVerticalGroup(
             tabProductInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,8 +145,6 @@ public class ProductManagementForm extends javax.swing.JFrame {
             }
         });
         tblResultSearchTab1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        tblResultSearchTab1.setCellSelectionEnabled(false);
-        tblResultSearchTab1.setRowSelectionAllowed(true);
         tblResultSearchTab1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblResultSearchTab1.setUpdateSelectionOnSort(false);
         jScrollPaneResultSearch.setViewportView(tblResultSearchTab1);

@@ -42,7 +42,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("LOG IN  "));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Đăng nhập"));
 
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,11 +61,11 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("User name :");
+        jLabel1.setText("Tên Đăng Nhập :");
 
-        jLabel2.setText("Password   :");
+        jLabel2.setText("Mật khẩu          :");
 
-        logInButton.setText("Log in");
+        logInButton.setText("Đăng Nhập");
         logInButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logInButtonActionPerformed(evt);
@@ -79,7 +79,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
@@ -110,7 +110,7 @@ public class Login extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
@@ -140,24 +140,22 @@ public class Login extends javax.swing.JFrame {
         String password =new String(txtPassword.getPassword());
         StringBuilder stringBuilder = new StringBuilder();
         if(userName.equals("")||userName==null){
-            stringBuilder.append("User name is empty!\n");
+            stringBuilder.append("Tên đăng nhập trống!\n");
         }else{
             if(!PasswordService.validateUsername(userName)){
-            stringBuilder.append("UserName mustn't have special charater and It contains at least 8 characters and at most 20 characters!\n");
+            stringBuilder.append("Tên đăng nhập có từ 8 đến 20 kí tự và không được phép có kí tự đặc biệt!\n");
             }
         }
         if(password.equals("")||password==null){
-            stringBuilder.append("Password is empty!\n");
+            stringBuilder.append("Mật khẩu trống!\n");
         }else{
             if(!PasswordService.validatePassword(password)){
-            stringBuilder.append("It contains at least 8 characters and at most 20 characters.\n"
-                            + "It contains at least one digit.\n" + "It contains at least one upper case alphabet.\n"
-                            + "It contains at least one lower case alphabet.\n"
-                            + "It doesn’t contain any white space.");
+            stringBuilder.append("Mật khẩu bao gồm ít nhất 8 kí tự và tối đa 20 kí tự\n"
+                            + "Mật khẩu phải có ít nhất một kí tự số\n" + "Mật khẩu phải có ít nhất một kí tự hoa và một kí tự thường\n");
             }
         }
         if(stringBuilder.length()>0){
-            JOptionPane.showMessageDialog(this, stringBuilder.toString(), "Invalidation", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, stringBuilder.toString(), "Không hợp lệ", JOptionPane.ERROR_MESSAGE);
             return;
         }
         AccountBL accountBL=new AccountBL();
@@ -169,7 +167,7 @@ public class Login extends javax.swing.JFrame {
                 this.dispose();
             }
         }else{
-            JOptionPane.showMessageDialog(this,"Log in fail!\nTry again!");
+            JOptionPane.showMessageDialog(this,"Đăng nhập thất bại\nHãy kiểm tra lại tài khoản và mật khẩu và thử lại","Đăng nhập",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_logInButtonActionPerformed
 

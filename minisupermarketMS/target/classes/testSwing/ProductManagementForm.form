@@ -132,7 +132,7 @@
                               <Component id="labelForKeywordSearch" alignment="0" min="-2" pref="78" max="-2" attributes="0"/>
                               <Component id="comboboxTypeSearch" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="257" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -243,7 +243,6 @@
                           </Table>
                         </Property>
                         <Property name="autoResizeMode" type="int" value="4"/>
-                        <Property name="cellSelectionEnabled" type="boolean" value="false"/>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -283,7 +282,6 @@
                             </Column>
                           </TableColumnModel>
                         </Property>
-                        <Property name="rowSelectionAllowed" type="boolean" value="true"/>
                         <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
                           <JTableSelectionModel selectionMode="0"/>
                         </Property>
