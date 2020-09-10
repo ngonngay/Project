@@ -177,7 +177,13 @@ public class ProductDAL implements DAL<Product> {
         boolean check=false;
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("select * from (select X.product_id,unit ,product_name,product_Description,price,left_quantity,discount_Value from (select Products.product_id,unit,product_name,product_Description,price,left_quantity,discount_id,stopSelling,supplier_id from Products inner join Product_Discount on Products.product_id=Product_Discount.product_id) X inner join Discounts on X.discount_id=Discounts.discount_id)P where p.product_id=?;")) {
-            preparedStatement.setString(1, productId);
+                while (productId.indexOf("  ") != -1) {
+                    productId = productId.replaceAll("  "," ");
+                }
+                if (productId.indexOf(" ") == (productId.length()-1)) {
+                    productId=productId.replace(" ", "");
+                }
+                preparedStatement.setString(1, productId);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 product = getProduct(resultSet);
@@ -197,13 +203,30 @@ public class ProductDAL implements DAL<Product> {
         return product;
     }
     public Product getByName2(String name){
-        Product product=new Product();
+        Product product=null;
+        if (name==null) {
+            return null;
+        }
+        boolean check=false;
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select * from Products where product_name=?;")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from (select X.product_id,unit ,product_name,product_Description,price,left_quantity,discount_Value from (select Products.product_id,unit,product_name,product_Description,price,left_quantity,discount_id,stopSelling,supplier_id from Products inner join Product_Discount on Products.product_id=Product_Discount.product_id) X inner join Discounts on X.discount_id=Discounts.discount_id)P where p.product_name like ?;")) {
+            while (name.indexOf("  ") != -1) {
+                name = name.replaceAll("  "," ");
+            }
+            name=name.replaceAll(" ","%");
             preparedStatement.setString(1, name);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                product=getProduct(resultSet);
+                product = getProduct(resultSet);
+                check=true;
+            }
+            if (!check){
+                PreparedStatement preparedStatement1 = connection.prepareStatement("select * from Products where product_name  like ?;");
+                    preparedStatement1.setString(1, name);
+                    ResultSet resultSet1 = preparedStatement1.executeQuery();
+                while (resultSet1.next()) {
+                    product = getProduct(resultSet1);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

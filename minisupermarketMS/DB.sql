@@ -40,7 +40,7 @@ price decimal check(price>0),
 left_quantity int check(left_quantity>=0),
 stopSelling tinyint default (1),
 supplier_id int default(1),
-unit varchar(100) ,
+unit varchar(100) default('Lẻ'),
 constraint fk_Products_Stores foreign key(supplier_id) references Stores(store_id)
 );
 insert into Products(product_id,product_name,price,left_quantity,unit)values

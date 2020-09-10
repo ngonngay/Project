@@ -162,12 +162,17 @@ public class Login extends javax.swing.JFrame {
         Account account=accountBL.login(userName, StaticFunctionService.getMd5(password));
         if(account!=null){
             if(account.getIsAdmin()==1){
-                CashierForm cashierForm=new CashierForm();
+                CashierForm cashierForm=new CashierForm(account);
                 cashierForm.setVisible(true);
+                this.dispose();
+            }else{
+                ManagerForm managerForm=new ManagerForm(account);
+                managerForm.setVisible(true);
                 this.dispose();
             }
         }else{
             JOptionPane.showMessageDialog(this,"Đăng nhập thất bại\nHãy kiểm tra lại tài khoản và mật khẩu và thử lại","Đăng nhập",JOptionPane.ERROR_MESSAGE);
+            
         }
     }//GEN-LAST:event_logInButtonActionPerformed
 

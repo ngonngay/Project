@@ -284,6 +284,7 @@ public class OrderService {
     public static String printPrice(Double price){
         Locale localeVN = new Locale("vi", "VN");
         NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
+        
         String str1 = currencyVN.format(price);
         String str2 =str1.replace(".", ",");
         String str3=str2.replace("₫", "");

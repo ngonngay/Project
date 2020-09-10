@@ -11,13 +11,15 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-import scala.Array;
+
+import vn.edu.vtc.bl.AccountBL;
 import vn.edu.vtc.bl.OrderBL;
 import vn.edu.vtc.bl.ProductBL;
 import vn.edu.vtc.persistance.Account;
 import vn.edu.vtc.persistance.Order;
 import vn.edu.vtc.persistance.Product;
 import vn.edu.vtc.pl.OrderService;
+import vn.edu.vtc.pl.StaticFunctionService;
 
 /**
  *
@@ -36,9 +38,10 @@ public class CashierForm extends javax.swing.JFrame {
     /**
      * Creates new form CashierForm
      */
-    public CashierForm() {
+    public CashierForm(Account account) {
         initComponents();
-        //this.account=account;
+        this.account=account;
+        
         defaultTableModel = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -66,6 +69,7 @@ public class CashierForm extends javax.swing.JFrame {
         defaultTableModel2.addColumn("Thành tiền");
         tblOrderProductList.setComponentPopupMenu(popupOrderProductList);
 
+        lblStaffName.setText(account.getName());
     }
 
     /**
@@ -519,7 +523,49 @@ public class CashierForm extends javax.swing.JFrame {
         }
         if (comboboxTypeSearch.getSelectedItem().equals("Tìm kiếm theo tên")) {
             //tìm kiếm theo tên
-            JOptionPane.showMessageDialog(this, "Tìm kiếm theo tên");
+             
+            String productName=txtKeyWord.getText();
+            System.out.println(productName);
+            if (productName == null) {
+                JOptionPane.showMessageDialog(this, "Vui Lòng nhập mã sản phẩm !", "Tìm kiếm sản phẩm", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            boolean checkExistOnLocal=false;
+            Product product =new Product();
+            
+            for (Product productLoop : localGottenProductOnSession) {
+                if (productLoop.getName().equals(productName)){
+                    product=productLoop;
+                    checkExistOnLocal=true;
+                    break;
+                }
+            }
+            if (!checkExistOnLocal) {
+                product= productBL.getByName2(productName);
+                if (product!=null) {
+                    localGottenProductOnSession.add(product);
+                }
+            }
+            if(product==null){
+                JOptionPane.showMessageDialog(this, "Không tìm thấy sản phẩm nào !", "Tìm kiếm sản phẩm", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            if (product != null) {
+                
+                defaultTableModel.setRowCount(0);
+               
+                for (Product productLoop : localGottenProductOnSession) {
+                    if(productLoop.equals(product)){
+                        defaultTableModel.addRow(new Object[]{productLoop.getProductId(), productLoop.getName(), productLoop.getLeftQuantity(), OrderService.printPrice(productLoop.getPrice())});
+                    }
+                    
+                }
+                
+            } else {
+                JOptionPane.showMessageDialog(this, "Không tìm thấy sản phẩm nào !", "Tìm kiếm sản phẩm", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             return;
         }
         String productId = txtKeyWord.getText();
@@ -762,7 +808,7 @@ public class CashierForm extends javax.swing.JFrame {
                     order.getProductList().remove(p);
                 }
             }
-            order.setStaff_id(1);//sửa staffid
+            order.setStaff_id(account.getStaff_id());//sửa staffid
             order.setStore_id(1);
             order=orderBL.createOrder(order);
             int select=JOptionPane.showConfirmDialog(this, "Bạn có muốn in hóa đơn");
@@ -810,9 +856,11 @@ public class CashierForm extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CashierForm().setVisible(true);
+                Account account=new AccountBL().login("TranVanHuan", StaticFunctionService.getMd5("Thangnguyenquyet123"));
+                new CashierForm(account).setVisible(true);
             }
         });
     }
