@@ -1,0 +1,83 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Java",
+            "type": "java",
+            "request": "launch",
+            "stopOnEntry": true,
+            "jdkPath": "${env:JAVA_HOME}/bin",
+            "cwd": "${fileDirname}",
+            "startupClass": "${fileBasenameNoExtension}",
+            "classpath": [
+                ".",
+                "${fileDirname}"
+            ]
+        },
+        {
+            "name": "Java Console App",
+            "type": "java",
+            "request": "launch",
+            "stopOnEntry": true,
+            "jdkPath": "${env:JAVA_HOME}/bin",
+            "cwd": "${fileDirname}",
+            "startupClass": "${fileBasenameNoExtension}",
+            "classpath": [
+                ".",
+                "${fileDirname}"
+            ],
+            "externalConsole": true
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-CashierForm<minisupermarketMS>",
+            "request": "launch",
+            "mainClass": "testSwing.CashierForm",
+            "projectName": "minisupermarketMS"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Login<minisupermarketMS>",
+            "request": "launch",
+            "mainClass": "testSwing.Login",
+            "projectName": "minisupermarketMS"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ManagerForm<minisupermarketMS>",
+            "request": "launch",
+            "mainClass": "testSwing.ManagerForm",
+            "projectName": "minisupermarketMS"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ProductManagementForm<minisupermarketMS>",
+            "request": "launch",
+            "mainClass": "testSwing.ProductManagementForm",
+            "projectName": "minisupermarketMS"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-StaffForm<minisupermarketMS>",
+            "request": "launch",
+            "mainClass": "testSwing.StaffForm",
+            "projectName": "minisupermarketMS"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-App<minisupermarketMS>",
+            "request": "launch",
+            "mainClass": "vn.edu.vtc.App",
+            "projectName": "minisupermarketMS"
+        }
+    ]
+}

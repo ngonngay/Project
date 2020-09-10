@@ -59,7 +59,11 @@ public class ProductDAL implements DAL<Product> {
         } catch (Exception e) {
             product.setSupplier_id(1);
         }
-        
+        try {
+            product.setCalculationUnit(resultSet.getString("unit"));
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
         return product;
     }
 
@@ -73,13 +77,13 @@ public class ProductDAL implements DAL<Product> {
             }
             connection.setAutoCommit(false);
             statement.execute("lock tables Products write,Invoices write,OrderDetail write,Stores write;");
-            try (PreparedStatement preparedStatement = connection.prepareStatement("insert into Products(product_id,product_name,product_Description,price,left_quantity,supplier_id)values(?,?,?,?,?,?);")) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement("insert into Products(product_id,product_name,product_Description,price,left_quantity,unit)values(?,?,?,?,?,?);")) {
                 preparedStatement.setString(1, newProduct.getProductId());
                 preparedStatement.setString(2, newProduct.getName());
                 preparedStatement.setString(3, newProduct.getDescription());
                 preparedStatement.setDouble(4, newProduct.getPrice());
                 preparedStatement.setInt(5, newProduct.getLeftQuantity());
-                preparedStatement.setInt(6, newProduct.getSupplier_id());
+                preparedStatement.setString(6, newProduct.getCalculationUnit());
                 if (preparedStatement.executeUpdate() != 1) {
                     System.out.println("1");
                     connection.rollback();
@@ -131,12 +135,13 @@ public class ProductDAL implements DAL<Product> {
             //update product
             connection.setAutoCommit(false);
             statement.execute("lock tables Products write,Invoices write,OrderDetail write,Stores write;");
-            try (PreparedStatement preparedStatement = connection.prepareStatement("update Products set product_name=?,product_Description=?,price=?,left_quantity=? where product_id=?;")) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement("update Products set product_name=?,product_Description=?,price=?,left_quantity=?,unit=? where product_id=?;")) {
                 preparedStatement.setString(1, updatingProduct.getName());
                 preparedStatement.setString(2, updatingProduct.getDescription());
                 preparedStatement.setDouble(3, updatingProduct.getPrice());
                 preparedStatement.setInt(4, updatingProduct.getLeftQuantity());
-                preparedStatement.setString(5, updatingProduct.getProductId());
+                preparedStatement.setString(5, updatingProduct.getCalculationUnit());
+                preparedStatement.setString(6, updatingProduct.getProductId());
                 if (preparedStatement.executeUpdate() != 1) {
                     return 0;
                 }
@@ -171,7 +176,7 @@ public class ProductDAL implements DAL<Product> {
         }
         boolean check=false;
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select * from (select X.product_id,product_name,product_Description,price,left_quantity,discount_Value from (select Products.product_id,product_name,product_Description,price,left_quantity,discount_id,stopSelling,supplier_id from Products inner join Product_Discount on Products.product_id=Product_Discount.product_id) X inner join Discounts on X.discount_id=Discounts.discount_id)P where p.product_id=?;")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from (select X.product_id,unit ,product_name,product_Description,price,left_quantity,discount_Value from (select Products.product_id,unit,product_name,product_Description,price,left_quantity,discount_id,stopSelling,supplier_id from Products inner join Product_Discount on Products.product_id=Product_Discount.product_id) X inner join Discounts on X.discount_id=Discounts.discount_id)P where p.product_id=?;")) {
             preparedStatement.setString(1, productId);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {

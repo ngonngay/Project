@@ -39,13 +39,14 @@ product_Description varchar(800),
 price decimal check(price>0),
 left_quantity int check(left_quantity>=0),
 stopSelling tinyint default (1),
-supplier_id int ,
+supplier_id int default(1),
+unit varchar(100) ,
 constraint fk_Products_Stores foreign key(supplier_id) references Stores(store_id)
 );
+insert into Products(product_id,product_name,price,left_quantity,unit)values
+('10005','Bánh ngọt',3000,2000,'Lẻ'),('10001','Nước Ngọt Coca Cola 330ml',5000,2000,'Lẻ'),('10002','Snack Oshi',5000,2000,'Lẻ'),('10003','Snack Oishi 150g ',10500,2000,'Lẻ'),('10004','Aquafina',4000,2000,'Lẻ');
 insert into Products(product_id,product_name,price,left_quantity,supplier_id)values
-('1001','my goi',3000,200,1),('10001','water can',5000,200,1),('10002','Snack Oshi',5000,200,1),('10003','Snack Oishi 150g ',10500,200,1),('10004','Aquafina',4000,200,1);
-insert into Products(product_id,product_name,price,left_quantity,supplier_id)values
-('1002','my goi 2',3000,200,1);
+('1001','my goi',3000,200,1),('1002','my goi 2',3000,200,1);
 select *from Products;
 
 create table if not exists Product_Discount(

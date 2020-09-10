@@ -144,8 +144,9 @@ public class CashierForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hình thức tìm kiếm");
 
-        panelProductManagement.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông Tin Sản Phẩm    "));
+        panelProductManagement.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông Tin Sản Phẩm    ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
+        labelForKeywordSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelForKeywordSearch.setText("Nhập từ khóa :");
 
         txtKeyWord.addActionListener(new java.awt.event.ActionListener() {
@@ -154,6 +155,7 @@ public class CashierForm extends javax.swing.JFrame {
             }
         });
 
+        comboboxTypeSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         comboboxTypeSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hình thức tìm kiếm", "Tìm kiếm theo tên", "Tìm kiếm theo mã sản phẩm" }));
         comboboxTypeSearch.setSelectedItem(comboboxTypeSearch);
         comboboxTypeSearch.setBorder(null);
@@ -181,7 +183,6 @@ public class CashierForm extends javax.swing.JFrame {
             }
         });
         tblProductListResultSearch.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        tblProductListResultSearch.setCellSelectionEnabled(false);
         tblProductListResultSearch.setColumnSelectionAllowed(true);
         tblProductListResultSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tblProductListResultSearch.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -189,8 +190,10 @@ public class CashierForm extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblProductListResultSearch);
         tblProductListResultSearch.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
+        labelForResult.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelForResult.setText("Kết quả : ");
 
+        btnSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnSearch.setText("Tìm Kiếm");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,17 +208,17 @@ public class CashierForm extends javax.swing.JFrame {
             .addGroup(panelProductManagementLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelProductManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelProductManagementLayout.createSequentialGroup()
-                        .addGroup(panelProductManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelForKeywordSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelForResult, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProductManagementLayout.createSequentialGroup()
                         .addGroup(panelProductManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(comboboxTypeSearch, 0, 330, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(txtKeyWord, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(panelProductManagementLayout.createSequentialGroup()
+                        .addGroup(panelProductManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelForResult, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelForKeywordSearch))
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProductManagementLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -239,20 +242,27 @@ public class CashierForm extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin hóa đơn   "));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin hóa đơn   ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Số hóa đơn      :");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Ngày lập          :");
 
-        jLabel3.setText("Tên Nhân Viên :");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Tên Nhân Viên  :");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Cơ sở kinh doanh :");
 
+        lblStore.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblStore.setText("VTCA project 1");
 
-        jLabel9.setText("Địa chỉ                :");
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setText("Địa chỉ               :");
 
+        lblAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblAddress.setText("Hà Nội");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -303,9 +313,10 @@ public class CashierForm extends javax.swing.JFrame {
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Chi tiết sản phẩm   "));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Chi tiết sản phẩm   ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
         tblOrderProductList.setAutoCreateRowSorter(true);
+        tblOrderProductList.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tblOrderProductList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -322,8 +333,6 @@ public class CashierForm extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        tblOrderProductList.setCellSelectionEnabled(false);
-        tblOrderProductList.setRowSelectionAllowed(true);
         jScrollPane2.setViewportView(tblOrderProductList);
         tblOrderProductList.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -341,17 +350,21 @@ public class CashierForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin thanh toán   "));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin thanh toán   ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
+        labelTotalPrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelTotalPrice.setText("Tổng Tiền :");
         labelTotalPrice.setToolTipText("Giá tiền được hiển thị sau khi đã được tính toán các khoản liên quan ");
 
         lblTotalPrice.setToolTipText("");
 
+        labelCustomerMoney.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelCustomerMoney.setText("Tiền khách đưa :");
 
+        labelForrReturnMonney.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelForrReturnMonney.setText("Tiền trả lại : ");
 
+        btnCancel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnCancel.setText("Hủy");
         btnCancel.setToolTipText("");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -360,6 +373,7 @@ public class CashierForm extends javax.swing.JFrame {
             }
         });
 
+        btnCheckout.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnCheckout.setText("Thanh toán");
         btnCheckout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -372,17 +386,19 @@ public class CashierForm extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(labelTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(80, 80, 80)
+                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(labelTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelCustomerMoney, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblCustomerMoney, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(labelCustomerMoney, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblCustomerMoney, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -390,7 +406,7 @@ public class CashierForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblReturnMoney, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnCheckout, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -412,6 +428,7 @@ public class CashierForm extends javax.swing.JFrame {
 
         labelTotalPrice.getAccessibleContext().setAccessibleDescription("Giá tiền được hiển thị sau khi đã được tính toán các khoản phụ phí  có liên quan ");
 
+        btnLogout.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnLogout.setText("Đăng xuất");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -454,7 +471,7 @@ public class CashierForm extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panelProductManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
@@ -750,9 +767,12 @@ public class CashierForm extends javax.swing.JFrame {
             order=orderBL.createOrder(order);
             int select=JOptionPane.showConfirmDialog(this, "Bạn có muốn in hóa đơn");
             if (select==JOptionPane.YES_OPTION) {
-                
+                //in hóa đơn
+                order=new Order();
+                defaultTableModel2.setRowCount(0);
             }
         }
+        
     }//GEN-LAST:event_btnCheckoutActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
