@@ -68,8 +68,7 @@
                           <Component id="btnBack" min="-2" pref="97" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jLabel1" min="-2" pref="211" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
-                          <Component id="btnLogout" min="-2" pref="119" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="251" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -86,11 +85,8 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnBack" alignment="1" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel1" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="btnLogout" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="btnBack" alignment="1" pref="33" max="32767" attributes="0"/>
+                  <Component id="jLabel1" min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
@@ -157,38 +153,44 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="192" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtKeyWord" max="32767" attributes="0"/>
-                                  <Component id="comboboxTypeSearch" alignment="0" pref="284" max="32767" attributes="0"/>
-                                  <Component id="labelForKeywordSearch2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
+                          <Component id="btnRefreshTab1" min="-2" pref="87" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="txtKeyWord" max="32767" attributes="0"/>
+                                      <Component id="comboboxTypeSearch" alignment="0" pref="284" max="32767" attributes="0"/>
+                                      <Component id="labelForKeywordSearch2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="btnResetTab1" min="-2" pref="87" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="62" max="32767" attributes="0"/>
                                   <Component id="btnSearch" min="-2" pref="96" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace pref="11" max="32767" attributes="0"/>
-                          <Component id="comboboxTypeSearch" min="-2" pref="27" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                          <Component id="labelForKeywordSearch2" min="-2" pref="21" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="txtKeyWord" min="-2" pref="38" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btnSearch" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                              <Component id="btnResetTab1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnSearch" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="comboboxTypeSearch" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                  <Component id="labelForKeywordSearch2" min="-2" pref="21" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="txtKeyWord" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnRefreshTab1" min="-2" pref="31" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -242,12 +244,12 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnResetTab1">
+                <Component class="javax.swing.JButton" name="btnRefreshTab1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnResetTab1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRefreshTab1ActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -366,12 +368,23 @@
                       <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel4" min="-2" pref="102" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" min="-2" pref="102" max="-2" attributes="0"/>
-                                  <Component id="jLabel5" min="-2" pref="102" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="jLabel4" min="-2" pref="102" max="-2" attributes="0"/>
+                                          <Component id="jLabel3" min="-2" pref="102" max="-2" attributes="0"/>
+                                          <Component id="jLabel5" min="-2" pref="102" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="jLabel6" min="-2" pref="102" max="-2" attributes="0"/>
+                                          <Component id="jLabel8" min="-2" pref="102" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -379,13 +392,15 @@
                                               <Component id="txtNewProductId" pref="326" max="32767" attributes="0"/>
                                               <Component id="txtNewName" max="32767" attributes="0"/>
                                           </Group>
-                                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                              <Group type="102" attributes="0">
+                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="jScrollPane1" min="-2" pref="326" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="spNewQuantity" min="-2" pref="86" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
                                                   <Component id="jLabel7" min="-2" pref="59" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Component id="jComboBox1" min="-2" pref="100" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="jScrollPane1" min="-2" pref="326" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -406,18 +421,13 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel8" min="-2" pref="102" max="-2" attributes="0"/>
-                                  <Component id="jLabel6" min="-2" pref="102" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="spNewQuantity" min="-2" pref="86" max="-2" attributes="0"/>
+                                      <Component id="spNewPrice" min="-2" pref="86" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jComboBox2" min="-2" pref="77" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="spNewPrice" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
                                   <Component id="btnCancleTab2" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -459,7 +469,7 @@
                               <Component id="txtNewProductId" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="btnCheckExistNewName" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="btnCheckExistProductId" min="-2" pref="32" max="-2" attributes="0"/>
                               <Component id="lbForCheckingExistNewProductId" min="-2" pref="28" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -468,11 +478,9 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel4" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                               <Component id="txtNewName" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="btnCheckExistNewName" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="btnCheckExistProductId" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                              <Component id="lbForCheckingNewName" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="lbForCheckingNewName" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -482,8 +490,8 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel8" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="spNewPrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spNewQuantity" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="jLabel6" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
@@ -493,16 +501,20 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel6" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                          <Component id="spNewQuantity" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                          <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnInsert" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                          <Component id="btnCancleTab2" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="spNewPrice" pref="30" max="32767" attributes="0"/>
+                                  <Component id="jComboBox2" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btnInsert" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="btnCancleTab2" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="jLabel8" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnLogOuttab2" min="-2" pref="32" max="-2" attributes="0"/>
@@ -603,17 +615,19 @@
             <Component class="javax.swing.JSpinner" name="spNewQuantity">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="1" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                  <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
                 </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtNewProductId">
               <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtNewProductIdFocusGained"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNewProductIdActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtNewName">
               <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtNewNameFocusGained"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNewNameActionPerformed"/>
               </Events>
             </Component>
@@ -648,7 +662,7 @@
             <Component class="javax.swing.JSpinner" name="spNewPrice">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="1000" minimum="1000" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                  <SpinnerModel initial="0.0" minimum="0.0" numberType="java.lang.Double" stepSize="500.0" type="number"/>
                 </Property>
               </Properties>
             </Component>
@@ -682,6 +696,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="H&#x1ee7;y"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancleTab2ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnLogOuttab2">
               <Properties>
@@ -690,6 +707,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng Xu&#x1ea5;t"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLogOuttab2ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lbForCheckingExistNewProductId">
             </Component>
@@ -699,14 +719,6 @@
         </Container>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnLogout">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng Xu&#x1ea5;t"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLogoutActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="btnBack">
       <Properties>
         <Property name="text" type="java.lang.String" value="&lt; Tr&#x1edf; L&#x1ea1;i"/>

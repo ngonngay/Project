@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "CodeLens (Launch) - UpdateProductForm",
+            "request": "launch",
+            "mainClass": "testSwing.UpdateProductForm",
+            "projectName": "minisupermarketMS"
+        },
+        {
             "name": "Java",
             "type": "java",
             "request": "launch",
