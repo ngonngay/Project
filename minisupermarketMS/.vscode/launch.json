@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Bill",
+            "request": "launch",
+            "mainClass": "testSwing.Bill",
+            "projectName": "minisupermarketMS"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - UpdateProductForm",
             "request": "launch",
             "mainClass": "testSwing.UpdateProductForm",

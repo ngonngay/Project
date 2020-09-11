@@ -274,6 +274,43 @@ public class OrderService {
         System.out.println("      Website:https://vinmart.vn");
         System.out.println("------------------------------------------\n\n");
     }
+    public static String printOrder2(Order order) {
+        String orderDetail = "";
+        String str1 = "";
+        str1 = "\n";
+        str1 = str1 + "--------------------------------------------";
+        str1 = str1 + '\n' +order.getStore_name();
+        str1 = str1 + "             Address: " + order.getAddress();
+        str1 = str1 + "\n--------------------------------------------";
+        str1 = str1 + "\n            -------ORDER-------             ";
+        str1 = str1 + "\nDate: " + order.getDate();
+        str1 = str1 + "         ID: " + order.getId();
+        str1 = str1 + "\n--------------------------------------------";
+        str1 = str1 + "\nName               Price    Amount     Total";
+        str1 = str1 + "\n--------------------------------------------";
+        for (Product product : order.getProductList()) {
+            str1 = str1 + "\n" +product.getName();
+            str1 = str1 + "\n" +product.getProductId();
+            str1 = str1 + "              " + printPrice(product.getPrice()) + "      " +product.getAmount() + "      " +printPrice(Total(product));
+            if (product.getDiscounted() >= 1) {
+                    str1 = str1 + "\nDiscount                                          " + printPrice(product.getDiscounted());
+                    str1 = str1 +"\n";
+            }
+            else{
+                    str1 = str1 + "\n";
+            }
+        }
+        str1 = str1 + "\n--------------------------------------------";
+        str1 = str1 + "\nTotal:            " +printPrice(totalOrder(order));
+        str1 = str1 + "VNĐ";
+        str1 = str1 + "\n--------------------------------------------";
+        str1 = str1 + "\n       Thank you and see you again!";
+        str1 = str1 + "\n           Hotline:18001000";
+        str1 = str1 + "\n       Website:https://vinmart.vn";
+        str1 = str1 + "\n--------------------------------------------\n\n";
+        orderDetail = orderDetail + str1;
+        return orderDetail;
+    }
     public static Double totalOrder(Order order) {
         Double totalOrder = 0.;
         for (Product product : order.getProductList()) {
@@ -295,49 +332,4 @@ public class OrderService {
         return total;
     }
 }
-    /*
-    public static void printOrder(Order order){
-            System.out.println("\n");
-            System.out.println("-----------------------------------------------------------------------------------------------");
-            System.out.print("                 "+order.getStore_name());
-            System.out.print("                                      Address: " +order.getAddress()+"\n");
-            System.out.println("-----------------------------------------------------------------------------------------------");
-            System.out.println("                                     -------ORDER-------                                       ");
-            System.out.print("     Date:        " +order.getDate());
-            System.out.print("                                         ID: " +order.getId()+"\n");
-            System.out.println("-----------------------------------------------------------------------------------------------");
-            System.out.println("   ID   |       Name        |       Price       |   Discount   |  Amount  |       Total          ");
-            System.out.println("-----------------------------------------------------------------------------------------------");
-            for (Product product : order.getProductList()) {
-                System.out.format(
-                        "%5s   |%11s        |%12s       |%11s   |%7d  |%13s        \n",product.getProductId(), product.getName(),printPrice(product.getPrice()),printPrice(product.getDiscounted()) , product.getAmount(),printPrice(Total(product)));
-                System.out.println("\n");
-                //System.out.println(product.getProductId()+ product.getName()+printPrice(product.getPrice())+printPrice(product.getDiscounted()) + product.getAmount()+printPrice(Total(product)));
-            }
-            System.out.println("-----------------------------------------------------------------------------------------------");
-            System.out.print(" Total:                                                    "+printPrice(totalOrder(order)) +"VND\n");
-            System.out.println("-----------------------------------------------------------------------------------------------");
-            System.out.println("                               Thank you and see you again!                                ");
-            System.out.println("                            Hotline:1800 1000  Website:https://tuyensinh2020.vtc.edu.vn/                             ");
-            System.out.println("-----------------------------------------------------------------------------------------------\n\n");
-    }
-    public static Double totalOrder(Order order) {
-        Double totalOrder = 0.;
-        for (Product product : order.getProductList()) {
-            totalOrder += Total(product);
-        }
-        return totalOrder;
-    }
-    public static String printPrice(Double price){
-        Locale localeVN = new Locale("vi", "VN");
-        NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
-        String str1 = currencyVN.format(price);
-        String str2 =str1.replace(".", ",");
-        String str3=str2.replace("₫", "");
-        return str3;
-    }
-    public static Double Total(Product p){
-        Double total = (p.getPrice()-p.getDiscounted())*p.getAmount();
-        return total;
-    }
-*/
+    

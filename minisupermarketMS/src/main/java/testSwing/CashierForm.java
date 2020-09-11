@@ -261,7 +261,7 @@ public class CashierForm extends javax.swing.JFrame {
         jLabel7.setText("Cơ sở kinh doanh :");
 
         lblStore.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblStore.setText("VTCA project 1");
+        lblStore.setText("VTC academy HN");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Địa chỉ               :");
@@ -290,8 +290,8 @@ public class CashierForm extends javax.swing.JFrame {
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblStore, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStore, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -525,7 +525,6 @@ public class CashierForm extends javax.swing.JFrame {
             //tìm kiếm theo tên
              
             String productName=txtKeyWord.getText();
-            System.out.println(productName);
             if (productName == null) {
                 JOptionPane.showMessageDialog(this, "Vui Lòng nhập mã sản phẩm !", "Tìm kiếm sản phẩm", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -792,6 +791,10 @@ public class CashierForm extends javax.swing.JFrame {
 
     private void btnCheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckoutActionPerformed
         // TODO add your handling code here:
+        if(order.getProductList().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Vui Lòng thêm sản phẩm vào hóa đơn", "Thanh toán", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         int selected = JOptionPane.showConfirmDialog(this, "Thanh toán?");
         if (selected == JOptionPane.CANCEL_OPTION||selected==JOptionPane.NO_OPTION) {
             return;
@@ -814,6 +817,9 @@ public class CashierForm extends javax.swing.JFrame {
             int select=JOptionPane.showConfirmDialog(this, "Bạn có muốn in hóa đơn");
             if (select==JOptionPane.YES_OPTION) {
                 //in hóa đơn
+                String printOrder=OrderService.printOrder2(order);
+                Bill bill=new Bill(printOrder);
+                bill.setVisible(true);
                 order=new Order();
                 defaultTableModel2.setRowCount(0);
             }
