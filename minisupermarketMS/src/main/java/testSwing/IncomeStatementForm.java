@@ -5,17 +5,27 @@
  */
 package testSwing;
 
+import vn.edu.vtc.dal.AccountDAL;
+import vn.edu.vtc.persistance.Account;
+import vn.edu.vtc.pl.StaticFunctionService;
+
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  *
  * @author asus
  */
 public class IncomeStatementForm extends javax.swing.JFrame {
-
+    Account account=new Account();
+    public ZoneId z= ZoneId.of("GMT+7");
     /**
      * Creates new form IncomeStatementForm
      */
-    public IncomeStatementForm() {
+    public IncomeStatementForm(Account account) {
         initComponents();
+        this.account=account;
     }
 
     /**
@@ -31,7 +41,7 @@ public class IncomeStatementForm extends javax.swing.JFrame {
         popupItemShowDetail = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         lblForStartDate = new javax.swing.JLabel();
         spStartDate = new javax.swing.JSpinner();
@@ -60,9 +70,9 @@ public class IncomeStatementForm extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         comStartMonth = new javax.swing.JComboBox<>();
         comEndMonth = new javax.swing.JComboBox<>();
-        txtStartDate = new javax.swing.JTextField();
-        txtEndDate = new javax.swing.JTextField();
         checkboxTimeNow = new javax.swing.JCheckBox();
+        comStartYear = new javax.swing.JComboBox<>();
+        comEndYear = new javax.swing.JComboBox<>();
 
         popupItemShowDetail.setText("Xem Chi Tiết");
         popupTableResultSearch.add(popupItemShowDetail);
@@ -72,10 +82,10 @@ public class IncomeStatementForm extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Thống kê doanh thu");
 
-        jButton1.setText("<- Trờ Về");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setText("<- Trờ Về");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -95,6 +105,13 @@ public class IncomeStatementForm extends javax.swing.JFrame {
         lbForEndDate.setText("           Đến ngày :");
 
         jLabel5.setText("Ngày :");
+
+        spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
+        spEndDate.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                spEndDateFocusGained(evt);
+            }
+        });
 
         jLabel6.setText("Tháng :");
 
@@ -162,8 +179,8 @@ public class IncomeStatementForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbTotalQuantityOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(125, 125, 125)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -181,20 +198,50 @@ public class IncomeStatementForm extends javax.swing.JFrame {
                 .addContainerGap(69, Short.MAX_VALUE))
         );
 
-        comStartMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-
-        comEndMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-
-        txtStartDate.setText("2020");
-
-        txtEndDate.setText("2020");
-        txtEndDate.addActionListener(new java.awt.event.ActionListener() {
+        comStartMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+        comStartMonth.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                comStartMonthFocusGained(evt);
+            }
+        });
+        comStartMonth.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEndDateActionPerformed(evt);
+                comStartMonthActionPerformed(evt);
+            }
+        });
+
+        comEndMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+        comEndMonth.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                comEndMonthFocusGained(evt);
+            }
+        });
+        comEndMonth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comEndMonthActionPerformed(evt);
             }
         });
 
         checkboxTimeNow.setText("Hiện Tại");
+        checkboxTimeNow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkboxTimeNowActionPerformed(evt);
+            }
+        });
+
+        comStartYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", " " }));
+        comStartYear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comStartYearActionPerformed(evt);
+            }
+        });
+
+        comEndYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034" }));
+        comEndYear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comEndYearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -206,7 +253,7 @@ public class IncomeStatementForm extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btnBack)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel1))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -230,18 +277,16 @@ public class IncomeStatementForm extends javax.swing.JFrame {
                                     .addComponent(comStartMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(comEndMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtStartDate))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(comStartYear, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(comEndYear, 0, 65, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addComponent(checkboxTimeNow, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lbValidationStartDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lbValidationEndDate, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)))
@@ -267,7 +312,7 @@ public class IncomeStatementForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnBack))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -283,7 +328,7 @@ public class IncomeStatementForm extends javax.swing.JFrame {
                                     .addComponent(jLabel4)
                                     .addComponent(lbValidationStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(comStartMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(comStartYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(btnSearch))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,8 +340,8 @@ public class IncomeStatementForm extends javax.swing.JFrame {
                                 .addComponent(jLabel6)
                                 .addComponent(jLabel7)
                                 .addComponent(comEndMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(checkboxTimeNow))))
+                                .addComponent(checkboxTimeNow)
+                                .addComponent(comEndYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRefresh))
@@ -330,13 +375,173 @@ public class IncomeStatementForm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        ManagerForm managerForm=new ManagerForm(account);
+        managerForm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
 
-    private void txtEndDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEndDateActionPerformed
+    private void comStartMonthFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_comStartMonthFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEndDateActionPerformed
+        
+    }//GEN-LAST:event_comStartMonthFocusGained
+
+    private void checkboxTimeNowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxTimeNowActionPerformed
+        // TODO add your handling code here:
+        //check box on
+        if (!checkboxTimeNow.isSelected()){
+            return;
+        }
+        ZonedDateTime zdt = ZonedDateTime.now(z);
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss z");
+        String formattedString2 = zdt.format(formatter2);
+        String[] s = formattedString2.split("\\s", 5);
+        String realDate =s[0];
+        String[] s2=realDate.split("/");
+        spEndDate.setValue(Integer.valueOf(s2[0]));
+        comEndMonth.setSelectedItem(s2[1]);
+    }//GEN-LAST:event_checkboxTimeNowActionPerformed
+
+    private void spEndDateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_spEndDateFocusGained
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_spEndDateFocusGained
+
+    private void comEndMonthFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_comEndMonthFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comEndMonthFocusGained
+
+    private void comStartMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comStartMonthActionPerformed
+        // TODO add your handling code here:
+        //validation Start datetime
+        Integer date=(Integer) spStartDate.getValue();
+        String month= (String) comStartMonth.getSelectedItem();
+        String year= (String) comStartYear.getSelectedItem();
+        if (month.equals("01")||month.equals("03")||month.equals("5")||month.equals("7")||month.equals("8")||month.equals("10")||month.equals("12")){
+            spStartDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
+            spStartDate.setValue(date);
+        }else if (month.equals("02")){
+            spStartDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 28, 1));
+            if (Integer.valueOf(date)>28){
+                spStartDate.setValue(28);
+            }else {
+                spStartDate.setValue(date);
+            }
+            if (Integer.valueOf(year)%4==0){
+                spStartDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 29, 1));
+                if (Integer.valueOf(date)>29){
+                    spStartDate.setValue(29);
+                }else {
+                    spStartDate.setValue(date);
+                }
+            }
+        }else {
+            spStartDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
+            if (Integer.valueOf(date)>30){
+                spStartDate.setValue(30);
+            }else {
+                spStartDate.setValue(date);
+            }
+        }
+
+    }//GEN-LAST:event_comStartMonthActionPerformed
+
+    private void comEndMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comEndMonthActionPerformed
+        // TODO add your handling code here:
+        Integer date=(Integer) spEndDate.getValue();
+        String month= (String) comEndMonth.getSelectedItem();
+        String year= (String) comEndYear.getSelectedItem();
+        if (month.equals("01")||month.equals("03")||month.equals("5")||month.equals("7")||month.equals("8")||month.equals("10")||month.equals("12")){
+            spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
+            spEndDate.setValue(date);
+        }else if (month.equals("02")){
+            spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 28, 1));
+            if (Integer.valueOf(date)>28){
+                spEndDate.setValue(28);
+            }else {
+                spEndDate.setValue(date);
+            }
+            if (Integer.valueOf(year)%4==0){
+                spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 29, 1));
+                if (Integer.valueOf(date)>29){
+                    spEndDate.setValue(29);
+                }else {
+                    spEndDate.setValue(date);
+                }
+            }
+        }else {
+            spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
+            if (Integer.valueOf(date)>30){
+                spEndDate.setValue(30);
+            }else {
+                spEndDate.setValue(date);
+            }
+        }
+
+    }//GEN-LAST:event_comEndMonthActionPerformed
+
+    private void comStartYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comStartYearActionPerformed
+        // TODO add your handling code here:
+        Integer date=(Integer) spStartDate.getValue();
+        String month= (String) comStartMonth.getSelectedItem();
+        String year= (String) comStartYear.getSelectedItem();
+        if (month.equals("01")||month.equals("03")||month.equals("5")||month.equals("7")||month.equals("8")||month.equals("10")||month.equals("12")){
+            spStartDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
+            spStartDate.setValue(date);
+        }else if (month.equals("02")){
+            spStartDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 28, 1));
+            if (Integer.valueOf(date)>28){
+                spStartDate.setValue(28);
+            }else {
+                spStartDate.setValue(date);
+            }
+            if (Integer.valueOf(year)%4==0){
+                spStartDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 29, 1));
+                if (Integer.valueOf(date)>29){
+                    spStartDate.setValue(29);
+                }else {
+                    spStartDate.setValue(date);
+                }
+            }
+        }else {
+            spStartDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
+        }
+    }//GEN-LAST:event_comStartYearActionPerformed
+
+    private void comEndYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comEndYearActionPerformed
+        // TODO add your handling code here:
+        Integer date=(Integer) spEndDate.getValue();
+        String month= (String) comEndMonth.getSelectedItem();
+        String year= (String) comEndYear.getSelectedItem();
+        if (month.equals("01")||month.equals("03")||month.equals("5")||month.equals("7")||month.equals("8")||month.equals("10")||month.equals("12")){
+            spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
+            spEndDate.setValue(date);
+        }else if (month.equals("02")){
+            spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 28, 1));
+            if (Integer.valueOf(date)>28){
+                spEndDate.setValue(28);
+            }else {
+                spEndDate.setValue(date);
+            }
+            if (Integer.valueOf(year)%4==0){
+                spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 29, 1));
+                if (Integer.valueOf(date)>29){
+                    spEndDate.setValue(29);
+                }else {
+                    spEndDate.setValue(date);
+                }
+            }
+        }else {
+            spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
+            if (Integer.valueOf(date)>30){
+                spEndDate.setValue(30);
+            }else {
+                spEndDate.setValue(date);
+            }
+        }
+
+    }//GEN-LAST:event_comEndYearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -368,19 +573,22 @@ public class IncomeStatementForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IncomeStatementForm().setVisible(true);
+                Account account=new AccountDAL().getAccount("Nguyenquyetthang", StaticFunctionService.getMd5("Thangnguyenquyet123"));
+                new IncomeStatementForm(account).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnPrintReport;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSearch;
     private javax.swing.JCheckBox checkboxTimeNow;
     private javax.swing.JComboBox<String> comEndMonth;
+    private javax.swing.JComboBox<String> comEndYear;
     private javax.swing.JComboBox<String> comStartMonth;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> comStartYear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -408,7 +616,5 @@ public class IncomeStatementForm extends javax.swing.JFrame {
     private javax.swing.JSpinner spEndDate;
     private javax.swing.JSpinner spStartDate;
     private javax.swing.JTable tblResultSearch;
-    private javax.swing.JTextField txtEndDate;
-    private javax.swing.JTextField txtStartDate;
     // End of variables declaration//GEN-END:variables
 }

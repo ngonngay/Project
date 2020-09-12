@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="minisupermarketMS" target="1.7" />
+      <module name="minisupermarketMS" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

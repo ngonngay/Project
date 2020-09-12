@@ -53,10 +53,10 @@ public class ManagerForm extends javax.swing.JFrame {
         });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton2.setText("Quản Lý Bán Hàng");
+        jButton2.setText("Quản Lý Hóa Đơn");
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton3.setText("Quản Lý Nhân Viên");
+        jButton3.setText("Quản Lý Tài Khoản");
 
         btnLogOut.setText("Đăng Xuất");
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
