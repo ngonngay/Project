@@ -1,0 +1,56 @@
+Work: Tạo hàm in báo cao thống kê hóa đơn
+
+Nguyên Mẫu Hàm : public String printReport(List<Order> listOrder);
+Vị Trí         : OrderService.java
+
+Kiểm Thử : Hướng dẫn 
+
+B1: mở file <Bill.java> (package : testSwing)
+B2:+tìm đến dòng 80-83(khoảng ) 
+   +chèn đoạn code này ngay sau dòng < public static void main(final String args[]) { >
+  Code:
+	Order order1=new OrderDAL().getById(1);
+        Order order2=new OrderDAL().getById(2);
+        List<Order> listOrder=new ArrayList<>();
+        listOrder.add(order1);
+        listOrder.add(order2);
+        System.out.println(listOrder);
+    +thay dòng < final String printOrder = OrderService.printOrder2(new OrderDAL().getById(1)); >
+	thành < final String printOrder = OrderService.printReport(ListOrder); >
+****************************************************************************************************
+
+Code xử lí ngày tháng năm 
+
+
+public static List<String> validateSQLdatetime(Timestamp sqlDate){
+        String date=String.valueOf(sqlDate);
+        String[] strings=date.split(" ");
+        String time=strings[1].replace(".0", "");
+        String datetime=strings[0];
+        String[] dateArray=datetime.split("-");
+        String dateMonthYear="";
+        for (int i = 2; i >-1; i--) {
+            if (i!=0) {
+                dateMonthYear=dateMonthYear+dateArray[i]+"-";
+            }else{
+                dateMonthYear=dateMonthYear+dateArray[i];
+            }
+        }
+        List<String> result=new ArrayList<>();
+        result.add(time);
+        result.add(dateMonthYear);
+        return result;
+    }
+
+
+----------Hướng dẫn sử dụng------------------
+Gọi hàm : List<String> dateTime=validateSQLdatetime(order.getDate());
+Lấy giá trị của Giờ-Phút-Giây : dateTime.get(0);
+Lấy giá trị của Ngày-Tháng-Năm : dateTime.get(1);
+***********************************************************************************
+
+Lấy ra hóa đơn :
+for(int i=0;i<listOrder.length();i++){
+    order=listOrder.get(i);//Lấy ra PHẦN TỬ order TRONG LIST<ORDER>
+	order.getId() //Bây giờ mới lấy được mã hóa đơn nè
+}

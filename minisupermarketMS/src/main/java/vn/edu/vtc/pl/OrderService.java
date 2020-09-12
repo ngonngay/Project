@@ -1,6 +1,7 @@
 package vn.edu.vtc.pl;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -332,6 +333,40 @@ public class OrderService {
     public static Double Total(Product p){
         Double total = p.getPrice()*p.getAmount();
         return total;
+    }
+    public static List<String> validateSQLdatetime(Timestamp sqlDate){
+        String date=String.valueOf(sqlDate);
+        String[] strings=date.split(" ");
+        String time=strings[1].replace(".0", "");
+        String datetime=strings[0];
+        String[] dateArray=datetime.split("-");
+        String dateMonthYear="";
+        for (int i = 2; i >-1; i--) {
+            if (i!=0) {
+                dateMonthYear=dateMonthYear+dateArray[i]+"-";
+            }else{
+                dateMonthYear=dateMonthYear+dateArray[i];
+            }
+        }
+        List<String> result=new ArrayList<>();
+        result.add(time);
+        result.add(dateMonthYear);
+        return result;
+    }
+    public static String printReport(List<Order> listOrder) {
+        String totalReport = "";
+        String str2 = "";
+        str2 = "\n------------------------------------------------------------------------------------------------------------------------------";
+        str2 = str2 + "\n|  Mã hóa đơn   | Nhân viên bán hàng  |   Ngày bán            |   Giờ bán      |   Tổng tiền hóa đơn  ";
+        str2 = str2 + "\n------------------------------------------------------------------------------------------------------------------------------";
+        for(int i=0;i<listOrder.size(); i++) {
+            Order order = listOrder.get(i);
+            List<String> dateTime = validateSQLdatetime(order.getDate());
+            str2 = str2 + String.format("\n" + "| %8s %33s %28s %20s %23s", order.getId(), "Huân", dateTime.get(1), dateTime.get(0), printPrice(totalOrder(order)));
+        }
+        totalReport = totalReport + str2;
+        System.out.println(totalReport);
+        return totalReport;
     }
 }
     

@@ -1,5 +1,7 @@
 package vn.edu.vtc.bl;
 
+import java.util.List;
+
 import vn.edu.vtc.dal.DAL;
 import vn.edu.vtc.dal.DalFactory;
 import vn.edu.vtc.dal.ProductDAL;
@@ -26,7 +28,7 @@ public class ProductBL {
     public boolean getByName(String name){
         return productDAL.getByName(name);
     }
-    public Product getByName2(String name){
+    public List<Product> getByName2(String name){
         return productDAL.getByName2(name);
     }
 }

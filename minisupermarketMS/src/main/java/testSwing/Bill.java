@@ -5,7 +5,11 @@
  */
 package testSwing;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import vn.edu.vtc.dal.OrderDAL;
+import vn.edu.vtc.persistance.Order;
 import vn.edu.vtc.pl.OrderService;
 
 /**
@@ -75,6 +79,7 @@ public class Bill extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(final String args[]) {
+        
         final String printOrder = OrderService.printOrder2(new OrderDAL().getById(1));
         /* Set the Nimbus look and feel */
         // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code

@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import vn.edu.vtc.persistance.Product;
 
@@ -202,35 +204,44 @@ public class ProductDAL implements DAL<Product> {
         }
         return product;
     }
-    public Product getByName2(String name){
+    public List<Product> getByName2(String name){
+        List<Product> products=new ArrayList<>();
         Product product=null;
         if (name==null) {
             return null;
         }
-        boolean check=false;
+        //boolean check=false;
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select * from (select X.product_id,unit ,product_name,product_Description,price,left_quantity,discount_Value from (select Products.product_id,unit,product_name,product_Description,price,left_quantity,discount_id,stopSelling,supplier_id from Products inner join Product_Discount on Products.product_id=Product_Discount.product_id) X inner join Discounts on X.discount_id=Discounts.discount_id)P where p.product_name like ?;")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from Products where product_name  like ?;")) {
             while (name.indexOf("  ") != -1) {
                 name = name.replaceAll("  "," ");
             }
             name=name.replaceAll(" ","%");
+            name="%"+name+"%";
+            System.out.println(name);
             preparedStatement.setString(1, name);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 product = getProduct(resultSet);
-                check=true;
+                products.add(product);
+                //check=true;
             }
-            if (!check){
-                PreparedStatement preparedStatement1 = connection.prepareStatement("select * from Products where product_name  like ?;");
-                    preparedStatement1.setString(1, name);
-                    ResultSet resultSet1 = preparedStatement1.executeQuery();
-                while (resultSet1.next()) {
-                    product = getProduct(resultSet1);
-                }
-            }
+            //select * from (select X.product_id,unit ,product_name,product_Description,price,left_quantity,discount_Value from (select Products.product_id,unit,product_name,product_Description,price,left_quantity,discount_id,stopSelling,supplier_id from Products inner join Product_Discount on Products.product_id=Product_Discount.product_id) X inner join Discounts on X.discount_id=Discounts.discount_id)P where p.product_name like ?;
+            // if (!check){
+            //     PreparedStatement preparedStatement1 = connection.prepareStatement("select * from Products where product_name  like ?;");
+            //     while (name.indexOf("  ") != -1) {
+            //         name = name.replaceAll("  "," ");
+            //     }
+            //     name=name.replaceAll(" ","%");
+            //     preparedStatement1.setString(1, name);
+            //         ResultSet resultSet1 = preparedStatement1.executeQuery();
+            //     while (resultSet1.next()) {
+            //         product = getProduct(resultSet1);
+            //     }
+            // }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return product;
+        return products;
     }
 }

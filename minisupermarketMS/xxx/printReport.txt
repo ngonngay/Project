@@ -1,0 +1,26 @@
+Code: 
+public static String printReport(List<Order> listOrder) {
+        String totalReport = "";
+        String str2 = "";
+        str2 = "\n------------------------------------------------------------------------------------------------------------------------------";
+        str2 = str2 + "\n|  Mã hóa đơn   | Nhân viên bán hàng  |   Ngày bán            |   Giờ bán      |   Tổng tiền hóa đơn  ";
+        str2 = str2 + "\n------------------------------------------------------------------------------------------------------------------------------";
+        for(int i=0;i<listOrder.size(); i++) {
+            order = listOrder.get(i);
+            List<String> dateTime = validateSQLdatetime(order.getDate());
+            str2 = str2 + String.format("\n" + "| %8s %33s %28s %20s %23s", order.getId(), "Huân", dateTime.get(1), dateTime.get(0), printPrice(totalOrder(order)));
+        }
+        totalReport = totalReport + str2;
+        System.out.println(totalReport);
+        return totalReport;
+    }
+**********************************************************************
+Class OrderService.java: 
+thay < import com.google.protobuf.Timestamp; >
+thành < import java.sql.Timestamp; >
+
+thêm < private static Order order;
+    private static Account account; >
+
+ngay sau < public class OrderService { >
+**********************************************************************

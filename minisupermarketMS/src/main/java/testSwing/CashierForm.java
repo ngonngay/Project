@@ -526,40 +526,41 @@ public class CashierForm extends javax.swing.JFrame {
              
             String productName=txtKeyWord.getText();
             if (productName == null) {
-                JOptionPane.showMessageDialog(this, "Vui Lòng nhập mã sản phẩm !", "Tìm kiếm sản phẩm", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Vui Lòng nhập tên sản phẩm !", "Tìm kiếm sản phẩm", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            boolean checkExistOnLocal=false;
-            Product product =new Product();
-            
-            for (Product productLoop : localGottenProductOnSession) {
-                if (productLoop.getName().equals(productName)){
-                    product=productLoop;
-                    checkExistOnLocal=true;
-                    break;
-                }
-            }
-            if (!checkExistOnLocal) {
-                product= productBL.getByName2(productName);
-                if (product!=null) {
-                    localGottenProductOnSession.add(product);
-                }
-            }
-            if(product==null){
+
+            //lấy ra danh sách kêt quả từ db
+            List<Product>products=productBL.getByName2(productName);
+            if (products.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Không tìm thấy sản phẩm nào !", "Tìm kiếm sản phẩm", JOptionPane.ERROR_MESSAGE);
                 return;
-            }
-            
-            if (product != null) {
-                
-                defaultTableModel.setRowCount(0);
-               
-                for (Product productLoop : localGottenProductOnSession) {
-                    if(productLoop.equals(product)){
-                        defaultTableModel.addRow(new Object[]{productLoop.getProductId(), productLoop.getName(), productLoop.getLeftQuantity(), OrderService.printPrice(productLoop.getPrice())});
+            }else{
+                boolean checkExistOnLocal=false;
+                for (Product product2 : products) {
+                    for (int i = 0; i < localGottenProductOnSession.size(); i++) {
+                        if (localGottenProductOnSession.get(i).getName().equals(product2.getName())){
+                            checkExistOnLocal=true;
+                            break;
+                        }
                     }
-                    
+                    if (!checkExistOnLocal) {
+                        localGottenProductOnSession.add(product2);
+                    }
                 }
+            }
+            if (products!= null||products.isEmpty()==false){
+                defaultTableModel.setRowCount(0);
+                for (Product product : products) {
+                    for (Product productLoop : localGottenProductOnSession) {
+                        if(productLoop.equals(product)){
+                            defaultTableModel.addRow(new Object[]{productLoop.getProductId(), productLoop.getName(), productLoop.getLeftQuantity(), OrderService.printPrice(productLoop.getPrice())});
+                            break;
+                        }
+                        
+                    }
+                }
+                
                 
             } else {
                 JOptionPane.showMessageDialog(this, "Không tìm thấy sản phẩm nào !", "Tìm kiếm sản phẩm", JOptionPane.ERROR_MESSAGE);

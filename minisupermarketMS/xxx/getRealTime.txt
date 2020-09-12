@@ -1,0 +1,7 @@
+Lấy thời gian thực từ máy tính
+
+
+		ZonedDateTime zdt = ZonedDateTime.now(z);
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss z");
+                String formattedString2 = zdt.format(formatter2);
+                String[] s = formattedString2.split("\\s", 5);
