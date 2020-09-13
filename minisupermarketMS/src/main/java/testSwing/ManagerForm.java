@@ -35,7 +35,7 @@ public class ManagerForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         btnProductManagement = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnOrderManagement = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
 
@@ -52,8 +52,13 @@ public class ManagerForm extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton2.setText("Quản Lý Hóa Đơn");
+        btnOrderManagement.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnOrderManagement.setText("Quản Lý Hóa Đơn");
+        btnOrderManagement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrderManagementActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton3.setText("Quản Lý Tài Khoản");
@@ -74,7 +79,7 @@ public class ManagerForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jSeparator1)
                     .addComponent(btnProductManagement, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnOrderManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -97,7 +102,7 @@ public class ManagerForm extends javax.swing.JFrame {
                 .addGap(78, 78, 78)
                 .addComponent(btnProductManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnOrderManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
@@ -122,6 +127,13 @@ public class ManagerForm extends javax.swing.JFrame {
         login.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnLogOutActionPerformed
+
+    private void btnOrderManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderManagementActionPerformed
+        // TODO add your handling code here:
+        IncomeStatementForm incomeStatementForm=new IncomeStatementForm(account);
+        incomeStatementForm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnOrderManagementActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,8 +173,8 @@ public class ManagerForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogOut;
+    private javax.swing.JButton btnOrderManagement;
     private javax.swing.JButton btnProductManagement;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;

@@ -25,4 +25,8 @@ public class OrderBL {
     public Order getbyId(int orderId){
         return dal.getById(orderId);
     }
+
+    public List<Order> getReport(String datetimeBegin, String datetimeEnd) {
+       return orderDAL.getReport(datetimeBegin,datetimeEnd);
+    }
 }

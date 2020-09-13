@@ -1,0 +1,12 @@
+	
+******************************************************************************************************************
+<btnRefreshActionPerformed>
+
+spStartDate.setValue(1);
+        comStartMonth.setSelectedIndex(0);
+        comStartYear.setSelectedIndex(0); 
+        spEndDate.setValue(1);
+        comEndMonth.setSelectedIndex(0);
+        comEndYear.setSelectedIndex(0);
+        checkboxTimeNow.setSelected(false);
+*****************************************************************************************************************

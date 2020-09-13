@@ -5,14 +5,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    private List<Product> productList=new ArrayList<>();
+    private List<Product> productList = new ArrayList<>();
     private Integer id;
     private Timestamp date;
     private Integer staff_id;
-    private Integer store_id=1;
+    private Integer store_id = 1;
     private String store_name;
     private String address;
+    private String staff_name;
+
     public Order() {
+    }
+
+    public String getStaff_name() {
+        return staff_name;
+    }
+
+    public void setStaff_name(String staff_name) {
+        this.staff_name = staff_name;
     }
 
     public Order(List<Product> productList, Integer id, Timestamp date, Integer staff_id, Integer store_id) {
@@ -93,6 +103,7 @@ public class Order {
         return "Order{" +
                 "productList=" + productList +
                 ", id=" + id +
+                ", staff name = " +staff_name+
                 ", date=" + date +
                 ", staff_id=" + staff_id +
                 ", store_id=" + store_id +

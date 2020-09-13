@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import vn.edu.vtc.persistance.Order;
@@ -126,6 +127,15 @@ public class OrderDAL implements DAL<Order> {
                 order.setDate(resultSet.getTimestamp("invoice_date"));
                 order.setStore_name(resultSet.getString("store_name"));
                 order.setAddress(resultSet.getString("address"));
+                try (PreparedStatement preparedStatement3=connection.prepareStatement("select * from (select invoice_id,invoice_date,store_id,invoices.staff_id,staff_name from Invoices inner join Accounts on invoices.staff_id=Accounts.staff_id) X where X.invoice_id=?;")) {
+                    preparedStatement3.setInt(1,orderId);
+                    ResultSet resultSet3=preparedStatement3.executeQuery();
+                    while (resultSet3.next()) {
+                        order.setStaff_name(resultSet3.getString("staff_name"));
+                    }
+                } catch (Exception e) {
+
+                }
                 Product product=getProduct(resultSet);
                 //get discount if exist
                 try (PreparedStatement preparedStatement2=connection.prepareStatement("select * from (select X.product_id,product_name,product_Description,price,left_quantity,discount_Value from (select Products.product_id,product_name,product_Description,price,left_quantity,discount_id,stopSelling,supplier_id from Products inner join Product_Discount on Products.product_id=Product_Discount.product_id) X inner join Discounts on X.discount_id=Discounts.discount_id)P where p.product_id=?;")) {
@@ -244,4 +254,30 @@ public class OrderDAL implements DAL<Order> {
          con.setAutoCommit(true);
          return null;
      }
+
+    public List<Order> getReport(String datetimeBegin, String datetimeEnd) {
+        List<Order> orders=new ArrayList<>();
+            try (Connection connection=DbUtil.getConnection()){
+                PreparedStatement preparedStatement=connection.prepareStatement("select * from (select invoice_id,invoice_date,store_id,invoices.staff_id,staff_name from Invoices inner join Accounts on invoices.staff_id=Accounts.staff_id) X where X.invoice_date between ? and ?;");
+                datetimeBegin=datetimeBegin+" 00:00:00";
+                datetimeEnd=datetimeEnd+ " 00:00:00";
+                preparedStatement.setString(1, datetimeBegin);
+                preparedStatement.setString(2, datetimeEnd);
+                ResultSet resultSet=preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    Integer id=resultSet.getInt("invoice_id");
+                    Order order=getById(id);
+                    order.setStaff_name(resultSet.getString("staff_name"));
+                    orders.add(order);
+                }
+
+
+
+            } catch (Exception e) {
+                //TODO: handle exception
+            }
+        return orders;
+    }
+    
 }

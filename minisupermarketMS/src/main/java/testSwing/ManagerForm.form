@@ -28,7 +28,7 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jSeparator1" max="32767" attributes="0"/>
                   <Component id="btnProductManagement" pref="213" max="32767" attributes="0"/>
-                  <Component id="jButton2" max="32767" attributes="0"/>
+                  <Component id="btnOrderManagement" max="32767" attributes="0"/>
                   <Component id="jButton3" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -58,7 +58,7 @@
               <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
               <Component id="btnProductManagement" min="-2" pref="46" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-              <Component id="jButton2" min="-2" pref="46" max="-2" attributes="0"/>
+              <Component id="btnOrderManagement" min="-2" pref="46" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
               <Component id="jButton3" min="-2" pref="47" max="-2" attributes="0"/>
               <EmptySpace pref="106" max="32767" attributes="0"/>
@@ -90,13 +90,16 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProductManagementActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="btnOrderManagement">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; H&#xf3;a &#x110;&#x1a1;n"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOrderManagementActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>

@@ -5,13 +5,24 @@
  */
 package testSwing;
 
+import vn.edu.vtc.bl.OrderBL;
 import vn.edu.vtc.dal.AccountDAL;
 import vn.edu.vtc.persistance.Account;
+import vn.edu.vtc.persistance.Order;
+import vn.edu.vtc.pl.OrderService;
 import vn.edu.vtc.pl.StaticFunctionService;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,6 +30,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class IncomeStatementForm extends javax.swing.JFrame {
     Account account=new Account();
+    DefaultTableModel defaultTableModel=new DefaultTableModel();
+    List<Order> orderList=null;
     public ZoneId z= ZoneId.of("GMT+7");
     /**
      * Creates new form IncomeStatementForm
@@ -26,6 +39,14 @@ public class IncomeStatementForm extends javax.swing.JFrame {
     public IncomeStatementForm(Account account) {
         initComponents();
         this.account=account;
+        tblResultSearch.setModel(defaultTableModel);
+        defaultTableModel.addColumn("Mã Hóa Đơn");
+        defaultTableModel.addColumn("Nhân Viên Bán Hàng");
+        defaultTableModel.addColumn("Ngày Bán");
+        defaultTableModel.addColumn("Giờ Bán");
+        defaultTableModel.addColumn("Tổng Tiền Hóa Đơn");
+        tblResultSearch.setModel(defaultTableModel);
+        tblResultSearch.setComponentPopupMenu(popupTableResultSearch);
     }
 
     /**
@@ -39,6 +60,7 @@ public class IncomeStatementForm extends javax.swing.JFrame {
 
         popupTableResultSearch = new javax.swing.JPopupMenu();
         popupItemShowDetail = new javax.swing.JMenuItem();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
@@ -60,7 +82,7 @@ public class IncomeStatementForm extends javax.swing.JFrame {
         btnRefresh = new javax.swing.JButton();
         btnPrintReport = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         tblResultSearch = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -75,7 +97,14 @@ public class IncomeStatementForm extends javax.swing.JFrame {
         comEndYear = new javax.swing.JComboBox<>();
 
         popupItemShowDetail.setText("Xem Chi Tiết");
+        popupItemShowDetail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                popupItemShowDetailActionPerformed(evt);
+            }
+        });
         popupTableResultSearch.add(popupItemShowDetail);
+
+        popupTableResultSearch.getAccessibleContext().setAccessibleParent(tblResultSearch);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,49 +147,51 @@ public class IncomeStatementForm extends javax.swing.JFrame {
         jLabel7.setText("Năm :");
 
         btnSearch.setText("Tìm kiếm");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         btnRefresh.setText("Làm mới");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
 
         btnPrintReport.setText("In Thống Kê");
+        btnPrintReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintReportActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        tblResultSearch.setAutoCreateColumnsFromModel(false);
         tblResultSearch.setAutoCreateRowSorter(true);
-        tblResultSearch.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblResultSearch.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Mã Hóa Đơn", "Nhân Viên Bán Hàng", "Ngày Bán", "Giờ Bán", "Tổng Tiền Hóa Đơn"
+                "Mã Hóa Đơn", "Nhân Viên ", "Ngày Bán", "Giờ Bán", "Tổng Tiền"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        tblResultSearch.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        tblResultSearch.setCellSelectionEnabled(false);
-        tblResultSearch.setColumnSelectionAllowed(true);
-        tblResultSearch.setDragEnabled(true);
-        tblResultSearch.setRowSelectionAllowed(true);
-        jScrollPane1.setViewportView(tblResultSearch);
-        tblResultSearch.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        ));
+        tblResultSearch.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane2.setViewportView(tblResultSearch);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -189,9 +220,8 @@ public class IncomeStatementForm extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lbTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lbTotalQuantityOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -390,17 +420,19 @@ public class IncomeStatementForm extends javax.swing.JFrame {
     private void checkboxTimeNowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxTimeNowActionPerformed
         // TODO add your handling code here:
         //check box on
-        if (!checkboxTimeNow.isSelected()){
+        if (checkboxTimeNow.isSelected()){
+            setDefault("End");
+            spEndDate.setEnabled(false);
+            comEndMonth.setEnabled(false);
+            comEndYear.setEnabled(false);
+            return;
+        }else {
+            spEndDate.setEnabled(true);
+            comEndMonth.setEnabled(true);
+            comEndYear.setEnabled(true);
             return;
         }
-        ZonedDateTime zdt = ZonedDateTime.now(z);
-        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss z");
-        String formattedString2 = zdt.format(formatter2);
-        String[] s = formattedString2.split("\\s", 5);
-        String realDate =s[0];
-        String[] s2=realDate.split("/");
-        spEndDate.setValue(Integer.valueOf(s2[0]));
-        comEndMonth.setSelectedItem(s2[1]);
+
     }//GEN-LAST:event_checkboxTimeNowActionPerformed
 
     private void spEndDateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_spEndDateFocusGained
@@ -415,134 +447,202 @@ public class IncomeStatementForm extends javax.swing.JFrame {
     private void comStartMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comStartMonthActionPerformed
         // TODO add your handling code here:
         //validation Start datetime
-        Integer date=(Integer) spStartDate.getValue();
-        String month= (String) comStartMonth.getSelectedItem();
-        String year= (String) comStartYear.getSelectedItem();
-        if (month.equals("01")||month.equals("03")||month.equals("5")||month.equals("7")||month.equals("8")||month.equals("10")||month.equals("12")){
-            spStartDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
-            spStartDate.setValue(date);
-        }else if (month.equals("02")){
-            spStartDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 28, 1));
-            if (Integer.valueOf(date)>28){
-                spStartDate.setValue(28);
-            }else {
-                spStartDate.setValue(date);
-            }
-            if (Integer.valueOf(year)%4==0){
-                spStartDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 29, 1));
-                if (Integer.valueOf(date)>29){
-                    spStartDate.setValue(29);
-                }else {
-                    spStartDate.setValue(date);
-                }
-            }
-        }else {
-            spStartDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
-            if (Integer.valueOf(date)>30){
-                spStartDate.setValue(30);
-            }else {
-                spStartDate.setValue(date);
-            }
-        }
-
+        validInput("Start");
     }//GEN-LAST:event_comStartMonthActionPerformed
 
     private void comEndMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comEndMonthActionPerformed
         // TODO add your handling code here:
-        Integer date=(Integer) spEndDate.getValue();
-        String month= (String) comEndMonth.getSelectedItem();
-        String year= (String) comEndYear.getSelectedItem();
-        if (month.equals("01")||month.equals("03")||month.equals("5")||month.equals("7")||month.equals("8")||month.equals("10")||month.equals("12")){
-            spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
-            spEndDate.setValue(date);
-        }else if (month.equals("02")){
-            spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 28, 1));
-            if (Integer.valueOf(date)>28){
-                spEndDate.setValue(28);
-            }else {
-                spEndDate.setValue(date);
-            }
-            if (Integer.valueOf(year)%4==0){
-                spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 29, 1));
-                if (Integer.valueOf(date)>29){
-                    spEndDate.setValue(29);
-                }else {
-                    spEndDate.setValue(date);
-                }
-            }
-        }else {
-            spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
-            if (Integer.valueOf(date)>30){
-                spEndDate.setValue(30);
-            }else {
-                spEndDate.setValue(date);
-            }
-        }
-
+        validInput("End");
     }//GEN-LAST:event_comEndMonthActionPerformed
 
     private void comStartYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comStartYearActionPerformed
         // TODO add your handling code here:
-        Integer date=(Integer) spStartDate.getValue();
-        String month= (String) comStartMonth.getSelectedItem();
-        String year= (String) comStartYear.getSelectedItem();
-        if (month.equals("01")||month.equals("03")||month.equals("5")||month.equals("7")||month.equals("8")||month.equals("10")||month.equals("12")){
-            spStartDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
-            spStartDate.setValue(date);
-        }else if (month.equals("02")){
-            spStartDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 28, 1));
-            if (Integer.valueOf(date)>28){
-                spStartDate.setValue(28);
-            }else {
-                spStartDate.setValue(date);
-            }
-            if (Integer.valueOf(year)%4==0){
-                spStartDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 29, 1));
-                if (Integer.valueOf(date)>29){
-                    spStartDate.setValue(29);
-                }else {
-                    spStartDate.setValue(date);
-                }
-            }
-        }else {
-            spStartDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
-        }
+        validInput("Start");
     }//GEN-LAST:event_comStartYearActionPerformed
 
     private void comEndYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comEndYearActionPerformed
         // TODO add your handling code here:
-        Integer date=(Integer) spEndDate.getValue();
-        String month= (String) comEndMonth.getSelectedItem();
-        String year= (String) comEndYear.getSelectedItem();
-        if (month.equals("01")||month.equals("03")||month.equals("5")||month.equals("7")||month.equals("8")||month.equals("10")||month.equals("12")){
-            spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
-            spEndDate.setValue(date);
-        }else if (month.equals("02")){
-            spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 28, 1));
-            if (Integer.valueOf(date)>28){
-                spEndDate.setValue(28);
-            }else {
-                spEndDate.setValue(date);
+        validInput("End");
+    }//GEN-LAST:event_comEndYearActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        // TODO add your handling code here:
+        spStartDate.setValue(1);
+        comStartMonth.setSelectedIndex(0);
+        comStartYear.setSelectedIndex(0); 
+        spEndDate.setValue(1);
+        comEndMonth.setSelectedIndex(0);
+        comEndYear.setSelectedIndex(0);
+        checkboxTimeNow.setSelected(false);
+    }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        //kiem tra ngay thang bat dau co lon hon ngay hien tai
+            //lay thoi gian hien tai
+        Integer date=(Integer) spStartDate.getValue();
+        String month= (String) comStartMonth.getSelectedItem();
+        String year= (String) comStartYear.getSelectedItem();
+        String datetimeBegin=year+"-"+month+"-"+date;
+        Integer date1=(Integer) spEndDate.getValue();
+        String month1= (String) comEndMonth.getSelectedItem();
+        String year1= (String) comEndYear.getSelectedItem();
+        String datetimeEnd=year1+"-"+month1+"-"+date1;
+        if (validationBegintimeMatchesWithRealtime(datetimeBegin)==1||validationBegintimeMatchesWithRealtime(datetimeBegin)==2){
+            setDefault("Start");
+        }
+        orderList=new ArrayList<>();
+        orderList=new OrderBL().getReport(datetimeBegin,datetimeEnd);
+        System.out.println(orderList);
+        if(orderList.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Không tìm thấy hóa đơn trong khoảng thời gian đã chọn!","Tìm kiếm hóa đơn",JOptionPane.ERROR_MESSAGE);
+        }else{
+            for (Order order : orderList) {
+                List<String> dateTime=OrderService.validateSQLdatetime(order.getDate());
+                defaultTableModel.addRow(new Object[]{order.getId(),order.getStaff_name(),dateTime.get(1),dateTime.get(0),OrderService.printPrice(OrderService.totalOrder(order))});
+                System.out.println("andkjnsndkas");
             }
-            if (Integer.valueOf(year)%4==0){
-                spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 29, 1));
-                if (Integer.valueOf(date)>29){
-                    spEndDate.setValue(29);
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnPrintReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintReportActionPerformed
+        // TODO add your handling code here:
+        if (!orderList.isEmpty()){
+            ReportIncomeForm reportIncomeForm=new ReportIncomeForm(OrderService.printReport(orderList));
+            reportIncomeForm.setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(this,"Thêm nội dung để hiện thị");
+        }
+
+    }//GEN-LAST:event_btnPrintReportActionPerformed
+
+    private void popupItemShowDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popupItemShowDetailActionPerformed
+        // TODO add your handling code here:
+        int useRow = tblResultSearch.getSelectedRow();
+        if (useRow==-1){
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn để xem chi tiết !", "Xem chi tiết", JOptionPane.ERROR_MESSAGE);
+        }else {
+            String idSearch=String.valueOf(tblResultSearch.getValueAt(useRow, 0));
+            Order order=new OrderBL().getbyId(Integer.valueOf(idSearch));
+            if (order!=null){
+                Bill bill=new Bill(OrderService.printOrder2(order));
+                    bill.setVisible(true);
+            }
+        }
+
+    }//GEN-LAST:event_popupItemShowDetailActionPerformed
+    public int validationBegintimeMatchesWithRealtime (String datetime){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date1 = null;
+        Date date2 = null;
+        ZonedDateTime zdt = ZonedDateTime.now(z);
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy/MM/dd - HH:mm:ss z");
+        String formattedString2 = zdt.format(formatter2);
+        String[] s = formattedString2.split("\\s", 5);
+        String realDate =s[0];
+        realDate=realDate.replaceAll("/","-");
+        realDate=realDate.replaceAll(" ","");
+        try {
+            date1 = sdf.parse(datetime);
+            date2 = sdf.parse(realDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (date1.compareTo(date2) > 0) {
+            return 1;
+        } else if (date1.compareTo(date2) < 0) {
+            return -1;
+        } else if (date1.compareTo(date2) == 0) {
+            return 0;
+        } else {
+            return 2;
+        }
+    }
+    public boolean setDefault(String where){
+        ZonedDateTime zdt = ZonedDateTime.now(z);
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss z");
+        String formattedString2 = zdt.format(formatter2);
+        String[] s = formattedString2.split("\\s", 5);
+        String realDate =s[0];
+        String[] s2=realDate.split("/");
+        if (where.equalsIgnoreCase("End")){
+            spEndDate.setValue(Integer.valueOf(s2[0]));
+            comEndMonth.setSelectedItem(s2[1]);
+            comEndYear.setSelectedIndex(0);
+            return  true;
+        }else if (where.equalsIgnoreCase("Start")){
+            spStartDate.setValue(Integer.valueOf(s2[0]));
+            comStartMonth.setSelectedItem(s2[1]);
+            comEndYear.setSelectedIndex(0);
+            return true;
+        }else {
+            return false;
+        }
+
+    }
+    public boolean validInput(String where){
+        if (where.equalsIgnoreCase("Start")){
+            Integer date=(Integer) spStartDate.getValue();
+            String month= (String) comStartMonth.getSelectedItem();
+            String year= (String) comStartYear.getSelectedItem();
+            if (month.equals("01")||month.equals("03")||month.equals("5")||month.equals("7")||month.equals("8")||month.equals("10")||month.equals("12")){
+                spStartDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
+                spStartDate.setValue(date);
+            }else if (month.equals("02")){
+                spStartDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 28, 1));
+                if (Integer.valueOf(date)>28){
+                    spStartDate.setValue(28);
+                }else {
+                    spStartDate.setValue(date);
+                }
+                if (Integer.valueOf(year)%4==0){
+                    spStartDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 29, 1));
+                    if (Integer.valueOf(date)>29){
+                        spStartDate.setValue(29);
+                    }else {
+                        spStartDate.setValue(date);
+                    }
+                }
+            }else {
+                spStartDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
+            }
+            return true;
+        }else if (where.equalsIgnoreCase("End")){
+            Integer date=(Integer) spEndDate.getValue();
+            String month= (String) comEndMonth.getSelectedItem();
+            String year= (String) comEndYear.getSelectedItem();
+            if (month.equals("01")||month.equals("03")||month.equals("5")||month.equals("7")||month.equals("8")||month.equals("10")||month.equals("12")){
+                spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
+                spEndDate.setValue(date);
+            }else if (month.equals("02")){
+                spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 28, 1));
+                if (Integer.valueOf(date)>28){
+                    spEndDate.setValue(28);
+                }else {
+                    spEndDate.setValue(date);
+                }
+                if (Integer.valueOf(year)%4==0){
+                    spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 29, 1));
+                    if (Integer.valueOf(date)>29){
+                        spEndDate.setValue(29);
+                    }else {
+                        spEndDate.setValue(date);
+                    }
+                }
+            }else {
+                spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
+                if (Integer.valueOf(date)>30){
+                    spEndDate.setValue(30);
                 }else {
                     spEndDate.setValue(date);
                 }
             }
+            return true;
         }else {
-            spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
-            if (Integer.valueOf(date)>30){
-                spEndDate.setValue(30);
-            }else {
-                spEndDate.setValue(date);
-            }
+            return false;
         }
 
-    }//GEN-LAST:event_comEndYearActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */
@@ -601,7 +701,8 @@ public class IncomeStatementForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
