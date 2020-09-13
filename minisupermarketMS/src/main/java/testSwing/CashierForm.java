@@ -187,10 +187,10 @@ public class CashierForm extends javax.swing.JFrame {
             }
         });
         tblProductListResultSearch.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        tblProductListResultSearch.setColumnSelectionAllowed(true);
+        tblProductListResultSearch.setCellSelectionEnabled(false);
         tblProductListResultSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblProductListResultSearch.setRowSelectionAllowed(true);
         tblProductListResultSearch.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        tblProductListResultSearch.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tblProductListResultSearch);
         tblProductListResultSearch.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -753,6 +753,10 @@ public class CashierForm extends javax.swing.JFrame {
                 for (Product product : order.getProductList()) {
                     if (product.getName().equals(productName)) {
                         amount = Integer.valueOf(JOptionPane.showInputDialog("Nhập số lượng : \n Tối đa " + product.getLeftQuantity(), 1));
+                        if (amount>product.getLeftQuantity()){
+                            JOptionPane.showMessageDialog(this,"Tối đa "+product.getLeftQuantity(),"Lỗi dữ liệu",JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
                         if (amount<product.getAmount()) {
                             for (int i = 0; i < localGottenProductOnSession.size() ;i++) {
                                 if (localGottenProductOnSession.get(i).getName().equals(productName)){

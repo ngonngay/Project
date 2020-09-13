@@ -30,7 +30,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class IncomeStatementForm extends javax.swing.JFrame {
     Account account=new Account();
-    DefaultTableModel defaultTableModel=new DefaultTableModel();
+    DefaultTableModel defaultTableModel;
     List<Order> orderList=null;
     public ZoneId z= ZoneId.of("GMT+7");
     /**
@@ -39,6 +39,12 @@ public class IncomeStatementForm extends javax.swing.JFrame {
     public IncomeStatementForm(Account account) {
         initComponents();
         this.account=account;
+        defaultTableModel=new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+        };
         tblResultSearch.setModel(defaultTableModel);
         defaultTableModel.addColumn("Mã Hóa Đơn");
         defaultTableModel.addColumn("Nhân Viên Bán Hàng");
@@ -178,7 +184,6 @@ public class IncomeStatementForm extends javax.swing.JFrame {
                 "Mã Hóa Đơn", "Nhân Viên ", "Ngày Bán", "Giờ Bán", "Tổng Tiền"
             }
         ));
-        tblResultSearch.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(tblResultSearch);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -210,8 +215,8 @@ public class IncomeStatementForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbTotalQuantityOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(125, 125, 125)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addComponent(lbTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -425,12 +430,11 @@ public class IncomeStatementForm extends javax.swing.JFrame {
             spEndDate.setEnabled(false);
             comEndMonth.setEnabled(false);
             comEndYear.setEnabled(false);
-            return;
+
         }else {
             spEndDate.setEnabled(true);
             comEndMonth.setEnabled(true);
             comEndYear.setEnabled(true);
-            return;
         }
 
     }//GEN-LAST:event_checkboxTimeNowActionPerformed
@@ -474,6 +478,11 @@ public class IncomeStatementForm extends javax.swing.JFrame {
         comEndMonth.setSelectedIndex(0);
         comEndYear.setSelectedIndex(0);
         checkboxTimeNow.setSelected(false);
+        defaultTableModel.setRowCount(0);
+        spEndDate.setEnabled(true);
+        comEndMonth.setEnabled(true);
+        comEndYear.setEnabled(true);
+        orderList=new ArrayList<>();
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
@@ -492,21 +501,31 @@ public class IncomeStatementForm extends javax.swing.JFrame {
             setDefault("Start");
         }
         orderList=new ArrayList<>();
+        System.out.println(datetimeBegin + datetimeEnd);
         orderList=new OrderBL().getReport(datetimeBegin,datetimeEnd);
         System.out.println(orderList);
         if(orderList.isEmpty()){
             JOptionPane.showMessageDialog(this, "Không tìm thấy hóa đơn trong khoảng thời gian đã chọn!","Tìm kiếm hóa đơn",JOptionPane.ERROR_MESSAGE);
         }else{
+            defaultTableModel.setRowCount(0);
             for (Order order : orderList) {
                 List<String> dateTime=OrderService.validateSQLdatetime(order.getDate());
                 defaultTableModel.addRow(new Object[]{order.getId(),order.getStaff_name(),dateTime.get(1),dateTime.get(0),OrderService.printPrice(OrderService.totalOrder(order))});
                 System.out.println("andkjnsndkas");
             }
+
+            lbTotalQuantityOrder.setText(String.valueOf(orderList.size()));
+            lbTotalPrice.setText(OrderService.printPrice(OrderService.totalOrder(orderList)));
         }
+
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnPrintReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintReportActionPerformed
         // TODO add your handling code here:
+        if (orderList==null){
+            JOptionPane.showMessageDialog(this,"Thêm nội dung để hiện thị");
+            return;
+        }
         if (!orderList.isEmpty()){
             ReportIncomeForm reportIncomeForm=new ReportIncomeForm(OrderService.printReport(orderList));
             reportIncomeForm.setVisible(true);

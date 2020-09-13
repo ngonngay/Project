@@ -98,16 +98,18 @@ public class OrderDAL implements DAL<Order> {
 
     private Product getProduct(ResultSet resultSet) throws SQLException {
         Product product=new Product();
-        product.setRefundedInOrder(resultSet.getInt("refunded"));
-        if (product.getRefundedInOrder()==1){
+            product.setRefundedInOrder(resultSet.getInt("refunded"));
             product.setProductId(resultSet.getString("product_id"));
             product.setName(resultSet.getString("product_name"));
             product.setAmount(resultSet.getInt("quantity"));
             product.setPrice(resultSet.getDouble("price"));
-            product.setDiscounted(resultSet.getDouble("discounted"));
+            try {
+                product.setDiscounted(resultSet.getDouble("discounted"));
+            }catch (Exception e){
+                product.setDiscounted(0.);
+            }
+
             return product;
-        }
-        return null;
     }
 
     @Override
@@ -119,37 +121,37 @@ public class OrderDAL implements DAL<Order> {
     public Order getById(int orderId) {
         Order order=new Order();
         try(Connection connection=DbUtil.getConnection();
-            PreparedStatement preparedStatement =connection.prepareStatement("select Invoices.invoice_id,invoice_date,store_name,address,OrderDetail.product_id,product_name,OrderDetail.price,OrderDetail.quantity,OrderDetail.discounted,OrderDetail.refunded  from (Stores inner join Invoices on Invoices.store_id=Stores.store_id inner join OrderDetail on Invoices.invoice_id=OrderDetail.invoice_id inner join Products on OrderDetail.product_id=Products.product_id)   where Invoices.invoice_id=?;")){
+            //get invoice_id,date,name from Invoices
+            PreparedStatement preparedStatement =connection.prepareStatement("select *from Invoices where invoice_id=?;")){
             preparedStatement.setInt(1,orderId);
             ResultSet resultSet =preparedStatement.executeQuery();
             while (resultSet.next()){
                 order.setId(resultSet.getInt("invoice_id"));
                 order.setDate(resultSet.getTimestamp("invoice_date"));
-                order.setStore_name(resultSet.getString("store_name"));
-                order.setAddress(resultSet.getString("address"));
-                try (PreparedStatement preparedStatement3=connection.prepareStatement("select * from (select invoice_id,invoice_date,store_id,invoices.staff_id,staff_name from Invoices inner join Accounts on invoices.staff_id=Accounts.staff_id) X where X.invoice_id=?;")) {
-                    preparedStatement3.setInt(1,orderId);
-                    ResultSet resultSet3=preparedStatement3.executeQuery();
-                    while (resultSet3.next()) {
-                        order.setStaff_name(resultSet3.getString("staff_name"));
-                    }
-                } catch (Exception e) {
-
-                }
-                Product product=getProduct(resultSet);
-                //get discount if exist
-                try (PreparedStatement preparedStatement2=connection.prepareStatement("select * from (select X.product_id,product_name,product_Description,price,left_quantity,discount_Value from (select Products.product_id,product_name,product_Description,price,left_quantity,discount_id,stopSelling,supplier_id from Products inner join Product_Discount on Products.product_id=Product_Discount.product_id) X inner join Discounts on X.discount_id=Discounts.discount_id)P where p.product_id=?;")) {
-                    preparedStatement2.setString(1,product.getProductId());
-                    ResultSet resultSet2=preparedStatement2.executeQuery();
-                    while (resultSet2.next()) {
-                        product.setDiscounted(resultSet2.getDouble("discount_value"));
-                    }
-                } catch (Exception e) {
-                    
-                }
-                if (product!=null){
-                    order.getProductList().add(product);
-                }
+                order.setStaff_id(resultSet.getInt("staff_id"));
+                    //getProductId in orderDetail
+                        PreparedStatement preparedStatement1 = connection.prepareStatement("select invoice_id,OrderDetail.product_id, Products.product_name, OrderDetail.price,OrderDetail.quantity, discounted,refunded,product_Description,left_quantity,unit from OrderDetail inner join Products on Products.product_id=OrderDetail.product_id where invoice_id=?;");
+                        preparedStatement1.setInt(1,orderId);
+                        ResultSet getlistProduct = preparedStatement1.executeQuery();
+                        while (getlistProduct.next()){
+                            Product product=getProduct(getlistProduct);
+                            order.addProduct(product);
+                        }
+                    //get staff name
+                        PreparedStatement preparedStatement2 = connection.prepareStatement("select * from Accounts where staff_id=?;");
+                        preparedStatement2.setInt(1,order.getId());
+                        ResultSet getStaffName = preparedStatement2.executeQuery();
+                        while (getStaffName.next()){
+                            order.setStaff_name(getStaffName.getString("staff_name"));
+                        }
+                    //get storeName
+                        PreparedStatement preparedStatement3 = connection.prepareStatement("select * from Stores where store_id=?;");
+                        preparedStatement3.setInt(1,order.getId());
+                        ResultSet getStoreName = preparedStatement3.executeQuery();
+                        while (getStoreName.next()){
+                            order.setStore_name(getStoreName.getString("store_name"));
+                            order.setAddress(getStoreName.getString("address"));
+                        }
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -260,20 +262,19 @@ public class OrderDAL implements DAL<Order> {
             try (Connection connection=DbUtil.getConnection()){
                 PreparedStatement preparedStatement=connection.prepareStatement("select * from (select invoice_id,invoice_date,store_id,invoices.staff_id,staff_name from Invoices inner join Accounts on invoices.staff_id=Accounts.staff_id) X where X.invoice_date between ? and ?;");
                 datetimeBegin=datetimeBegin+" 00:00:00";
-                datetimeEnd=datetimeEnd+ " 00:00:00";
+                datetimeEnd=datetimeEnd+ " 23:59:59";
                 preparedStatement.setString(1, datetimeBegin);
                 preparedStatement.setString(2, datetimeEnd);
                 ResultSet resultSet=preparedStatement.executeQuery();
-
+                System.out.println(datetimeBegin + " " + datetimeEnd);
+                int i=1;
                 while (resultSet.next()) {
                     Integer id=resultSet.getInt("invoice_id");
                     Order order=getById(id);
                     order.setStaff_name(resultSet.getString("staff_name"));
                     orders.add(order);
+                    System.out.println(i++);
                 }
-
-
-
             } catch (Exception e) {
                 //TODO: handle exception
             }

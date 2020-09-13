@@ -63,14 +63,6 @@ public class OrderDALTest {
         order.setProductList(list);
         Assert.assertNull(orderDAL.createOrder(order));
     }
-    @Test
-    public void refundProductTest(){
-        Product product=productDAL.getById(1001);
-        product.setRefundedInOrder(0);
-        product.setAmount(0);
-        List<Product> list=new ArrayList<>();
-        list.add(product);
-        Assert.assertNull(orderDAL.refundProduct(list,2));
-    }
+
 
 }

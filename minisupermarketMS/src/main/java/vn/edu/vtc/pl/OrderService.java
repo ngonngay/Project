@@ -321,6 +321,13 @@ public class OrderService {
         }
         return totalOrder;
     }
+    public static Double totalOrder(List<Order> orders) {
+        Double totalOrder = 0.;
+        for (Order order:orders){
+            totalOrder+=totalOrder(order);
+        }
+        return totalOrder;
+    }
     public static String printPrice(Double price){
         Locale localeVN = new Locale("vi", "VN");
         NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);

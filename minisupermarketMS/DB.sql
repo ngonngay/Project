@@ -71,7 +71,8 @@ constraint fk_Invoices_Stores foreign key(store_id) references Stores(store_id)
 insert into Invoices(staff_id,store_id)values
 (1,1);
 insert into Invoices(staff_id,store_id)values
-(2,1);
+(2,1),(2,1),(2,1),(2,1),(2,1),(2,1),(2,1);
+
 select *from Invoices;
 create table if not exists OrderDetail(
 invoice_id int not null,
@@ -84,9 +85,9 @@ primary key(invoice_id,product_id),
 constraint fk_Detail_Product foreign key (product_id) references Products(product_id)
 );
 insert into OrderDetail(invoice_id,product_id,quantity,price,discounted)values
-(1,'1001',1,100000,1000),(1,'1002',1,15000,0);
+(1,'1001',1,3000,1000),(3,'1002',1,3000,0),(4,'1002',1,3000,0),(5,'1002',1,3000,0),(6,'1002',1,3000,0),(7,'1002',1,3000,0),(8,'1002',1,3000,0),(4,'1002',1,3000,0),(5,'1002',1,3000,0),(3,'1002',1,3000,0),(7,'1002',1,3000,0);
 insert into OrderDetail(invoice_id,product_id,quantity,price,discounted)values
-(2,'1001',1,100000,1000);
+(2,'1001',1,3000,1000);
 select * from OrderDetail;
 create user if not exists'group4'@'localhost' identified by 'test' ;
 grant all  on SEM1_PJ_G4.* to 'group4'@'localhost';

@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -28,7 +30,7 @@ import vn.edu.vtc.pl.StaticFunctionService;
 public class ProductManagementForm extends javax.swing.JFrame {
     private List<Product> localGottenProductOnSession = new ArrayList<>();
     private ProductBL productBL = new ProductBL();
-    private DefaultTableModel defaultTableModel = new DefaultTableModel();
+    private DefaultTableModel defaultTableModel ;
     private Account account;
 
     /**
@@ -36,6 +38,12 @@ public class ProductManagementForm extends javax.swing.JFrame {
      */
     public ProductManagementForm(Account account) {
         initComponents();
+        defaultTableModel = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         defaultTableModel.addColumn("Mã Sản Phẩm");
         defaultTableModel.addColumn("Tên Sản Phẩm");
         defaultTableModel.addColumn("Mô Tả");
@@ -210,7 +218,6 @@ public class ProductManagementForm extends javax.swing.JFrame {
         });
         tblResultSearchTab1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tblResultSearchTab1.setAutoscrolls(false);
-        tblResultSearchTab1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblResultSearchTab1.setUpdateSelectionOnSort(false);
         jScrollPaneResultSearch.setViewportView(tblResultSearchTab1);
 
@@ -533,6 +540,7 @@ public class ProductManagementForm extends javax.swing.JFrame {
     private void txtNewProductIdFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txtNewProductIdFocusGained
         // TODO add your handling code here:
         lbForCheckingExistNewProductId.setText("");
+
     }// GEN-LAST:event_txtNewProductIdFocusGained
 
     private void txtNewNameFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txtNewNameFocusGained
@@ -584,7 +592,13 @@ public class ProductManagementForm extends javax.swing.JFrame {
         // checking newProductId text field
         String newId = null;
         newId = txtNewProductId.getText();
-
+        Pattern pattern=Pattern.compile("[^!,#,$,%,^,&,*,(,),-,=,+,/,\\,]*");
+        Matcher matcher=pattern.matcher(newId);
+        if (matcher.matches()){
+            JOptionPane.showMessageDialog(this, "Mã sản phẩm không được có kí tự đặc biệt!", "Kiểm tra mã",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         if (newId == null || newId.equals("")) {
             JOptionPane.showMessageDialog(this, "Mã sản phẩm không được bỏ trống!", "Kiểm tra mã",
                     JOptionPane.ERROR_MESSAGE);
