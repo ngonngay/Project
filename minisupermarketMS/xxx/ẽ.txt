@@ -1,0 +1,13 @@
+String.format("\n%5s",product.getName());
+
+-------
+hàm trên nó sẽ căn chỉnh tự động, và bị cố định bởi cái % ông gán cho nó, chính vì lẽ đó nên 
+rất dễ bị thừa ra ngoài nếu nó quá dài hoặc quá ngắn sẽ làm vỡ layout
+
+-------
+ 
+giải pháp ở đây đó là ông sẽ căn thủ công cho  data (động) và khoảng trắng (tĩnh)
+
+ví dụ như khoảng trống cho phần <name> được gán cho 5 vị trí 	
+	--khi đó name được format thành <_name> (trong đó kí tự <_> sẽ đại diện cho khoảng trắng)
+	-- nếu +name có >5 kí tự nó sẽ thành <_name>s ( trong đó 
