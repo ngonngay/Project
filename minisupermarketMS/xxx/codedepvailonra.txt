@@ -1,0 +1,68 @@
+Hàm thống kê hóa đơn:
+
+public static String printReport(List<Order> listOrder) {
+        String totalReport = "";
+        String str2 = "";
+        str2 = "   VTC ACADEMY";
+        str2 = str2 + "\n           PF08\n";
+        str2 = str2 + "\n                                                    THÔNG KÊ HÓA ĐƠN BÁN HÀNG\n";
+        str2 = str2 + "\n------------------------------------------------------------------------------------------------------------------------------";
+        str2 = str2 + "\n|  Mã hóa đơn   | Nhân viên bán hàng  |   Ngày bán            |   Giờ bán      |   Tổng tiền hóa đơn  ";
+        str2 = str2 + "\n------------------------------------------------------------------------------------------------------------------------------";
+        for(int i=0;i<listOrder.size(); i++) {
+            Order order = listOrder.get(i);
+            List<String> dateTime = validateSQLdatetime(order.getDate());
+            str2 = str2 + String.format("\n" + "| %8s %33s %28s %20s %23s", order.getId(), "Huân", dateTime.get(1), dateTime.get(0), printPrice(totalOrder(order)));
+        }
+        str2 = str2 + "\n------------------------------------------------------------------------------------------------------------------------------";
+        str2 = str2 + "\n\n\n       Người lập biểu                          Kế toán trưởng                      Người đại diện theo phát luật";
+        str2 = str2 + "\n     (Ký, ghi rõ họ tên)                     (Ký, ghi rõ họ tên)                     (Ký, ghi rõ họ tên, đóng dấu)";
+        totalReport = totalReport + str2;
+        System.out.println(totalReport);
+        return totalReport;
+    }
+
+
+
+Hàm thanh toán hóa đơn:
+
+
+public static String printOrder2(Order order) {
+        String orderDetail = "";
+        String str1 = "";
+        String str2 = String.format("");
+        str1 = "\n";
+        str1 = str1 + "-----------------------------------------------------------------------------";
+        str1 = str1 + String.format("\n%10s", order.getStore_name());
+        str1 = str1 + String.format("%37s", "Địa chỉ: " +order.getAddress());
+        str1 = str1 + "\n----------------------------------------------------------------------------";
+        str1 = str1 + "\n                    -------HÓA ĐƠN THANH TOÁN-------         ";
+        str1 = str1 + String.format("\nThời gian: %15s", order.getDate());
+        str1 = str1 + String.format("%17s", "Mã: " + order.getId());
+        str1 = str1 + "\n----------------------------------------------------------------------------";
+        str1 = str1 + "\nTên mặt hàng            Giá            Số lượng     Thành tiền";
+        str1 = str1 + "\n----------------------------------------------------------------------------";
+        for (Product product : order.getProductList()) {
+            str1 = str1 + String.format("\n%.20s", product.getName());
+            str1 = str1 + String.format("\n%-15s", product.getProductId());
+            str1 = str1 + String.format("%18s%15d%23s", printPrice(product.getPrice()), product.getAmount(), printPrice(Total(product)));
+            if (product.getDiscounted() >= 1) {
+                    str1 = str1 + String.format("\nKhuyến mãi: %59s", printPrice(product.getDiscounted()));
+                    str1 = str1 + '\n';
+            }
+            else{
+                    str1 = str1 + "\n";
+            }
+        }
+        str1 = str1 + "\n----------------------------------------------------------------------------";
+        str1 = str1 + String.format("\nTổng thanh toán: %48s", printPrice(totalOrder(order)));
+        str1 = str1 + "VNĐ";
+        str1 = str1 + "\n----------------------------------------------------------------------------";
+        str1 = str1 + "\n                        Cảm ơn và hẹn gặp lại bạn!";
+        str1 = str1 + "\n                            Hotline:18001000";
+        str1 = str1 + "\n                        Website:https://vinmart.vn";
+        str1 = str1 + "\n----------------------------------------------------------------------------\n\n";
+        orderDetail = orderDetail + str1;
+        System.out.println(orderDetail);
+        return orderDetail;
+    }

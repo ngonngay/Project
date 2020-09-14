@@ -501,9 +501,9 @@ public class IncomeStatementForm extends javax.swing.JFrame {
             setDefault("Start");
         }
         orderList=new ArrayList<>();
-        System.out.println(datetimeBegin + datetimeEnd);
+        
         orderList=new OrderBL().getReport(datetimeBegin,datetimeEnd);
-        System.out.println(orderList);
+        
         if(orderList.isEmpty()){
             JOptionPane.showMessageDialog(this, "Không tìm thấy hóa đơn trong khoảng thời gian đã chọn!","Tìm kiếm hóa đơn",JOptionPane.ERROR_MESSAGE);
         }else{
@@ -511,7 +511,7 @@ public class IncomeStatementForm extends javax.swing.JFrame {
             for (Order order : orderList) {
                 List<String> dateTime=OrderService.validateSQLdatetime(order.getDate());
                 defaultTableModel.addRow(new Object[]{order.getId(),order.getStaff_name(),dateTime.get(1),dateTime.get(0),OrderService.printPrice(OrderService.totalOrder(order))});
-                System.out.println("andkjnsndkas");
+            
             }
 
             lbTotalQuantityOrder.setText(String.valueOf(orderList.size()));

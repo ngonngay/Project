@@ -1,0 +1,14 @@
+
+
+
+B1: pull/clone code
+B2: chạy lại file DB.sql
+B3: tìm tới thư mục target trong folder minisupermarketMS
+B4 : đúp chuột vào file minisupermarketMS-1.0-SNAPSHOT
+
+-----
+nếu chương trình k chạy ở B4 , quay trở lại thư mục minisupermarketMS
+-->mở powershell
+--> gõ lệnh mvn package
+-->quay lại B3
+------------------------

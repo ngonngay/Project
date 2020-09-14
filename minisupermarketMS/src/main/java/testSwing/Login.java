@@ -164,6 +164,7 @@ public class Login extends javax.swing.JFrame {
             if(account.getIsAdmin()==1){
                 CashierForm cashierForm=new CashierForm(account);
                 cashierForm.setVisible(true);
+                
                 this.dispose();
             }else{
                 ManagerForm managerForm=new ManagerForm(account);

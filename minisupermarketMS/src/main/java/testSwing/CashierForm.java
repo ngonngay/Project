@@ -5,6 +5,12 @@
  */
 package testSwing;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.EOFException;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +41,8 @@ public class CashierForm extends javax.swing.JFrame {
     private List<Product> localGottenProductOnSession=new ArrayList<>();
     private ProductBL productBL = new ProductBL();
     private Account account;
+    
+    
     /**
      * Creates new form CashierForm
      */
@@ -70,6 +78,7 @@ public class CashierForm extends javax.swing.JFrame {
         tblOrderProductList.setComponentPopupMenu(popupOrderProductList);
 
         lblStaffName.setText(account.getName());
+
     }
 
     /**
@@ -825,10 +834,13 @@ public class CashierForm extends javax.swing.JFrame {
                 String printOrder=OrderService.printOrder2(order);
                 Bill bill=new Bill(printOrder);
                 bill.setVisible(true);
-                order=new Order();
-                defaultTableModel2.setRowCount(0);
+                
             }
+            order=new Order();
+            defaultTableModel2.setRowCount(0);
         }
+        
+            
         
     }//GEN-LAST:event_btnCheckoutActionPerformed
 
@@ -917,4 +929,5 @@ public class CashierForm extends javax.swing.JFrame {
     private javax.swing.JTable tblProductListResultSearch;
     private javax.swing.JTextField txtKeyWord;
     // End of variables declaration//GEN-END:variables
+    
 }
