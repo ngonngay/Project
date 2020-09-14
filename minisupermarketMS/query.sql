@@ -10,4 +10,8 @@ select * from invoices where invoice_date between '2020-01-1 00:00:00' and '2020
 select * from (select invoice_id,invoice_date,store_id,invoices.staff_id,staff_name from Invoices inner join Accounts on invoices.staff_id=Accounts.staff_id) X where X.invoice_date between '2020-01-1 00:00:00' and '2020-09-13 00:00:00'
 ;
 select * from Accounts;
-select invoice_id,invoice_date,store_id,invoices.staff_id,staff_name from Invoices inner join Accounts on invoices.staff_id=Accounts.staff_id
+insert into Accounts(username,pass,staff_name,isAdmin)values
+('Nguyenquyetthang2','16c0ce36e334e22fda8caca1b10c2f9c','thang2',0);
+select invoice_id,invoice_date,store_id,invoices.staff_id,staff_name from Invoices inner join Accounts on invoices.staff_id=Accounts.staff_id;
+delete from Accounts where username='Nguyenquyetthang2';
+select isAdmin from Accounts where username='Nguyenquyetthang2';

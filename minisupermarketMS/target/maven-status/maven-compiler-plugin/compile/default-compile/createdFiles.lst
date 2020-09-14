@@ -7,12 +7,14 @@ vn\edu\vtc\persistance\Product.class
 vn\edu\vtc\dal\DalFactory$ValidDal$1.class
 vn\edu\vtc\dal\DbUtil.class
 vn\edu\vtc\bl\PasswordService.class
+testSwing\AccountManagementForm$2.class
 vn\edu\vtc\App.class
 vn\edu\vtc\dal\OrderDAL.class
 vn\edu\vtc\dal\DalFactory$ValidDal$2.class
 vn\edu\vtc\persistance\Account.class
 vn\edu\vtc\pl\MenuService.class
 vn\edu\vtc\dal\ProductDAL.class
+testSwing\AccountManagementForm$5.class
 vn\edu\vtc\dal\AccountDAL.class
 vn\edu\vtc\bl\ProductBL.class
 vn\edu\vtc\bl\AccountBL.class

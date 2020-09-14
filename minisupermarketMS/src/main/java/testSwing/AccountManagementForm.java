@@ -5,19 +5,57 @@
  */
 package testSwing;
 
+import vn.edu.vtc.bl.AccountBL;
+import vn.edu.vtc.bl.PasswordService;
+import vn.edu.vtc.persistance.Account;
+import vn.edu.vtc.pl.OrderService;
+import vn.edu.vtc.pl.StaticFunctionService;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author asus
  */
 public class AccountManagementForm extends javax.swing.JFrame {
-
+    DefaultTableModel defaultTableModel;
+    List<Account> accounts=new ArrayList<>();
     /**
      * Creates new form AccountManagementForm
      */
     public AccountManagementForm() {
         initComponents();
+        defaultTableModel=new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        tblListAccount.setModel(defaultTableModel);
+        defaultTableModel.addColumn("Tên người dùng");
+        defaultTableModel.addColumn("Mã nhân viên");
+        defaultTableModel.addColumn("Tên nhân viên");
+        defaultTableModel.addColumn("Vai trò");
+        tblListAccount.setComponentPopupMenu(popupmenuUpdateAccount);
+        show2();
     }
+    public void show2(){
+        defaultTableModel.setRowCount(0);
 
+        accounts=new AccountBL().getAll();
+        for (Account account : accounts){
+            String actor;
+            if (account.getIsAdmin()==0){
+                actor="Quản Lý";
+            }else {
+                actor="Nhân viên";
+            }
+            defaultTableModel.addRow(new Object[]{account.getUserName(),account.getStaff_id(),account.getName(),actor});
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,21 +65,266 @@ public class AccountManagementForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        popupmenuUpdateAccount = new javax.swing.JPopupMenu();
+        itemUpdate = new javax.swing.JMenuItem();
+        itemResetPassword = new javax.swing.JMenuItem();
+        itemDeteleAccount = new javax.swing.JMenuItem();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        btnBack = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblListAccount = new javax.swing.JTable();
+        btnRefesh = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+
+        itemUpdate.setText("Cập nhật thông tin tài khoản");
+        itemUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemUpdateActionPerformed(evt);
+            }
+        });
+        popupmenuUpdateAccount.add(itemUpdate);
+
+        itemResetPassword.setText("Đổi mật khẩu");
+        itemResetPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemResetPasswordActionPerformed(evt);
+            }
+        });
+        popupmenuUpdateAccount.add(itemResetPassword);
+
+        itemDeteleAccount.setText("Xóa tài khoản");
+        itemDeteleAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemDeteleAccountActionPerformed(evt);
+            }
+        });
+        popupmenuUpdateAccount.add(itemDeteleAccount);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("Quản lý tài khoản");
+
+        btnBack.setText("<- Trở lại");
+
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        tblListAccount.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Tên người dùng", "Mã nhân viên", "Tên nhân viên", "Vai trò"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblListAccount);
+
+        btnRefesh.setText("Làm mới");
+        btnRefesh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefeshActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRefesh)
+                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnRefesh)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jTabbedPane1.addTab("Danh sách tài khoản", jPanel1);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Nhập tên đăng nhập :");
+
+        jButton1.setText("jButton1");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addComponent(jLabel2)
+                .addGap(37, 37, 37)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jButton1)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addContainerGap(290, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Tạo mới tài khoản", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnBack)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(252, 252, 252))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(btnBack)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRefeshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefeshActionPerformed
+        // TODO add your handling code here:
+        show2();
+    }//GEN-LAST:event_btnRefeshActionPerformed
+
+    private void itemUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemUpdateActionPerformed
+        // TODO add your handling code here:
+        int useRow =tblListAccount.getSelectedRow();
+        if (useRow==-1){
+            JOptionPane.showMessageDialog(this,"Vui lòng chọn tài khoản để thực hiện chức năng");
+            return;
+        }
+            String username = (String) tblListAccount.getValueAt(useRow, 0);
+            String oldStaffName = (String) tblListAccount.getValueAt(useRow, 2);
+            UpdateAccountInformationForm updateAccountInformationForm =new UpdateAccountInformationForm(username,oldStaffName);
+            updateAccountInformationForm.setVisible(true);
+
+    }//GEN-LAST:event_itemUpdateActionPerformed
+
+    private void itemResetPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemResetPasswordActionPerformed
+        // TODO add your handling code here:
+        int useRow =tblListAccount.getSelectedRow();
+        if (useRow==-1){
+            JOptionPane.showMessageDialog(this,"Vui lòng chọn tài khoản để thực hiện chức năng");
+            return;
+        }
+        Integer selected= JOptionPane.showConfirmDialog(this,"Đổi mật khẩu");
+        if (selected==JOptionPane.YES_OPTION) {
+            String username=(String) tblListAccount.getValueAt(useRow,0);
+            String actor = (String) tblListAccount.getValueAt(useRow, 3);
+            if (actor.equalsIgnoreCase("Quản Lý")) {
+               String oldPassword= (String)JOptionPane.showInputDialog("Nhập mật khẩu cũ:");
+               if (oldPassword==null){
+                   JOptionPane.showMessageDialog(this,"Mật khẩu trống!");
+                   return;
+               }
+               Account accountCheck=new AccountBL().login(username, StaticFunctionService.getMd5(oldPassword));
+               if (accountCheck==null){
+                   JOptionPane.showMessageDialog(this,"Sai mật khẩu","Nhập mật khẩu cũ",JOptionPane.ERROR_MESSAGE);
+                   return;
+               }
+                String newPassword= (String)JOptionPane.showInputDialog("Nhập mật khẩu mới:");
+               if (newPassword==null){
+                   JOptionPane.showMessageDialog(this,"Mật khẩu trống!");
+                   return;
+               }
+                if (new AccountBL().changePassword(StaticFunctionService.getMd5(newPassword),username)){
+                    JOptionPane.showMessageDialog(this,"Đổi mật khẩu thành công");
+                    return;
+                }else {
+                    JOptionPane.showMessageDialog(this,"Đổi mật khẩu thất bại","Đổi mật khẩu",JOptionPane.ERROR_MESSAGE);
+                }
+
+                return;
+            }else{
+                String newPassword= (String)JOptionPane.showInputDialog("Nhập mật khẩu mới:");
+                if (newPassword==null){
+                    JOptionPane.showMessageDialog(this,"Mật khẩu trống!");
+                    return;
+                }
+                if (new AccountBL().changePassword(StaticFunctionService.getMd5(newPassword),username)){
+                    JOptionPane.showMessageDialog(this,"Đổi mật khẩu thành công");
+                    return;
+                }else {
+                    JOptionPane.showMessageDialog(this,"Đổi mật khẩu thất bại","Đổi mật khẩu",JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }//GEN-LAST:event_itemResetPasswordActionPerformed
+
+    private void itemDeteleAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeteleAccountActionPerformed
+        // TODO add your handling code here:
+        int useRow =tblListAccount.getSelectedRow();
+        if (useRow==-1){
+            JOptionPane.showMessageDialog(this,"Vui lòng chọn tài khoản để thực hiện chức năng");
+            return;
+        }
+        Integer selected= JOptionPane.showConfirmDialog(this,"Xóa tài khoản này?");
+        if (selected==JOptionPane.YES_OPTION){
+            String actor=(String) tblListAccount.getValueAt(useRow,3);
+            if (actor.equalsIgnoreCase("Quản Lý")){
+                JOptionPane.showMessageDialog(this,"Không thể xóa tài khoản của quản lí","Xóa tài khoản",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            String username=(String) tblListAccount.getValueAt(useRow,0);
+            int result=new AccountBL().delete(username);
+            if (result==1){
+                JOptionPane.showMessageDialog(this,"Xóa thành công");
+                show2();
+                return;
+            }else if (result==-2){
+                JOptionPane.showMessageDialog(this,"Không thể xóa tài khoản của quản lí","Xóa tài khoản",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            else {
+                JOptionPane.showMessageDialog(this,"Xóa không thành công , vui lòng thử lại sau");
+                show2();
+            }
+        }
+    }//GEN-LAST:event_itemDeteleAccountActionPerformed
 
     /**
      * @param args the command line arguments
@@ -50,7 +333,7 @@ public class AccountManagementForm extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -79,5 +362,21 @@ public class AccountManagementForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnRefesh;
+    private javax.swing.JMenuItem itemDeteleAccount;
+    private javax.swing.JMenuItem itemResetPassword;
+    private javax.swing.JMenuItem itemUpdate;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPopupMenu popupmenuUpdateAccount;
+    private javax.swing.JTable tblListAccount;
     // End of variables declaration//GEN-END:variables
 }

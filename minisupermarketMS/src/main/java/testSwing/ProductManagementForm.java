@@ -126,6 +126,8 @@ public class ProductManagementForm extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Quản Lý Sản Phẩm");
 
+        tabProductInformation2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
         comboboxTypeSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         comboboxTypeSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hình thức tìm kiếm", "Tìm kiếm theo tên", "Tìm kiếm theo mã sản phẩm", " " }));
         comboboxTypeSearch.setBorder(null);
@@ -229,7 +231,7 @@ public class ProductManagementForm extends javax.swing.JFrame {
         );
         panelResultSearchLayout.setVerticalGroup(
             panelResultSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPaneResultSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+            .addComponent(jScrollPaneResultSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
