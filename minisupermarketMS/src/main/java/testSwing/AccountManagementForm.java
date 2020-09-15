@@ -89,15 +89,15 @@ public class AccountManagementForm extends javax.swing.JFrame {
         txtNewStaffName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
-        checkboxPassword = new javax.swing.JCheckBox();
         lbPassword = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtReEnterPassword = new javax.swing.JPasswordField();
-        checkboxReenterPassword = new javax.swing.JCheckBox();
         lbReEnterPassword = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btncreateNew = new javax.swing.JButton();
         btnCancle = new javax.swing.JButton();
         lbUserName = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        comActor = new javax.swing.JComboBox<>();
 
         itemUpdate.setText("Cập nhật thông tin tài khoản");
         itemUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -207,16 +207,33 @@ public class AccountManagementForm extends javax.swing.JFrame {
         jLabel4.setText("Mật khẩu                  :");
 
         txtPassword.setToolTipText("Mật khẩu phải chứa từ 8-20 kí tự, có ít nhất một chữ cái hoa và chữ cái thường và chứa một kí tự số");
-
-        checkboxPassword.setEnabled(false);
+        txtPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPasswordFocusGained(evt);
+            }
+        });
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Nhập lại mật khẩu    :");
 
-        checkboxReenterPassword.setEnabled(false);
+        txtReEnterPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtReEnterPasswordActionPerformed(evt);
+            }
+        });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Tạo Tài Khoản");
+        btncreateNew.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btncreateNew.setText("Tạo Tài Khoản");
+        btncreateNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncreateNewActionPerformed(evt);
+            }
+        });
 
         btnCancle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnCancle.setText("Hủy");
@@ -226,43 +243,48 @@ public class AccountManagementForm extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("vai trò :");
+
+        comActor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nhân Viên", "Quản Lý" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtnewUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                        .addComponent(txtNewStaffName)
-                        .addComponent(txtPassword)
-                        .addComponent(txtReEnterPassword))
-                    .addComponent(btnCancle, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtnewUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                                .addComponent(txtNewStaffName)
+                                .addComponent(txtPassword)
+                                .addComponent(txtReEnterPassword))
+                            .addComponent(btnCancle, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(checkboxReenterPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(checkboxPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lbPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lbReEnterPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)))
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 80, Short.MAX_VALUE))
+                                .addComponent(btnCheckExitst)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lbUserName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btncreateNew)
+                                    .addComponent(lbPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbReEnterPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 80, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnCheckExitst)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lbUserName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(comActor, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -282,18 +304,20 @@ public class AccountManagementForm extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lbPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                    .addComponent(checkboxPassword)
                     .addComponent(txtPassword))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                         .addComponent(txtReEnterPassword))
-                    .addComponent(checkboxReenterPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbReEnterPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(82, 82, 82)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comActor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(btncreateNew, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                     .addComponent(btnCancle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -308,7 +332,7 @@ public class AccountManagementForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btnBack)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -470,8 +494,6 @@ public class AccountManagementForm extends javax.swing.JFrame {
         txtNewStaffName.setText("");
         txtPassword.setText("");
         txtReEnterPassword.setText("");
-        checkboxPassword.setSelected(false);
-        checkboxReenterPassword.setSelected(false);
         lbPassword.setText("");
         lbReEnterPassword.setText("");
     }//GEN-LAST:event_btnCancleActionPerformed
@@ -482,6 +504,116 @@ public class AccountManagementForm extends javax.swing.JFrame {
         managerForm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusGained
+        // TODO add your handling code here:
+        // checkboxPassword.setSelected(false);
+        // String password1=new String(txtPassword.getPassword());
+        // if (!(password1==null||password1.equals(""))) {
+            
+        // }
+        // boolean check=PasswordService.validatePassword(password1);
+        // if (check) {
+        //     checkboxPassword.setSelected(true);
+        //     lbPassword.setText("Hợp lệ");
+            
+        // }else{
+        //     checkboxPassword.setSelected(false);
+        //     lbPassword.setText("Không hợp lệ");
+        //     lbPassword.setForeground(Color.RED);
+            
+        // }
+    }//GEN-LAST:event_txtPasswordFocusGained
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void txtReEnterPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtReEnterPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtReEnterPasswordActionPerformed
+
+    private void btncreateNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncreateNewActionPerformed
+        // TODO add your handling code here:
+        //valid userName
+        String userName=txtnewUserName.getText();
+        if (userName==null||userName.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập tên đăng nhập để kiểm tra", "", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else{
+            boolean check=new AccountBL().checkExist(userName);
+            if (check){
+                lbUserName.setText("Tên người dùng đã tồn tại");
+                lbUserName.setForeground(Color.RED);
+                return;
+            } else {
+                if (PasswordService.validateUsername(userName)) {
+                    lbUserName.setText("Hợp lệ");
+                }else{
+                    JOptionPane.showMessageDialog(this,"Tên người dùng phải không có kí tự đặc biệt và phải có từ 8-20 kí tự", "", JOptionPane.ERROR_MESSAGE);
+                    lbUserName.setText("Không hợp lệ");
+                    return;
+                }
+                
+            }
+        }
+        //valid
+        String yourName=txtNewStaffName.getText();
+        if(yourName==null||yourName.equals("")){
+            JOptionPane.showMessageDialog(this, "Hãy nhập tên của bạn", "", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        //valid password
+        String password1=new String(txtPassword.getPassword());
+        StringBuilder stringBuilder = new StringBuilder();
+        if(password1.equals("")||password1==null){
+            stringBuilder.append("Mật khẩu trống!\n");
+        }else{
+            if(!PasswordService.validatePassword(password1)){
+            stringBuilder.append("Mật khẩu bao gồm ít nhất 8 kí tự và tối đa 20 kí tự\n"
+                            + "Mật khẩu phải có ít nhất một kí tự số\n" + "Mật khẩu phải có ít nhất một kí tự hoa và một kí tự thường\n");
+            }
+        }
+        if(stringBuilder.length()>0){
+            JOptionPane.showMessageDialog(this, stringBuilder.toString(), "Không hợp lệ", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        //valid reEnter
+        String password2=new String(txtReEnterPassword.getPassword());
+        StringBuilder stringBuilder1 = new StringBuilder();
+        if(password2.equals("")||password2==null){
+            stringBuilder1.append("Hãy nhập lại mật khẩu!\n");
+        }else{
+            if(!PasswordService.validatePassword(password2)){
+                stringBuilder1.append("Mật khẩu bao gồm ít nhất 8 kí tự và tối đa 20 kí tự\n"
+                        + "Mật khẩu phải có ít nhất một kí tự số\n" + "Mật khẩu phải có ít nhất một kí tự hoa và một kí tự thường\n");
+            }
+        }
+        if(stringBuilder1.length()>0){
+            JOptionPane.showMessageDialog(this, stringBuilder1.toString(), "Không hợp lệ", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // compare renEnter with Enter
+        if(!password1.equals(password2)){
+            JOptionPane.showMessageDialog(this, "Mật khẩu mới không khớp", "", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int isAdmin=-1;
+        String acashbdhjbdashjsdbhjasbasbjahjsbdjasbdhjasbdjasbhjasbhjasbdhasbjasbdhjasb=(String)comActor.getSelectedItem();
+        if (acashbdhjbdashjsdbhjasbasbjahjsbdjasbdhjasbdjasbhjasbhjasbdhasbjasbdhjasb.equalsIgnoreCase("Nhân Viên")) {
+            isAdmin=1;
+        } else {
+            isAdmin=0;
+        }
+        Account account= new Account(userName, password1,yourName, isAdmin);
+        boolean check=new AccountBL().createNewAccount(account);
+        if (check) {
+            JOptionPane.showMessageDialog(this, "Tạo mới thành công!");
+        }else{
+            JOptionPane.showMessageDialog(this,"Lỗi kĩ thuật, vui lòng thử lại sau", "Oops!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btncreateNewActionPerformed
 
     /**
      * @param args the command line arguments
@@ -525,17 +657,17 @@ public class AccountManagementForm extends javax.swing.JFrame {
     private javax.swing.JButton btnCancle;
     private javax.swing.JButton btnCheckExitst;
     private javax.swing.JButton btnRefesh;
-    private javax.swing.JCheckBox checkboxPassword;
-    private javax.swing.JCheckBox checkboxReenterPassword;
+    private javax.swing.JButton btncreateNew;
+    private javax.swing.JComboBox<String> comActor;
     private javax.swing.JMenuItem itemDeteleAccount;
     private javax.swing.JMenuItem itemResetPassword;
     private javax.swing.JMenuItem itemUpdate;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

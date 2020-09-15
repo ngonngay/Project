@@ -7,7 +7,7 @@ public class PasswordService {
     public static boolean validateUsername(String userName){
         Pattern pattern=Pattern.compile("[\\p{Punct}]");
         Matcher matcher=pattern.matcher(userName);
-        System.out.println(matcher.find() );
+        
         boolean check737=matcher.find();
         if ((!check737)&&userName.length()<20&&(userName.length()>8||userName.length()==8)){
             return true;
