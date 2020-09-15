@@ -44,6 +44,8 @@ public class UpdateAccountInformationForm extends javax.swing.JFrame {
         btnUpdate = new javax.swing.JButton();
         btnCancle = new javax.swing.JButton();
 
+        setResizable(false);
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Tên cũ :");
 

@@ -41,6 +41,7 @@ public class Login extends javax.swing.JFrame {
         logInButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Đăng nhập"));
 

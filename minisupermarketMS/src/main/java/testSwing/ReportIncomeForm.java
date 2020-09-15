@@ -32,6 +32,8 @@ public class ReportIncomeForm extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtReport = new javax.swing.JTextArea();
 
+        setResizable(false);
+
         txtReport.setEditable(false);
         txtReport.setColumns(20);
         txtReport.setRows(5);

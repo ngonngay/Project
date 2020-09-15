@@ -85,7 +85,7 @@ primary key(invoice_id,product_id),
 constraint fk_Detail_Product foreign key (product_id) references Products(product_id)
 );
 insert into OrderDetail(invoice_id,product_id,quantity,price,discounted)values
-(1,'1001',1,3000,1000),(3,'1002',1,3000,0),(4,'1002',1,3000,0),(5,'1002',1,3000,0),(6,'1002',1,3000,0),(7,'1002',1,3000,0),(8,'1002',1,3000,0),(4,'1002',1,3000,0),(5,'1002',1,3000,0),(3,'1002',1,3000,0),(7,'1002',1,3000,0);
+(1,'1001',1,3000,1000),(3,'1002',1,3000,0),(4,'1002',1,3000,0),(5,'1002',1,3000,0),(6,'1002',1,3000,0),(7,'1002',1,3000,0),(8,'1002',1,3000,0),(8,'1001',1,3000,0),(5,'1001',1,3000,0),(3,'1001',1,3000,0),(7,'1001',1,3000,0);
 insert into OrderDetail(invoice_id,product_id,quantity,price,discounted)values
 (2,'1001',1,3000,1000);
 select * from OrderDetail;

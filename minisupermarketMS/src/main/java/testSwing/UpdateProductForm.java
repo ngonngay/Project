@@ -65,6 +65,8 @@ public class UpdateProductForm extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         btnBack = new javax.swing.JButton();
 
+        setResizable(false);
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Cập nhật thông tin sản phẩm");
 

@@ -37,6 +37,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -133,7 +134,7 @@
                       <Component id="btnRefesh" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" alignment="0" pref="700" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" pref="679" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -254,7 +255,7 @@
                                           <Component id="lbPassword" min="-2" pref="79" max="-2" attributes="0"/>
                                           <Component id="lbReEnterPassword" min="-2" pref="79" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="80" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="59" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
