@@ -146,7 +146,7 @@ public class OrderDAL implements DAL<Order> {
                         }
                     //get storeName
                         PreparedStatement preparedStatement3 = connection.prepareStatement("select * from Stores where store_id=?;");
-                        preparedStatement3.setInt(1,order.getId());
+                        preparedStatement3.setInt(1,order.getStore_id());
                         ResultSet getStoreName = preparedStatement3.executeQuery();
                         while (getStoreName.next()){
                             order.setStore_name(getStoreName.getString("store_name"));

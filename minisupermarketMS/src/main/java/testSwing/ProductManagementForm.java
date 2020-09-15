@@ -763,51 +763,45 @@ public class ProductManagementForm extends javax.swing.JFrame {
             return;
         }
         if (comboboxTypeSearch.getSelectedItem().equals("Tìm kiếm theo tên")) {
-             //tìm kiếm theo tên
-             
-             String productName=txtKeyWord.getText();
-             if (productName == null) {
-                 JOptionPane.showMessageDialog(this, "Vui Lòng nhập tên sản phẩm !", "Tìm kiếm sản phẩm", JOptionPane.ERROR_MESSAGE);
-                 return;
-             }
- 
-             //lấy ra danh sách kêt quả từ db
-             List<Product>products=productBL.getByName2(productName);
-             if (products.isEmpty()) {
-                 JOptionPane.showMessageDialog(this, "Không tìm thấy sản phẩm nào !", "Tìm kiếm sản phẩm", JOptionPane.ERROR_MESSAGE);
-                 return;
-             }else{
-                 boolean checkExistOnLocal=false;
-                 for (Product product2 : products) {
-                     for (int i = 0; i < localGottenProductOnSession.size(); i++) {
-                         if (localGottenProductOnSession.get(i).getName().equals(product2.getName())){
-                             checkExistOnLocal=true;
-                             break;
-                         }
-                     }
-                     if (!checkExistOnLocal) {
-                         localGottenProductOnSession.add(product2);
-                     }
-                 }
-             }
-             if (products!= null||products.isEmpty()==false){
-                 defaultTableModel.setRowCount(0);
-                 for (Product product : products) {
-                     for (Product productLoop : localGottenProductOnSession) {
-                         if(productLoop.equals(product)){
-                             defaultTableModel.addRow(new Object[]{productLoop.getProductId(), productLoop.getName(), productLoop.getLeftQuantity(), OrderService.printPrice(productLoop.getPrice())});
-                             break;
-                         }
-                         
-                     }
-                 }
-                 
-                 
-             } else {
-                 JOptionPane.showMessageDialog(this, "Không tìm thấy sản phẩm nào !", "Tìm kiếm sản phẩm", JOptionPane.ERROR_MESSAGE);
-                 return;
-             }
-             return;
+            //tìm kiếm theo tên
+            String productName = txtKeyWord.getText();
+            if (productName == null) {
+                JOptionPane.showMessageDialog(this, "Vui Lòng nhập tên sản phẩm !", "Tìm kiếm sản phẩm", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            //lấy ra danh sách kêt quả từ db
+            List<Product> products = productBL.getByName2(productName);
+            if (products.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Không tìm thấy sản phẩm nào !", "Tìm kiếm sản phẩm", JOptionPane.ERROR_MESSAGE);
+                return;
+            } else {
+                boolean checkExistOnLocal = false;
+                for (Product product2 : products) {
+                    if (localGottenProductOnSession.isEmpty()){
+                        localGottenProductOnSession.add(product2);
+                    }else {
+                        for (int i = 0; i < localGottenProductOnSession.size(); i++) {
+                            if (localGottenProductOnSession.get(i).getName().equals(product2.getName())) {
+                                checkExistOnLocal = true;
+                                break;
+                            }
+                        }
+                        if (!checkExistOnLocal) {
+                            localGottenProductOnSession.add(product2);
+                        }
+                    }
+                }
+            }
+            defaultTableModel.setRowCount(0);
+            for (Product productLoop : localGottenProductOnSession) {
+                if (productLoop.getName().equals(productName)) {
+                    defaultTableModel.addRow(new Object[]{productLoop.getProductId(), productLoop.getName(), productLoop.getLeftQuantity(), OrderService.printPrice(productLoop.getPrice())});
+                    break;
+                }
+
+            }
+            return;
         }
         String productId = txtKeyWord.getText();
         if (productId == null) {
@@ -834,8 +828,7 @@ public class ProductManagementForm extends javax.swing.JFrame {
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            txtKeyWord.setText("");
-
+            
         }
 
     }// GEN-LAST:event_btnSearchActionPerformed

@@ -212,12 +212,10 @@ public class ProductDAL implements DAL<Product> {
         }
         //boolean check=false;
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select * from Products where product_name  like ?;")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from Products where product_name=?;")) {
             while (name.indexOf("  ") != -1) {
                 name = name.replaceAll("  "," ");
             }
-            name=name.replaceAll(" ","%");
-            name="%"+name+"%";
             System.out.println(name);
             preparedStatement.setString(1, name);
             ResultSet resultSet = preparedStatement.executeQuery();
