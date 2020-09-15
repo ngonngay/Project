@@ -594,9 +594,10 @@ public class ProductManagementForm extends javax.swing.JFrame {
         // checking newProductId text field
         String newId = null;
         newId = txtNewProductId.getText();
-        Pattern pattern=Pattern.compile("[^!,#,$,%,^,&,*,(,),-,=,+,/,\\,]*");
+        Pattern pattern=Pattern.compile("[\\p{Punct}]");
         Matcher matcher=pattern.matcher(newId);
-        if (matcher.matches()){
+        boolean check737=matcher.find();
+        if (check737){
             JOptionPane.showMessageDialog(this, "Mã sản phẩm không được có kí tự đặc biệt!", "Kiểm tra mã",
                     JOptionPane.ERROR_MESSAGE);
             return;
@@ -723,9 +724,18 @@ public class ProductManagementForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         String newId = null;
         newId = txtNewProductId.getText();
-
+        
         if (newId == null || newId.equals("")) {
             JOptionPane.showMessageDialog(this, "Mã sản phẩm không được bỏ trống!", "Kiểm tra mã",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Pattern pattern=Pattern.compile("[\\p{Punct}]");
+        System.out.println(newId);
+        Matcher matcher=pattern.matcher(newId);
+        boolean check737=matcher.find();
+        if (check737){
+            JOptionPane.showMessageDialog(this, "Mã sản phẩm không được có kí tự đặc biệt!", "Kiểm tra mã",
                     JOptionPane.ERROR_MESSAGE);
             return;
         }

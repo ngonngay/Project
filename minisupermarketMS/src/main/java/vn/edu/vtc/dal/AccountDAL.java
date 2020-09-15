@@ -130,4 +130,18 @@ public class AccountDAL implements DAL<Account> {
         }
         return true;
     }
+	public boolean checkExist(String userName) {
+		try (Connection connection=DbUtil.getConnection();) {
+            PreparedStatement preparedStatement=connection.prepareStatement("select * from Accounts where username=?;");
+            preparedStatement.setString(1, userName);
+            ResultSet resultSet=preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            //TODO: handle exception
+            return false;
+        }
+        return false;
+	}
 }

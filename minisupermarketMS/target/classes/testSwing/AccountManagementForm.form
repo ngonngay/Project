@@ -62,7 +62,7 @@
               <Component id="btnBack" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
-          <Component id="jTabbedPane1" max="32767" attributes="0"/>
+          <Component id="jTabbedPane1" pref="705" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -103,6 +103,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&lt;- Tr&#x1edf; l&#x1ea1;i"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
       <Properties>
@@ -130,7 +133,7 @@
                       <Component id="btnRefesh" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" alignment="0" pref="695" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" pref="700" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -216,26 +219,89 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                      <Component id="jTextField1" min="-2" pref="241" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="25" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel5" max="32767" attributes="0"/>
+                          <Component id="jLabel4" max="32767" attributes="0"/>
+                          <Component id="jLabel3" max="32767" attributes="0"/>
+                          <Component id="jLabel2" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtnewUserName" pref="241" max="32767" attributes="0"/>
+                              <Component id="txtNewStaffName" max="32767" attributes="0"/>
+                              <Component id="txtPassword" max="32767" attributes="0"/>
+                              <Component id="txtReEnterPassword" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="btnCancle" min="-2" pref="121" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="checkboxReenterPassword" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="checkboxPassword" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="lbPassword" max="32767" attributes="0"/>
+                                          <Component id="lbReEnterPassword" pref="79" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="80" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btnCheckExitst" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lbUserName" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField1" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtnewUserName" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="btnCheckExitst" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="lbUserName" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="290" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel3" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="txtNewStaffName" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lbPassword" max="32767" attributes="0"/>
+                          <Component id="jLabel4" pref="26" max="32767" attributes="0"/>
+                          <Component id="checkboxPassword" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPassword" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel5" alignment="3" pref="26" max="32767" attributes="0"/>
+                              <Component id="txtReEnterPassword" alignment="3" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="checkboxReenterPassword" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lbReEnterPassword" alignment="1" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jButton1" pref="32" max="32767" attributes="0"/>
+                          <Component id="btnCancle" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -249,12 +315,91 @@
                 <Property name="text" type="java.lang.String" value="Nh&#x1ead;p t&#xea;n &#x111;&#x103;ng nh&#x1ead;p :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
+            <Component class="javax.swing.JTextField" name="txtnewUserName">
+              <Properties>
+                <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                  <Insets value="[0, 0, 0, 0]"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtnewUserNameActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnCheckExitst">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ki&#x1ec3;m tra"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCheckExitstActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel3">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="T&#xea;n c&#x1ee7;a b&#x1ea1;n             :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtNewStaffName">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel4">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="M&#x1ead;t kh&#x1ea9;u                  :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JPasswordField" name="txtPassword">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="M&#x1ead;t kh&#x1ea9;u ph&#x1ea3;i ch&#x1ee9;a t&#x1eeb; 8-20 k&#xed; t&#x1ef1;, c&#xf3; &#xed;t nh&#x1ea5;t m&#x1ed9;t ch&#x1eef; c&#xe1;i hoa v&#xe0; ch&#x1eef; c&#xe1;i th&#x1b0;&#x1edd;ng v&#xe0; ch&#x1ee9;a m&#x1ed9;t k&#xed; t&#x1ef1; s&#x1ed1;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="checkboxPassword">
+              <Properties>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbPassword">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel5">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Nh&#x1ead;p l&#x1ea1;i m&#x1ead;t kh&#x1ea9;u    :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JPasswordField" name="txtReEnterPassword">
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="checkboxReenterPassword">
+              <Properties>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbReEnterPassword">
             </Component>
             <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jButton1"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="T&#x1ea1;o T&#xe0;i Kho&#x1ea3;n"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnCancle">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="H&#x1ee7;y"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancleActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbUserName">
             </Component>
           </SubComponents>
         </Container>

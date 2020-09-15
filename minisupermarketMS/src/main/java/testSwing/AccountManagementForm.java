@@ -13,6 +13,8 @@ import vn.edu.vtc.pl.StaticFunctionService;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +25,11 @@ import java.util.List;
 public class AccountManagementForm extends javax.swing.JFrame {
     DefaultTableModel defaultTableModel;
     List<Account> accounts=new ArrayList<>();
+    Account account;
     /**
      * Creates new form AccountManagementForm
      */
-    public AccountManagementForm() {
+    public AccountManagementForm(Account account) {
         initComponents();
         defaultTableModel=new DefaultTableModel(){
             @Override
@@ -34,6 +37,7 @@ public class AccountManagementForm extends javax.swing.JFrame {
                 return false;
             }
         };
+        this.account=account;
         tblListAccount.setModel(defaultTableModel);
         defaultTableModel.addColumn("Tên người dùng");
         defaultTableModel.addColumn("Mã nhân viên");
@@ -79,8 +83,21 @@ public class AccountManagementForm extends javax.swing.JFrame {
         btnRefesh = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtnewUserName = new javax.swing.JTextField();
+        btnCheckExitst = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtNewStaffName = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
+        checkboxPassword = new javax.swing.JCheckBox();
+        lbPassword = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtReEnterPassword = new javax.swing.JPasswordField();
+        checkboxReenterPassword = new javax.swing.JCheckBox();
+        lbReEnterPassword = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        btnCancle = new javax.swing.JButton();
+        lbUserName = new javax.swing.JLabel();
 
         itemUpdate.setText("Cập nhật thông tin tài khoản");
         itemUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +129,11 @@ public class AccountManagementForm extends javax.swing.JFrame {
         jLabel1.setText("Quản lý tài khoản");
 
         btnBack.setText("<- Trở lại");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
@@ -148,7 +170,7 @@ public class AccountManagementForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRefesh)
                 .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,30 +186,116 @@ public class AccountManagementForm extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Nhập tên đăng nhập :");
 
-        jButton1.setText("jButton1");
+        txtnewUserName.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        txtnewUserName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnewUserNameActionPerformed(evt);
+            }
+        });
+
+        btnCheckExitst.setText("Kiểm tra");
+        btnCheckExitst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckExitstActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("Tên của bạn             :");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("Mật khẩu                  :");
+
+        txtPassword.setToolTipText("Mật khẩu phải chứa từ 8-20 kí tự, có ít nhất một chữ cái hoa và chữ cái thường và chứa một kí tự số");
+
+        checkboxPassword.setEnabled(false);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setText("Nhập lại mật khẩu    :");
+
+        checkboxReenterPassword.setEnabled(false);
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1.setText("Tạo Tài Khoản");
+
+        btnCancle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnCancle.setText("Hủy");
+        btnCancle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancleActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addComponent(jLabel2)
-                .addGap(37, 37, 37)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(jButton1)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtnewUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                        .addComponent(txtNewStaffName)
+                        .addComponent(txtPassword)
+                        .addComponent(txtReEnterPassword))
+                    .addComponent(btnCancle, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(checkboxReenterPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(checkboxPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lbPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbReEnterPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)))
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 80, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnCheckExitst)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lbUserName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(46, 46, 46)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap(290, Short.MAX_VALUE))
+                    .addComponent(txtnewUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCheckExitst, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNewStaffName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lbPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                    .addComponent(checkboxPassword)
+                    .addComponent(txtPassword))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                        .addComponent(txtReEnterPassword))
+                    .addComponent(checkboxReenterPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbReEnterPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(82, 82, 82)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(btnCancle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Tạo mới tài khoản", jPanel2);
@@ -200,7 +308,7 @@ public class AccountManagementForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btnBack)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -326,6 +434,55 @@ public class AccountManagementForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_itemDeteleAccountActionPerformed
 
+    private void txtnewUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnewUserNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnewUserNameActionPerformed
+
+    private void btnCheckExitstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckExitstActionPerformed
+        // TODO add your handling code here:
+        String userName=txtnewUserName.getText();
+        if (userName==null||userName.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập tên đăng nhập để kiểm tra", "", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else{
+            boolean check=new AccountBL().checkExist(userName);
+            if (check){
+                lbUserName.setText("Tên người dùng đã tồn tại");
+                lbUserName.setForeground(Color.RED);
+                return;
+            } else {
+                if (PasswordService.validateUsername(userName)) {
+                    lbUserName.setText("Hợp lệ");
+                    return;
+                }else{
+                    JOptionPane.showMessageDialog(this,"Tên người dùng phải không có kí tự đặc biệt và phải có từ 8-20 kí tự", "", JOptionPane.ERROR_MESSAGE);
+                    lbUserName.setText("Không hợp lệ");
+                    return;
+                }
+                
+            }
+        }
+    }//GEN-LAST:event_btnCheckExitstActionPerformed
+
+    private void btnCancleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancleActionPerformed
+        // TODO add your handling code here:
+        txtnewUserName.setText("");
+        txtNewStaffName.setText("");
+        txtPassword.setText("");
+        txtReEnterPassword.setText("");
+        checkboxPassword.setSelected(false);
+        checkboxReenterPassword.setSelected(false);
+        lbPassword.setText("");
+        lbReEnterPassword.setText("");
+    }//GEN-LAST:event_btnCancleActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        ManagerForm managerForm =new ManagerForm(account);
+        managerForm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -356,27 +513,42 @@ public class AccountManagementForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AccountManagementForm().setVisible(true);
+                Account account = new AccountBL().login("Nguyenquyetthang",
+                StaticFunctionService.getMd5("Thangnguyenquyet123"));
+                new AccountManagementForm(account).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnCancle;
+    private javax.swing.JButton btnCheckExitst;
     private javax.swing.JButton btnRefesh;
+    private javax.swing.JCheckBox checkboxPassword;
+    private javax.swing.JCheckBox checkboxReenterPassword;
     private javax.swing.JMenuItem itemDeteleAccount;
     private javax.swing.JMenuItem itemResetPassword;
     private javax.swing.JMenuItem itemUpdate;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lbPassword;
+    private javax.swing.JLabel lbReEnterPassword;
+    private javax.swing.JLabel lbUserName;
     private javax.swing.JPopupMenu popupmenuUpdateAccount;
     private javax.swing.JTable tblListAccount;
+    private javax.swing.JTextField txtNewStaffName;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JPasswordField txtReEnterPassword;
+    private javax.swing.JTextField txtnewUserName;
     // End of variables declaration//GEN-END:variables
 }

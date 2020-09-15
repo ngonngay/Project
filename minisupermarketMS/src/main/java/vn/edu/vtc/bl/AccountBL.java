@@ -32,4 +32,8 @@ public class AccountBL {
     public boolean updateInfo(String userName, String newStaffName, String actor) {
         return accountDAL.updateInfo(userName,newStaffName,actor);
     }
+
+	public boolean checkExist(String userName) {
+		return accountDAL.checkExist(userName);
+	}
 }

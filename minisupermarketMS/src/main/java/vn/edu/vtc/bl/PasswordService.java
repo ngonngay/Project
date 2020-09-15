@@ -5,9 +5,11 @@ import java.util.regex.Pattern;
 
 public class PasswordService {
     public static boolean validateUsername(String userName){
-        Pattern pattern=Pattern.compile("[^!,#,$,%,^,&,*,(,),-,=,+,/,\\,]*");
+        Pattern pattern=Pattern.compile("[\\p{Punct}]");
         Matcher matcher=pattern.matcher(userName);
-        if (matcher.matches()&&userName.length()<20&&(userName.length()>8||userName.length()==8)){
+        System.out.println(matcher.find() );
+        boolean check737=matcher.find();
+        if ((!check737)&&userName.length()<20&&(userName.length()>8||userName.length()==8)){
             return true;
         }
         return false;

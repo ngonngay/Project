@@ -11,7 +11,11 @@ select * from (select invoice_id,invoice_date,store_id,invoices.staff_id,staff_n
 ;
 select * from Accounts;
 insert into Accounts(username,pass,staff_name,isAdmin)values
-('Nguyenquyetthang2','16c0ce36e334e22fda8caca1b10c2f9c','thang2',0);
+('Nguyenquyetthang2','16c0ce36e334e22fda8caca1b10c2f9c','thang2',1);
 select invoice_id,invoice_date,store_id,invoices.staff_id,staff_name from Invoices inner join Accounts on invoices.staff_id=Accounts.staff_id;
 delete from Accounts where username='Nguyenquyetthang2';
 select isAdmin from Accounts where username='Nguyenquyetthang2';
+update Accounts set pass='abcbhajsbhdjbhjasdbhjsdabhjasbhja' where username='Nguyenquyetthang2';
+insert into Accounts(username,pass,staff_name,isAdmin)values
+('Nguyenquyetthang3','16c0ce36e334e22fda8caca1b10c2f9c','thang2',0);
+update Accounts set staff_name='nguyen quyet thang',isAdmin=0 where username='Nguyenquyetthang2';
