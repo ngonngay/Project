@@ -404,13 +404,17 @@ public class AccountManagementForm extends javax.swing.JFrame {
                    JOptionPane.showMessageDialog(this,"Mật khẩu trống!");
                    return;
                }
+               if (!PasswordService.validatePassword(newPassword)) {
+                JOptionPane.showMessageDialog(this,"Mật khẩu bao gồm ít nhất 8 kí tự và tối đa 20 kí tự\n"
+                + "Mật khẩu phải có ít nhất một kí tự số\n" + "Mật khẩu phải có ít nhất một kí tự hoa và một kí tự thường\n","",JOptionPane.ERROR_MESSAGE);
+               return;
+                }
                 if (new AccountBL().changePassword(StaticFunctionService.getMd5(newPassword),username)){
                     JOptionPane.showMessageDialog(this,"Đổi mật khẩu thành công");
                     return;
                 }else {
                     JOptionPane.showMessageDialog(this,"Đổi mật khẩu thất bại","Đổi mật khẩu",JOptionPane.ERROR_MESSAGE);
                 }
-
                 return;
             }else{
                 String newPassword= (String)JOptionPane.showInputDialog("Nhập mật khẩu mới:");
