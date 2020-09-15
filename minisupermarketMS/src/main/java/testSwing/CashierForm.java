@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -755,6 +756,15 @@ public class CashierForm extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(this,"Tối đa "+product.getLeftQuantity(),"Lỗi dữ liệu",JOptionPane.ERROR_MESSAGE);
                             return;
                         }
+                        if (amount==0) {
+                            order.getProductList().remove(product);
+                            for (int i = 0; i < localGottenProductOnSession.size() ;i++) {
+                                if (localGottenProductOnSession.get(i).getName().equals(productName)){
+                                    localGottenProductOnSession.get(i).setLeftQuantity(localGottenProductOnSession.get(i).getLeftQuantity()+(product.getAmount()-amount));
+                                    break;
+                                }
+                            }
+                        }
                         if (amount<product.getAmount()) {
                             for (int i = 0; i < localGottenProductOnSession.size() ;i++) {
                                 if (localGottenProductOnSession.get(i).getName().equals(productName)){
@@ -770,10 +780,16 @@ public class CashierForm extends javax.swing.JFrame {
                                 }
                             }
                         }
-                        product.setAmount(amount);
+                        if (amount!=0) {
+                            product.setAmount(amount);
+                        }
+                       
                     }
                 }
-            } catch (Exception e) {
+            }catch(ConcurrentModificationException e){
+
+            }catch (Exception e) {
+                
                 JOptionPane.showMessageDialog(this, "Vui lòng nhập số lượng", "Lỗi dữ liệu", JOptionPane.ERROR_MESSAGE);
             }
             //load lai data cua listProductSearch

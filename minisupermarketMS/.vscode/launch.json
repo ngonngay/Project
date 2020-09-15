@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - UpdateAccountInformationForm",
+            "request": "launch",
+            "mainClass": "testSwing.UpdateAccountInformationForm",
+            "projectName": "minisupermarketMS"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - AccountManagementForm",
             "request": "launch",
             "mainClass": "testSwing.AccountManagementForm",

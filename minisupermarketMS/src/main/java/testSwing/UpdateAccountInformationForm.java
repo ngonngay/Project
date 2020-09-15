@@ -185,6 +185,7 @@ public class UpdateAccountInformationForm extends javax.swing.JFrame {
 
     private void btnCancleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancleActionPerformed
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnCancleActionPerformed
 
     /**
