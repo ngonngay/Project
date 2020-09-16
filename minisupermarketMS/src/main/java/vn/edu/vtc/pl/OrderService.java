@@ -286,7 +286,8 @@ public class OrderService {
         str1 = str1 + "\n----------------------------------------------------------------------------";
         str1 = str1 + "\n                    -------HÓA ĐƠN THANH TOÁN-------         ";
         str1 = str1 + String.format("\nThời gian: %15s", order.getDate());
-        str1 = str1 + String.format("%17s", "Mã: " + order.getId());
+        str1 = str1 + String.format("%17s", "    Mã: " + order.getId());
+        str1 = str1 + String.format("\n%40s", "NVBH: " + order.getStaff_id());
         str1 = str1 + "\n----------------------------------------------------------------------------";
         str1 = str1 + "\nTên mặt hàng            Giá            Số lượng     Thành tiền";
         str1 = str1 + "\n----------------------------------------------------------------------------";
@@ -363,16 +364,16 @@ public class OrderService {
     public static String printReport(List<Order> listOrder) {
         String totalReport = "";
         String str2 = "";
-        str2 = "   VTC ACADEMY";
+        str2 = "                                                                  VTC ACADEMY";
         str2 = str2 + "\n           PF08\n";
         str2 = str2 + "\n                                                    THÔNG KÊ HÓA ĐƠN BÁN HÀNG\n";
         str2 = str2 + "\n------------------------------------------------------------------------------------------------------------------------------";
-        str2 = str2 + "\n|  Mã hóa đơn   | Nhân viên bán hàng  |   Ngày bán            |   Giờ bán      |   Tổng tiền hóa đơn  ";
+        str2 = str2 + "\n|  Mã hóa đơn |         Nhân viên bán hàng             |          Ngày bán                     |            Giờ bán              |        Tổng tiền hóa đơn        ";
         str2 = str2 + "\n------------------------------------------------------------------------------------------------------------------------------";
         for(int i=0;i<listOrder.size(); i++) {
             Order order = listOrder.get(i);
             List<String> dateTime = validateSQLdatetime(order.getDate());
-            str2 = str2 + String.format("\n" + "| %8s %33s %28s %20s %23s", order.getId(), order.getStaff_name(), dateTime.get(1), dateTime.get(0), printPrice(totalOrder(order)));
+            str2 = str2 + String.format("\n" + "| %8s %45s %40s %33s %35s", order.getId(), order.getStaff_name(), dateTime.get(1), dateTime.get(0), printPrice(totalOrder(order)));
         }
         str2 = str2 + "\n------------------------------------------------------------------------------------------------------------------------------";
         str2 = str2 + "\n\n\n       Người lập biểu                          Kế toán trưởng                      Người đại diện theo phát luật";

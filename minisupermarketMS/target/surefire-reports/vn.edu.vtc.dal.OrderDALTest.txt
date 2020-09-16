@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: vn.edu.vtc.dal.OrderDALTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.095 s - in vn.edu.vtc.dal.OrderDALTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.099 s - in vn.edu.vtc.dal.OrderDALTest

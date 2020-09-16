@@ -130,7 +130,7 @@ public class IncomeStatementForm extends javax.swing.JFrame {
         lblForStartDate.setText("Thống kê từ ngày :");
         lblForStartDate.setAutoscrolls(true);
 
-        spStartDate.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        spStartDate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         spStartDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -148,7 +148,7 @@ public class IncomeStatementForm extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Ngày :");
 
-        spEndDate.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        spEndDate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         spEndDate.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
         spEndDate.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -246,7 +246,7 @@ public class IncomeStatementForm extends javax.swing.JFrame {
                 .addContainerGap(69, Short.MAX_VALUE))
         );
 
-        comStartMonth.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        comStartMonth.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         comStartMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         comStartMonth.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -259,7 +259,7 @@ public class IncomeStatementForm extends javax.swing.JFrame {
             }
         });
 
-        comEndMonth.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        comEndMonth.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         comEndMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         comEndMonth.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -280,7 +280,7 @@ public class IncomeStatementForm extends javax.swing.JFrame {
             }
         });
 
-        comStartYear.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        comStartYear.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         comStartYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", " " }));
         comStartYear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -288,7 +288,7 @@ public class IncomeStatementForm extends javax.swing.JFrame {
             }
         });
 
-        comEndYear.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        comEndYear.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         comEndYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034" }));
         comEndYear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
