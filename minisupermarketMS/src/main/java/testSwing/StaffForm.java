@@ -63,6 +63,7 @@ public class StaffForm extends javax.swing.JFrame {
             }
         });
 
+        tblProductList.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblProductList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
