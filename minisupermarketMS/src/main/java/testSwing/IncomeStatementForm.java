@@ -197,6 +197,7 @@ public class IncomeStatementForm extends javax.swing.JFrame {
                 "Mã Hóa Đơn", "Nhân Viên ", "Ngày Bán", "Giờ Bán", "Tổng Tiền"
             }
         ));
+        tblResultSearch.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblResultSearch);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

@@ -11,8 +11,13 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketException;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -33,7 +38,7 @@ import vn.edu.vtc.pl.StaticFunctionService;
  * @author asus
  */
 public class CashierForm extends javax.swing.JFrame {
-
+public ZoneId z= ZoneId.of("GMT+7");
     /*
     My variables
      */
@@ -79,7 +84,16 @@ public class CashierForm extends javax.swing.JFrame {
         tblOrderProductList.setComponentPopupMenu(popupOrderProductList);
 
         lblStaffName.setText(account.getName());
-
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date1 = null;
+        Date date2 = null;
+        ZonedDateTime zdt = ZonedDateTime.now(z);
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy/MM/dd - HH:mm:ss z");
+        String formattedString2 = zdt.format(formatter2);
+        String[] s = formattedString2.split("\\s", 5);
+        String realDate =s[0];
+        lblDate.setText(realDate);
     }
 
     /**
@@ -198,8 +212,10 @@ public class CashierForm extends javax.swing.JFrame {
             }
         });
         tblProductListResultSearch.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tblProductListResultSearch.setColumnSelectionAllowed(true);
         tblProductListResultSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tblProductListResultSearch.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        tblProductListResultSearch.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblProductListResultSearch);
         tblProductListResultSearch.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -266,6 +282,10 @@ public class CashierForm extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Tên Nhân Viên :");
 
+        lblDate.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        lblStaffName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Cơ sở kinh doanh :");
 
@@ -314,11 +334,12 @@ public class CashierForm extends javax.swing.JFrame {
                         .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblStore)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDate)
-                    .addComponent(jLabel9)
-                    .addComponent(lblAddress))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9)
+                        .addComponent(lblAddress)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -326,7 +347,7 @@ public class CashierForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Chi tiết sản phẩm   ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Danh sách sản  phẩm        ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
 
         tblOrderProductList.setAutoCreateRowSorter(true);
         tblOrderProductList.setModel(new javax.swing.table.DefaultTableModel(
@@ -345,6 +366,8 @@ public class CashierForm extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tblOrderProductList.setColumnSelectionAllowed(true);
+        tblOrderProductList.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblOrderProductList);
         tblOrderProductList.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -674,7 +697,7 @@ public class CashierForm extends javax.swing.JFrame {
                 defaultTableModel2.setRowCount(0);
 
                 for (Product product1 : order.getProductList()) {
-                    defaultTableModel2.addRow(new Object[]{product1.getName(), "Lẻ", product1.getAmount(), OrderService.printPrice(product1.getPrice()), OrderService.printPrice(OrderService.Total(product1))});
+                    defaultTableModel2.addRow(new Object[]{product1.getName(), "Lẻ", product1.getAmount(), OrderService.printPrice((product1.getPrice()-product1.getDiscounted())*product.getAmount()), OrderService.printPrice(OrderService.Total(product1))});
                 }
                 lblTotalPrice.setText(OrderService.printPrice(OrderService.totalOrder(order)));
                 //update data in tblProductListResultSearch

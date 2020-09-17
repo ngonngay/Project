@@ -155,6 +155,7 @@ public class AccountManagementForm extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tblListAccount.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblListAccount);
 
         btnRefesh.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N

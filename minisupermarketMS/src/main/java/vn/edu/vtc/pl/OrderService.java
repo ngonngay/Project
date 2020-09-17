@@ -338,8 +338,8 @@ public class OrderService {
         String str3=str2.replace("₫", "");
         return str3;
     }
-    public static Double Total(Product p){
-        Double total = p.getPrice()*p.getAmount();
+    public static Double Total(Product product){
+        Double total = (product.getPrice()-product.getDiscounted())*product.getAmount();
         return total;
     }
     public static List<String> validateSQLdatetime(Timestamp sqlDate){

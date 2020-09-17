@@ -221,6 +221,7 @@ public class ProductManagementForm extends javax.swing.JFrame {
         });
         tblResultSearchTab1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tblResultSearchTab1.setAutoscrolls(false);
+        tblResultSearchTab1.getTableHeader().setReorderingAllowed(false);
         tblResultSearchTab1.setUpdateSelectionOnSort(false);
         jScrollPaneResultSearch.setViewportView(tblResultSearchTab1);
 
