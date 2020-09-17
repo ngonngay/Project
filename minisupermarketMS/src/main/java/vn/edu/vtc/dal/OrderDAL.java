@@ -273,7 +273,7 @@ public class OrderDAL implements DAL<Order> {
                     Order order=getById(id);
                     order.setStaff_name(resultSet.getString("staff_name"));
                     orders.add(order);
-                    System.out.println(i++);
+                    
                 }
             } catch (Exception e) {
                 //TODO: handle exception

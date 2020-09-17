@@ -368,12 +368,29 @@ public class OrderService {
         str2 = str2 + "\n           PF08\n";
         str2 = str2 + "\n                                                    THÔNG KÊ HÓA ĐƠN BÁN HÀNG\n";
         str2 = str2 + "\n------------------------------------------------------------------------------------------------------------------------------";
-        str2 = str2 + "\n|  Mã hóa đơn |         Nhân viên bán hàng             |          Ngày bán                     |            Giờ bán              |        Tổng tiền hóa đơn        ";
+        str2 = str2 + "\n|  Mã hóa đơn   |   Ngày bán            |   Giờ bán      |   Tổng tiền hóa đơn   | Nhân viên bán hàng  ";
         str2 = str2 + "\n------------------------------------------------------------------------------------------------------------------------------";
         for(int i=0;i<listOrder.size(); i++) {
             Order order = listOrder.get(i);
             List<String> dateTime = validateSQLdatetime(order.getDate());
-            str2 = str2 + String.format("\n" + "| %8s %45s %40s %33s %35s", order.getId(), order.getStaff_name(), dateTime.get(1), dateTime.get(0), printPrice(totalOrder(order)));
+            if(order.getId()>=10&&totalOrder(order)<10000){
+                str2 = str2 + String.format("\n" + "|%8d%28s %20s  %23s   %34s", order.getId(), dateTime.get(1), dateTime.get(0), printPrice(totalOrder(order)), order.getStaff_name());
+            }
+            else if(order.getId()>9&&totalOrder(order) >= 10000&&totalOrder(order)<=99999){
+                str2 = str2 + String.format("\n" + "|%8d%28s %20s  %23s %34s", order.getId(), dateTime.get(1), dateTime.get(0), printPrice(totalOrder(order)), order.getStaff_name());
+            }
+            else if(order.getId()>=10&&totalOrder(order)>=100000){
+                str2 = str2 + String.format("\n" + "|%8d%28s %20s  %23s %33s", order.getId(), dateTime.get(1), dateTime.get(0), printPrice(totalOrder(order)), order.getStaff_name());
+            }
+            else if(order.getId()<10&&totalOrder(order)>=10000&&totalOrder(order)<=99999){
+                str2 = str2 + String.format("\n" + "|%8d %28s %20s  %23s %35s", order.getId(), dateTime.get(1), dateTime.get(0), printPrice(totalOrder(order)), order.getStaff_name());
+            }
+            else if(order.getId()<10&&totalOrder(order)>=100000){
+                str2 = str2 + String.format("\n" + "|%8d %28s %20s  %23s %33s", order.getId(), dateTime.get(1), dateTime.get(0), printPrice(totalOrder(order)), order.getStaff_name());
+            }
+            else{
+            str2 = str2 + String.format("\n" + "|%8d %28s %20s  %23s   %34s", order.getId(), dateTime.get(1), dateTime.get(0), printPrice(totalOrder(order)), order.getStaff_name());
+            }
         }
         str2 = str2 + "\n------------------------------------------------------------------------------------------------------------------------------";
         str2 = str2 + "\n\n\n       Người lập biểu                          Kế toán trưởng                      Người đại diện theo phát luật";
@@ -382,6 +399,5 @@ public class OrderService {
         
         return totalReport;
     }
-
 }
     

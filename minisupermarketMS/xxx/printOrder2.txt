@@ -1,0 +1,39 @@
+    public static String printOrder2(Order order) {
+        String orderDetail = "";
+        String str1 = "";
+        String str2 = String.format("");
+        str1 = "\n";
+        str1 = str1 + "-----------------------------------------------------------------------------";
+        str1 = str1 + String.format("\n%10s", order.getStore_name());
+        str1 = str1 + String.format("%37s", "Địa chỉ: " +order.getAddress());
+        str1 = str1 + "\n----------------------------------------------------------------------------";
+        str1 = str1 + "\n                    -------HÓA ĐƠN THANH TOÁN-------         ";
+        str1 = str1 + String.format("\nThời gian: %15s", order.getDate());
+        str1 = str1 + String.format("%17s", "Mã: " + order.getId());
+        str1 = str1 + "\n----------------------------------------------------------------------------";
+        str1 = str1 + "\nTên mặt hàng            Giá            Số lượng         Thành tiền";
+        str1 = str1 + "\n----------------------------------------------------------------------------";
+        for (Product product : order.getProductList()) {
+            str1 = str1 + String.format("\n%.20s", product.getName());
+            str1 = str1 + String.format("\n%-15s", product.getProductId());
+            str1 = str1 + String.format("\n%43s%15d%27s", printPrice(product.getPrice()), product.getAmount(), printPrice(Total(product)));
+            if (product.getDiscounted() >= 1) {
+                    str1 = str1 + String.format("\nKhuyến mãi: %68s", printPrice(product.getDiscounted()));
+                    str1 = str1 + '\n';
+            }
+            else{
+                    str1 = str1 + "\n";
+            }
+        }
+        str1 = str1 + "\n----------------------------------------------------------------------------";
+        str1 = str1 + String.format("\nTổng thanh toán: %54s", printPrice(totalOrder(order)));
+        str1 = str1 + "VNĐ";
+        str1 = str1 + "\n----------------------------------------------------------------------------";
+        str1 = str1 + "\n                        Cảm ơn và hẹn gặp lại bạn!";
+        str1 = str1 + "\n                            Hotline:18001000";
+        str1 = str1 + "\n                        Website:https://vinmart.vn";
+        str1 = str1 + "\n----------------------------------------------------------------------------\n\n";
+        orderDetail = orderDetail + str1;
+        
+        return orderDetail;
+    }

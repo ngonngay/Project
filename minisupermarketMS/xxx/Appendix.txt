@@ -1,0 +1,33 @@
+Appendix
+
+Terms and abbreviation
+none
+
+References
+
+https://hararetail.com/
+https://docs.oracle.com/javase
+https://sinhnx.dev/
+
+Trung tâm Java Master
+Channel youtube:
+https://www.youtube.com/channel/UCxNUqpgRkWnFiiRD0KcDvlw
+
+Hệ thống siêu thị Vinsmart
+
+....
+
+Issues
+<<phần này chuyển sang tiếng Anh>>
+
+--Results--
++Create a product that combines the knowledge of the first semeter 1
++Practice teamwork skill
++Familiarize with object oriented analysis design
+--Limitations--
++Professional scope of the project
++Algorithm....
+--Experiences--
++Teamwork skill
++Familiarize with object oriented analysis design
+......

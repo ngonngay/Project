@@ -1,0 +1,39 @@
+
+<<Chỉnh lại phần customer requirements >>
+
+CUSTOMERS REQUIREMENTS:
+
+- khách hàng yêu cầu một hệ thống có chức năng sau:
+
+	+ Quản lí sản phẩm (số lượng, giá bán, thông tin) của các sản phẩm trong cửa hàng
+	+ Xuất hóa đơn bán hàng và thống kê lượng hóa đơn đã xuất ra
+	+ Bảo mật bằng sự kiện đăng nhập
+	+ Phân chia các chức năng riêng biệt cho quản lí và nhân viên
+	+ Tạo và quản lí các tài khoản nhân viên
+---------------------------------------------------------------
+			<<TRÌNH BÀY BÁO CÁO>>
+
+
+<<Phần lớn các mục(Project Introductions,Analyze System requirements,...) đều sắp xếp để đẩy sang trang mới>>
+<<Phân cách các mục trong 1 trang bằng các khoảng trống vừa phải>>
+<<Kiểm tra, so khớp toàn bộ báo cáo (font,template, logo, date, pictures,...) theo
+ 	đúng format của templates đính kèm trong email>>
+<<Bổ sung ảnh chụp trong thư mục target ở trang 65>>
+------------------------------------------------------------------
+ 
+			<<KIỂM TRA THẬT KĨ SEQUENCE DIAGRAM VÀ CLASS DIAGRAM>>
+
+<Sequence diagram>
+-- life time của object
+-- sự hiện diện và tham gia processes của các object
+<class diagram>
+--biểu tượng database (phải có)
+-------------------------------------------------------------------
+			<<DATABASE DESIGN DETAIL>>
+
+--bỏ 2 bảng categories và product_category
+--------------------------------------------------------------------
+			<<15h00 ngày 17/09/2020>>
+
+--nộp bản fix code printOrder2 và printReport 
+-- nộp bản report theo những nội dung trên, muộn nhất 17h ngày 17/09/2020
