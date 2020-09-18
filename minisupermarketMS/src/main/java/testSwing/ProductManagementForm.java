@@ -106,7 +106,6 @@ public class ProductManagementForm extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         btnInsert = new javax.swing.JButton();
         btnCancleTab2 = new javax.swing.JButton();
-        btnLogOuttab2 = new javax.swing.JButton();
         lbForCheckingExistNewProductId = new javax.swing.JLabel();
         lbForCheckingNewName = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
@@ -349,14 +348,6 @@ public class ProductManagementForm extends javax.swing.JFrame {
             }
         });
 
-        btnLogOuttab2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnLogOuttab2.setText("Đăng Xuất");
-        btnLogOuttab2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogOuttab2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -415,12 +406,8 @@ public class ProductManagementForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(339, 339, 339)
-                                .addComponent(btnLogOuttab2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(269, 269, 269))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(281, 281, 281))))
@@ -451,7 +438,7 @@ public class ProductManagementForm extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(spNewQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -472,9 +459,7 @@ public class ProductManagementForm extends javax.swing.JFrame {
                             .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCancleTab2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnLogOuttab2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addGap(86, 86, 86))
         );
 
         tabProductInformation2.addTab("Thêm Mới Sản Phẩm", jPanel3);
@@ -533,13 +518,6 @@ public class ProductManagementForm extends javax.swing.JFrame {
                 spNewPrice.setValue(0);
                 spNewQuantity.setValue(0);
     }//GEN-LAST:event_btnCancleTab2ActionPerformed
-
-    private void btnLogOuttab2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOuttab2ActionPerformed
-        // TODO add your handling code here:
-        Login login = new Login();
-        login.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnLogOuttab2ActionPerformed
 
     private void txtNewProductIdFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txtNewProductIdFocusGained
         // TODO add your handling code here:
@@ -898,7 +876,6 @@ public class ProductManagementForm extends javax.swing.JFrame {
     private javax.swing.JButton btnCheckExistNewName;
     private javax.swing.JButton btnCheckExistProductId;
     private javax.swing.JButton btnInsert;
-    private javax.swing.JButton btnLogOuttab2;
     private javax.swing.JButton btnRefreshTab1;
     private javax.swing.JButton btnSearch;
     private javax.swing.JComboBox<String> comboboxTypeSearch;
