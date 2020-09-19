@@ -588,6 +588,7 @@ public class AccountManagementForm extends javax.swing.JFrame {
         }
         //valid password
         String password1=new String(txtPassword.getPassword());
+        
         StringBuilder stringBuilder = new StringBuilder();
         if(password1.equals("")||password1==null){
             stringBuilder.append("Mật khẩu trống!\n");
@@ -597,12 +598,14 @@ public class AccountManagementForm extends javax.swing.JFrame {
                             + "Mật khẩu phải có ít nhất một kí tự số\n" + "Mật khẩu phải có ít nhất một kí tự hoa và một kí tự thường\n");
             }
         }
+        
         if(stringBuilder.length()>0){
             JOptionPane.showMessageDialog(this, stringBuilder.toString(), "Không hợp lệ", JOptionPane.ERROR_MESSAGE);
             return;
         }
         //valid reEnter
         String password2=new String(txtReEnterPassword.getPassword());
+        
         StringBuilder stringBuilder1 = new StringBuilder();
         if(password2.equals("")||password2==null){
             stringBuilder1.append("Hãy nhập lại mật khẩu!\n");
@@ -612,13 +615,15 @@ public class AccountManagementForm extends javax.swing.JFrame {
                         + "Mật khẩu phải có ít nhất một kí tự số\n" + "Mật khẩu phải có ít nhất một kí tự hoa và một kí tự thường\n");
             }
         }
+        
         if(stringBuilder1.length()>0){
             JOptionPane.showMessageDialog(this, stringBuilder1.toString(), "Không hợp lệ", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
         // compare renEnter with Enter
-        if(password1.equals(password2)){
+        
+        if(!password1.equals(password2)){
             JOptionPane.showMessageDialog(this, "Mật khẩu mới không khớp", "", JOptionPane.ERROR_MESSAGE);
             return;
         }
