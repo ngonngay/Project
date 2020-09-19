@@ -697,7 +697,7 @@ public ZoneId z= ZoneId.of("GMT+7");
                 defaultTableModel2.setRowCount(0);
 
                 for (Product product1 : order.getProductList()) {
-                    defaultTableModel2.addRow(new Object[]{product1.getName(), "Lẻ", product1.getAmount(), OrderService.printPrice((product1.getPrice()-product1.getDiscounted())*product.getAmount()), OrderService.printPrice(OrderService.Total(product1))});
+                    defaultTableModel2.addRow(new Object[]{product1.getName(), "Lẻ", product1.getAmount(), OrderService.printPrice(product1.getPrice()), OrderService.printPrice(OrderService.Total(product1))});
                 }
                 lblTotalPrice.setText(OrderService.printPrice(OrderService.totalOrder(order)));
                 //update data in tblProductListResultSearch

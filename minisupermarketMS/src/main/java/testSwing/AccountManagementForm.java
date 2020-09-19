@@ -624,7 +624,7 @@ public class AccountManagementForm extends javax.swing.JFrame {
         } else {
             isAdmin=0;
         }
-        Account account= new Account(userName, password1,yourName, isAdmin);
+        Account account= new Account(userName,StaticFunctionService.getMd5(password1) ,yourName, isAdmin);
         boolean check=new AccountBL().createNewAccount(account);
         if (check) {
             JOptionPane.showMessageDialog(this, "Tạo mới thành công!");
