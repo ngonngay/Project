@@ -212,9 +212,9 @@ public ZoneId z= ZoneId.of("GMT+7");
             }
         });
         tblProductListResultSearch.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        tblProductListResultSearch.setColumnSelectionAllowed(true);
         tblProductListResultSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tblProductListResultSearch.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        tblProductListResultSearch.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblProductListResultSearch.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblProductListResultSearch.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblProductListResultSearch);
         tblProductListResultSearch.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -366,7 +366,9 @@ public ZoneId z= ZoneId.of("GMT+7");
                 return types [columnIndex];
             }
         });
-        tblOrderProductList.setColumnSelectionAllowed(true);
+        tblOrderProductList.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tblOrderProductList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblOrderProductList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblOrderProductList.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblOrderProductList);
         tblOrderProductList.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);

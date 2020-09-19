@@ -418,7 +418,7 @@ public class AccountManagementForm extends javax.swing.JFrame {
                    return;
                }
                if (!PasswordService.validatePassword(newPassword)) {
-                JOptionPane.showMessageDialog(this,"Mật khẩu bao gồm ít nhất 8 kí tự và tối đa 20 kí tự\n"
+                JOptionPane.showMessageDialog(this,"Mật khẩu bao gồm ít nhất 8 kí tự\n"
                 + "Mật khẩu phải có ít nhất một kí tự số\n" + "Mật khẩu phải có ít nhất một kí tự hoa và một kí tự thường\n","",JOptionPane.ERROR_MESSAGE);
                return;
                 }
@@ -434,6 +434,11 @@ public class AccountManagementForm extends javax.swing.JFrame {
                 if (newPassword==null){
                     JOptionPane.showMessageDialog(this,"Mật khẩu trống!");
                     return;
+                }
+                if (!PasswordService.validatePassword(newPassword)) {
+                    JOptionPane.showMessageDialog(this,"Mật khẩu bao gồm ít nhất 8 kí tự\n"
+                    + "Mật khẩu phải có ít nhất một kí tự số\n" + "Mật khẩu phải có ít nhất một kí tự hoa và một kí tự thường\n","",JOptionPane.ERROR_MESSAGE);
+                   return;
                 }
                 if (new AccountBL().changePassword(StaticFunctionService.getMd5(newPassword),username)){
                     JOptionPane.showMessageDialog(this,"Đổi mật khẩu thành công");
@@ -588,7 +593,7 @@ public class AccountManagementForm extends javax.swing.JFrame {
             stringBuilder.append("Mật khẩu trống!\n");
         }else{
             if(!PasswordService.validatePassword(password1)){
-            stringBuilder.append("Mật khẩu bao gồm ít nhất 8 kí tự và tối đa 20 kí tự\n"
+            stringBuilder.append("Mật khẩu bao gồm ít nhất 8 kí tự\n"
                             + "Mật khẩu phải có ít nhất một kí tự số\n" + "Mật khẩu phải có ít nhất một kí tự hoa và một kí tự thường\n");
             }
         }
@@ -603,7 +608,7 @@ public class AccountManagementForm extends javax.swing.JFrame {
             stringBuilder1.append("Hãy nhập lại mật khẩu!\n");
         }else{
             if(!PasswordService.validatePassword(password2)){
-                stringBuilder1.append("Mật khẩu bao gồm ít nhất 8 kí tự và tối đa 20 kí tự\n"
+                stringBuilder1.append("Mật khẩu bao gồm ít nhất 8 kí tự\n"
                         + "Mật khẩu phải có ít nhất một kí tự số\n" + "Mật khẩu phải có ít nhất một kí tự hoa và một kí tự thường\n");
             }
         }
@@ -613,7 +618,7 @@ public class AccountManagementForm extends javax.swing.JFrame {
         }
         
         // compare renEnter with Enter
-        if(!password1.equals(password2)){
+        if(password1.equals(password2)){
             JOptionPane.showMessageDialog(this, "Mật khẩu mới không khớp", "", JOptionPane.ERROR_MESSAGE);
             return;
         }
