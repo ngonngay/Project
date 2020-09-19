@@ -628,6 +628,13 @@ public class AccountManagementForm extends javax.swing.JFrame {
         boolean check=new AccountBL().createNewAccount(account);
         if (check) {
             JOptionPane.showMessageDialog(this, "Tạo mới thành công!");
+            txtNewStaffName.setText("");
+            txtPassword.setText("");
+            txtReEnterPassword.setText("");
+            lbPassword.setText("");
+            lbReEnterPassword.setText("");
+            lbUserName.setText("");
+            txtnewUserName.setText("");
         }else{
             JOptionPane.showMessageDialog(this,"Lỗi kĩ thuật, vui lòng thử lại sau", "Oops!", JOptionPane.ERROR_MESSAGE);
         }
